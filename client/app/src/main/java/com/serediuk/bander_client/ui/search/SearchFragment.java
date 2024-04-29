@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.serediuk.bander_client.databinding.FragmentChatsBinding;
 import com.serediuk.bander_client.databinding.FragmentSearchBinding;
 
 public class SearchFragment extends Fragment {
@@ -27,6 +26,7 @@ public class SearchFragment extends Fragment {
 
         final TextView textView = binding.textSearch;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
         return root;
     }
 

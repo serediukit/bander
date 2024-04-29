@@ -3,10 +3,13 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 
-    <color name="status_bar">#081f14</color>
-    <color name="primary">#42f59e</color>
+    <color name="status_bar">#136349</color>
+    <color name="primary">#136349</color>
     <color name="primary_variant">#1f945b</color>
     <color name="secondary">#4f62db</color>
     <color name="secondary_variant">#0b1c8c</color>
 
+    <color name="text_header">#b8dbd0</color>
+    <color name="text_primary">#141716</color>
+    <color name="text_secondary">#464f4c</color>
 </resources>
