@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="ActionBarTextAppearance" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="titleTextColor">@color/text_header</item>
-    </style>
-</resources>
