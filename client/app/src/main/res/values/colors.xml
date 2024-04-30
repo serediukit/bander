@@ -9,7 +9,7 @@
     <color name="secondary">#4f62db</color>
     <color name="secondary_variant">#0b1c8c</color>
 
-    <color name="text_header">#b8dbd0</color>
+    <color name="text_header">#f2faf7</color>
     <color name="text_primary">#141716</color>
     <color name="text_secondary">#464f4c</color>
 </resources>
