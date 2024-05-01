@@ -92,7 +92,7 @@
         android:layout_marginTop="100dp"
         android:background="@color/primary"
         android:fontFamily="@font/barlow_semibold"
-        android:text="@string/sign_in_button"
+        android:text="@string/sign_up_button"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

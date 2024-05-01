@@ -10,20 +10,20 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.serediuk.bander_client.auth.AuthProvider;
 
 public class RegistrationActivity extends AppCompatActivity {
-    private EditText emailEditText, passwordEditText;
+    private EditText mEmail, mPassword;
 
-    private FirebaseAuth mAuth;
+    private AuthProvider authProvider;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        mAuth = FirebaseAuth.getInstance();
+        authProvider = AuthProvider.getInstance();
         firebaseAuthStateListener = firebaseAuth -> {
             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
@@ -33,15 +33,15 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-        Button registrationButton = findViewById(R.id.registration_button);
+        Button mRegistrationButton = findViewById(R.id.registration_button);
 
-        emailEditText = findViewById(R.id.emailEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
+        mEmail = findViewById(R.id.emailEditText);
+        mPassword = findViewById(R.id.passwordEditText);
 
-        registrationButton.setOnClickListener(v -> {
-            final String email = emailEditText.getText().toString();
-            final String password = passwordEditText.getText().toString();
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistrationActivity.this, task -> {
+        mRegistrationButton.setOnClickListener(v -> {
+            final String email = mEmail.getText().toString();
+            final String password = mPassword.getText().toString();
+            authProvider.register(email, password).addOnCompleteListener(RegistrationActivity.this, task -> {
                 if (!task.isSuccessful()) {
                     Toast.makeText(RegistrationActivity.this, "Sign up error", Toast.LENGTH_SHORT).show();
                 }
@@ -52,12 +52,12 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(firebaseAuthStateListener);
+        authProvider.addAuthStateListener(firebaseAuthStateListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mAuth.removeAuthStateListener(firebaseAuthStateListener);
+        authProvider.removeAuthStateListener(firebaseAuthStateListener);
     }
 }

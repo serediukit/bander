@@ -10,11 +10,12 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.serediuk.bander_client.auth.AuthProvider;
 
 public class LoginRegisterActivity extends AppCompatActivity {
-    private EditText emailEditText, passwordEditText;
+    private EditText mEmail, mPassword;
 
-    private FirebaseAuth mAuth;
+    private AuthProvider authProvider;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
     @Override
@@ -22,7 +23,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
 
-        mAuth = FirebaseAuth.getInstance();
+        authProvider = AuthProvider.getInstance();
         firebaseAuthStateListener = firebaseAuth -> {
             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user != null) {
@@ -32,23 +33,23 @@ public class LoginRegisterActivity extends AppCompatActivity {
             }
         };
 
-        Button loginButton = findViewById(R.id.login_button);
-        Button registerButton = findViewById(R.id.registration_button);
+        Button mLoginButton = findViewById(R.id.login_button);
+        Button mRegisterButton = findViewById(R.id.registration_button);
 
-        emailEditText = findViewById(R.id.emailEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
+        mEmail = findViewById(R.id.emailEditText);
+        mPassword = findViewById(R.id.passwordEditText);
 
-        loginButton.setOnClickListener(v -> {
-            final String email = emailEditText.getText().toString();
-            final String password = passwordEditText.getText().toString();
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginRegisterActivity.this, task -> {
+        mLoginButton.setOnClickListener(v -> {
+            final String email = mEmail.getText().toString();
+            final String password = mPassword.getText().toString();
+            authProvider.login(email, password).addOnCompleteListener(LoginRegisterActivity.this, task -> {
                 if (!task.isSuccessful()) {
                     Toast.makeText(LoginRegisterActivity.this, "Log in error", Toast.LENGTH_SHORT).show();
                 }
             });
         });
 
-        registerButton.setOnClickListener(v -> {
+        mRegisterButton.setOnClickListener(v -> {
             Intent intent = new Intent(LoginRegisterActivity.this, RegistrationActivity.class);
             startActivity(intent);
             finish();
@@ -58,12 +59,12 @@ public class LoginRegisterActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(firebaseAuthStateListener);
+        authProvider.addAuthStateListener(firebaseAuthStateListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mAuth.removeAuthStateListener(firebaseAuthStateListener);
+        authProvider.removeAuthStateListener(firebaseAuthStateListener);
     }
 }
