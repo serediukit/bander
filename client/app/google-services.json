@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "619411434531",
+    "project_id": "bander-63922",
+    "storage_bucket": "bander-63922.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619411434531:android:213ac6382fd988b1d19596",
+        "android_client_info": {
+          "package_name": "com.serediuk.bander_client"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtK0XXCy7zbeLFrkPjH8A-IIarNL35-YU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
