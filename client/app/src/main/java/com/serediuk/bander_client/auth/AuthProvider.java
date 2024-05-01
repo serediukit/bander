@@ -3,6 +3,7 @@ package com.serediuk.bander_client.auth;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.serediuk.bander_client.util.Validator;
 
 public class AuthProvider {
     private static AuthProvider instance;
@@ -33,6 +34,9 @@ public class AuthProvider {
     }
 
     public Task<AuthResult> register(String email, String password) {
+        if (Validator.isValidEmail(email) && Validator.isValidPassword(password)) {
+            return auth.createUserWithEmailAndPassword(email, password);
+        }
         return auth.createUserWithEmailAndPassword(email, password);
     }
 

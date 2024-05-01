@@ -13,9 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.serediuk.bander_client.LoginRegisterActivity;
-import com.serediuk.bander_client.MainActivity;
 import com.serediuk.bander_client.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -42,12 +40,9 @@ public class ProfileFragment extends Fragment {
 
         Button mSignOut = binding.signoutButton;
 
-        mSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                profileViewModel.addAuthStateListener(firebaseAuthStateListener);
-                profileViewModel.signOut();
-            }
+        mSignOut.setOnClickListener(v -> {
+            profileViewModel.addAuthStateListener(firebaseAuthStateListener);
+            profileViewModel.signOut();
         });
 
         return root;
