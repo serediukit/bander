@@ -40,7 +40,7 @@
         android:layout_marginTop="60dp"
         android:autofillHints=""
         android:fontFamily="@font/barlow_medium"
-        android:hint="@string/email"
+        android:hint="@string/text_email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:fontFamily="@font/barlow_medium"
-        android:hint="@string/password"
+        android:hint="@string/text_password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,16 +75,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
-    <Button
-        android:id="@+id/registration_button"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/barlow_semibold"
-        android:text="@string/registration_button"
-        android:textColor="@color/text_secondary"
-        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+        app:layout_constraintTop_toBottomOf="@+id/login_button">
+
+        <TextView
+            android:id="@+id/signUpTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_thin"
+            android:text="@string/text_sign_up_answer"
+            android:textAlignment="center"
+            android:textColor="@color/text_primary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout" />
+
+        <Button
+            android:id="@+id/registration_button"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semibold"
+            android:text="@string/sign_up_button"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
