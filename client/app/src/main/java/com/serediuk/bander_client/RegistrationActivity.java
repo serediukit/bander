@@ -63,7 +63,7 @@ public class RegistrationActivity extends AppCompatActivity {
             finish();
         });
 
-        transformIntoDatePicker(findViewById(R.id.dateEditText), this, "MM/dd/yyyy", new Date());
+        transformIntoDatePicker(findViewById(R.id.dateEditText), this, "dd/mm/yyyy", new Date());
     }
 
     @Override
@@ -77,6 +77,8 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onStop();
         authProvider.removeAuthStateListener(firebaseAuthStateListener);
     }
+
+
 
     private static void transformIntoDatePicker(EditText editText, Context context, String format, Date maxDate) {
         editText.setFocusableInTouchMode(false);
