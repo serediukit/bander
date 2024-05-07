@@ -4,8 +4,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.serediuk.bander_client.exceptions.AuthException;
+import com.serediuk.bander_client.util.exceptions.AuthException;
 import com.serediuk.bander_client.util.Validator;
+
+import java.util.Objects;
 
 public class AuthProvider {
     private static AuthProvider instance;
@@ -31,9 +33,10 @@ public class AuthProvider {
         auth.removeAuthStateListener(listener);
     }
 
-    public Task<AuthResult> register(String email, String password) {
+    public Task<AuthResult> register(String email, String password, String confirmPassword) {
         if (Validator.isValidEmail(email) && Validator.isValidPassword(password)) {
-            return auth.createUserWithEmailAndPassword(email, password);
+            if (password.equals(confirmPassword))
+                return auth.createUserWithEmailAndPassword(email, password);
         }
         return Tasks.forException(new AuthException());
     }
@@ -44,5 +47,9 @@ public class AuthProvider {
 
     public void signOut() {
         auth.signOut();
+    }
+
+    public String getUid() {
+        return Objects.requireNonNull(auth.getCurrentUser()).getUid();
     }
 }

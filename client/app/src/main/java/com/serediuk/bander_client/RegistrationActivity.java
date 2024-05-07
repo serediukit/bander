@@ -6,6 +6,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,7 +23,8 @@ import java.util.Locale;
 
 
 public class RegistrationActivity extends AppCompatActivity {
-    private EditText mEmail, mPassword;
+    private EditText mEmail, mPassword, mConfirmPassword;
+    private EditText mName, mSurname, mBirthday, mCity;
 
     private AuthProvider authProvider;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
@@ -41,29 +44,47 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-        Button mRegistrationButton = findViewById(R.id.registration_button);
-        Button mLoginButton = findViewById(R.id.login_button);
-
         mEmail = findViewById(R.id.emailEditText);
         mPassword = findViewById(R.id.passwordEditText);
+        mConfirmPassword = findViewById(R.id.confirmPasswordEditText);
+        mName = findViewById(R.id.nameEditText);
+        mSurname = findViewById(R.id.surnameEditText);
+        mBirthday = findViewById(R.id.dateEditText);
+        mCity = findViewById(R.id.cityEditText);
 
-        mRegistrationButton.setOnClickListener(v -> {
-            final String email = mEmail.getText().toString();
-            final String password = mPassword.getText().toString();
-            authProvider.register(email, password).addOnCompleteListener(RegistrationActivity.this, task -> {
-                if (!task.isSuccessful()) {
-                    Toast.makeText(RegistrationActivity.this, "Sign up error", Toast.LENGTH_SHORT).show();
-                }
-            });
+        transformIntoDatePicker(findViewById(R.id.dateEditText), this, "dd/MM/yyyy", new Date());
+    }
+
+    public void registerUser(View view) {
+        final String email = mEmail.getText().toString();
+        final String password = mPassword.getText().toString();
+        final String confirmPassword = mConfirmPassword.getText().toString();
+        final String name = mName.getText().toString();
+        final String surname = mSurname.getText().toString();
+        final String birthday = mBirthday.getText().toString();
+        final String city = mCity.getText().toString();
+
+        if (name.isEmpty() || surname.isEmpty() || birthday.isEmpty() || city.isEmpty()) {
+            Toast.makeText(RegistrationActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
+            Log.d("Auth", "Some fields are empty");
+            return;
+        }
+
+        authProvider.register(email, password, confirmPassword).addOnCompleteListener(RegistrationActivity.this, task -> {
+            if (task.isSuccessful()) {
+                // TODO load data to the database
+                Log.d("Auth", "SIGN UP successfully");
+            }
+            else {
+                Toast.makeText(RegistrationActivity.this, "Sign up error", Toast.LENGTH_SHORT).show();
+            }
         });
+    }
 
-        mLoginButton.setOnClickListener(v -> {
-            Intent intent = new Intent(RegistrationActivity.this, LoginRegisterActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        transformIntoDatePicker(findViewById(R.id.dateEditText), this, "dd/mm/yyyy", new Date());
+    public void openLoginActivity(View view) {
+        Intent intent = new Intent(RegistrationActivity.this, LoginRegisterActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -78,8 +99,6 @@ public class RegistrationActivity extends AppCompatActivity {
         authProvider.removeAuthStateListener(firebaseAuthStateListener);
     }
 
-
-
     private static void transformIntoDatePicker(EditText editText, Context context, String format, Date maxDate) {
         editText.setFocusableInTouchMode(false);
         editText.setClickable(true);
@@ -93,6 +112,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                     SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.UK);
                     editText.setText(sdf.format(myCalendar.getTime()));
+                    Log.d("Auth", "Date picked: " + sdf.format(myCalendar.getTime()));
                 };
 
         editText.setOnClickListener(v -> {
