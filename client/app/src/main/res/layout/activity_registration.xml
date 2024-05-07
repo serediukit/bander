@@ -1,143 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".RegistrationActivity">
+    android:layout_width="match_parent"
+    android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/white"
+        tools:context=".RegistrationActivity"
+        android:paddingVertical="40dp">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            android:contentDescription="@string/app_name"
-            tools:ignore="InefficientWeight" />
-
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/ic_launcher_round"
+                android:contentDescription="@string/app_name"
+                tools:ignore="InefficientWeight" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/barlow_bold"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="@color/text_primary"
+                android:textSize="28sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/barlow_bold"
-            android:text="@string/app_name"
+            android:text="@string/text_registration"
             android:textAlignment="center"
             android:textColor="@color/text_primary"
-            android:textSize="28sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="11dp"
-            tools:layout_editor_absoluteY="236dp" />
+            app:layout_constraintBottom_toTopOf="@+id/emailEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:autofillHints=""
+            android:fontFamily="@font/barlow_medium"
+            android:hint="@string/text_email"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/barlow_bold"
-        android:text="@string/text_registration"
-        android:textAlignment="center"
-        android:textColor="@color/text_primary"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/emailEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:fontFamily="@font/barlow_medium"
+            android:hint="@string/text_name"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
-    <EditText
-        android:id="@+id/emailEditText"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:autofillHints=""
-        android:fontFamily="@font/barlow_medium"
-        android:hint="@string/text_email"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        <EditText
+            android:id="@+id/surnameEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:fontFamily="@font/barlow_medium"
+            android:hint="@string/text_surname"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
-    <EditText
-        android:id="@+id/nameEditText"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:fontFamily="@font/barlow_medium"
-        android:hint="@string/text_name"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+        <EditText
+            android:id="@+id/dateEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:fontFamily="@font/barlow_medium"
+            android:hint="@string/text_birthday"
+            android:inputType="date"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/surnameEditText"/>
 
-    <EditText
-        android:id="@+id/surnameEditText"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:fontFamily="@font/barlow_medium"
-        android:hint="@string/text_surname"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+        <EditText
+            android:id="@+id/cityEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:fontFamily="@font/barlow_medium"
+            android:hint="@string/text_city"
+            android:inputType="text"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateEditText" />
 
-    <EditText
-        android:id="@+id/passwordEditText"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:fontFamily="@font/barlow_medium"
-        android:hint="@string/text_password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surnameEditText" />
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:fontFamily="@font/barlow_medium"
+            android:hint="@string/text_password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cityEditText" />
 
-    <EditText
-        android:id="@+id/confirmPasswordEditText"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:fontFamily="@font/barlow_medium"
-        android:hint="@string/text_confirm_password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        <EditText
+            android:id="@+id/confirmPasswordEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:fontFamily="@font/barlow_medium"
+            android:hint="@string/text_confirm_password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
-    <Button
-        android:id="@+id/registration_button"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@color/primary"
-        android:fontFamily="@font/barlow_semibold"
-        android:text="@string/sign_up_button"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/registration_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/primary"
+            android:fontFamily="@font/barlow_semibold"
+            android:text="@string/sign_up_button"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditText" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registration_button">
+
+            <TextView
+                android:id="@+id/signUpTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_thin"
+                android:text="@string/text_log_in_answer"
+                android:textAlignment="center"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <Button
+                android:id="@+id/login_button"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="@string/login_button"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

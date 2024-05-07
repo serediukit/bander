@@ -12,11 +12,14 @@
     <string name="sign_out">Sign out</string>
 
     <string name="text_sign_up_answer">Don\'t have an account?</string>
+    <string name="text_log_in_answer">Already have an account?</string>
     <string name="text_registration">Sign up</string>
     <string name="text_email">E-mail</string>
     <string name="text_password">Password</string>
     <string name="text_confirm_password">Confirm Password</string>
     <string name="text_name">Name</string>
     <string name="text_surname">Surname</string>
+    <string name="text_birthday">Birthday</string>
+    <string name="text_city">City</string>
 
 </resources>
