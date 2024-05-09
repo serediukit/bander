@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bander</string>
+    <string name="app_name" translatable="false">Bander</string>
     <string name="title_home">Home</string>
     <string name="title_notifications">Notification</string>
     <string name="title_search">Search</string>
@@ -14,7 +14,7 @@
     <string name="text_sign_up_answer">Don\'t have an account?</string>
     <string name="text_log_in_answer">Already have an account?</string>
     <string name="text_registration">Sign up</string>
-    <string name="text_email">E-mail</string>
+    <string name="text_email" translatable="false">E-mail</string>
     <string name="text_password">Password</string>
     <string name="text_confirm_password">Confirm Password</string>
     <string name="text_name">Name</string>

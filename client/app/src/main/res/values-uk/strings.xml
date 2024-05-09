@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">Головна</string>
+    <string name="title_notifications">Сповіщення</string>
+    <string name="title_search">Пошук</string>
+    <string name="title_chats">Чати</string>
+    <string name="title_profile">Профіль</string>
+    <string name="login_button">Вхід</string>
+    <string name="registration_button">Реєстрація</string>
+    <string name="sign_up_button">Зареєструватись</string>
+    <string name="sign_out">Вийти</string>
+    <string name="text_sign_up_answer">Не маєш акаунту?</string>
+    <string name="text_log_in_answer">Вже є акаунт?</string>
+    <string name="text_registration">Зареєструватись</string>
+    <string name="text_password">Пароль</string>
+    <string name="text_confirm_password">Підтвердження паролю</string>
+    <string name="text_name">Ім\'я</string>
+    <string name="text_surname">Прізвище</string>
+    <string name="text_birthday">Дата народження</string>
+    <string name="text_city">Місто</string>
+</resources>
