@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,11 @@ public class LoginRegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginRegisterActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            } else {
+                ImageView mCoverImage = findViewById(R.id.coverImage);
+                mCoverImage.setVisibility(View.GONE);
+                Button mLoginButton = findViewById(R.id.login_button);
+                mLoginButton.setVisibility(View.VISIBLE);
             }
         };
 

@@ -45,6 +45,10 @@ public class DatabaseConnectionProvider {
         return instance;
     }
 
+    public FirebaseDatabase getDatabase() {
+        return database;
+    }
+
     public void addUser(User user) {
         DatabaseReference userReference = database.getReference("users");
         userReference.push().setValue(user);

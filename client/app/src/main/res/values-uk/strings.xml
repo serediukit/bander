@@ -22,8 +22,13 @@
     <string name="description_profile_image">Аватар профілю</string>
     <string name="text_to_sign_out_message">Ви точно хочете вийти?</string>
     <string name="text_to_sign_out_title">Попередження</string>
+    <string name="text_experience">Досвід: відсутній</string>
     <string name="text_about_title">Про мене</string>
+    <string name="text_roles_title">Ролі</string>
+    <string name="text_roles">Додайте інформацію про ролі, які Ви виконуєте</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
     <string name="text_about">Додайте інфорацію про себе\n\n\n</string>
+    <string name="text_links_title">Відео посилання</string>
+    <string name="text_links">Додайте посилання на свої відео</string>
 </resources>

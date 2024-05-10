@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/barlow_semibold"
+                android:fontFamily="@font/barlow_medium"
                 android:text="@string/text_birthday"
                 android:textColor="@color/text_primary"
                 android:textSize="18sp" />
@@ -99,16 +99,28 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/profileExperience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/barlow_bold"
+        android:text="@string/text_experience"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileLinearLayout"/>
+
+    <TextView
         android:id="@+id/profileAboutTitle"
         android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginTop="36dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/barlow_semibold"
         android:text="@string/text_about_title"
         android:textColor="@color/text_primary"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileLinearLayout"/>
+        app:layout_constraintTop_toBottomOf="@+id/profileEditLinearLayout"/>
 
     <TextView
         android:id="@+id/profileAbout"
@@ -121,5 +133,53 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileAboutTitle"/>
+
+    <TextView
+        android:id="@+id/profileRolesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="@string/text_roles_title"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileAbout"/>
+
+    <TextView
+        android:id="@+id/profileRoles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/barlow_medium"
+        android:text="@string/text_roles"
+        android:textColor="@color/text_primary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileRolesTitle"/>
+
+    <TextView
+        android:id="@+id/profileLinksTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="@string/text_links_title"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileRoles"/>
+
+    <TextView
+        android:id="@+id/profileLinks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/barlow_medium"
+        android:text="@string/text_links"
+        android:textColor="@color/text_primary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileLinksTitle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

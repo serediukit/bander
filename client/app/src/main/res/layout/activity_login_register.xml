@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:rotation="0"
     tools:context=".LoginRegisterActivity">
 
     <ImageView
@@ -69,9 +70,10 @@
         android:layout_marginTop="60dp"
         android:background="@color/primary"
         android:fontFamily="@font/barlow_semibold"
+        android:onClick="login"
         android:text="@string/login_button"
         android:textSize="18sp"
-        android:onClick="login"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
@@ -96,7 +98,7 @@
             android:textColor="@color/text_primary"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/registration_button"
@@ -104,12 +106,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_semibold"
+            android:onClick="openRegistrationActivity"
             android:text="@string/sign_up_button"
             android:textColor="@color/text_secondary"
             android:textSize="12sp"
-            android:onClick="openRegistrationActivity"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/coverImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 </androidx.constraintlayout.widget.ConstraintLayout>
