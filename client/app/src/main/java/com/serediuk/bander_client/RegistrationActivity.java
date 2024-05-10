@@ -58,7 +58,11 @@ public class RegistrationActivity extends AppCompatActivity {
         mBirthday = findViewById(R.id.dateEditText);
         mCity = findViewById(R.id.cityEditText);
 
-        transformIntoDatePicker(findViewById(R.id.dateEditText), this, new Date());
+        Date currentDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.YEAR, -12);
+        transformIntoDatePicker(findViewById(R.id.dateEditText), this, calendar.getTime());
     }
 
     public void registerUser(View view) {
