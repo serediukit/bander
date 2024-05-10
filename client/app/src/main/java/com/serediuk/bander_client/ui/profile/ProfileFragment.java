@@ -44,15 +44,17 @@ public class ProfileFragment extends Fragment {
     }
 
     private void loadData() {
-//        User user = profileViewModel.getUserProfileData();
-//        TextView mName = requireActivity().findViewById(R.id.profileNameTextView);
-//        mName.setText(user.getName());
-//        TextView mSurname = requireActivity().findViewById(R.id.profileSurnameTextView);
-//        mSurname.setText(user.getSurname());
-//        TextView mBirthday = requireActivity().findViewById(R.id.profileBirthdayTextView);
-//        mBirthday.setText(user.getBirthday());
-//        TextView mCity = requireActivity().findViewById(R.id.profileCityTextView);
-//        mCity.setText(user.getCity());
+        User user = profileViewModel.getUserProfileData();
+        Log.d("PROFILE", "Loaded usersList:\n" + profileViewModel.getUsersList());
+        Log.d("PROFILE", "Loaded user:\n" + user);
+        TextView mName = binding.profileNameTextView;
+        mName.setText(user.getName());
+        TextView mSurname = binding.profileSurnameTextView;
+        mSurname.setText(user.getSurname());
+        TextView mBirthday = binding.profileBirthdayTextView;
+        mBirthday.setText(user.getBirthday());
+        TextView mCity = binding.profileCityTextView;
+        mCity.setText(user.getCity());
     }
 
     private void init() {
@@ -75,6 +77,9 @@ public class ProfileFragment extends Fragment {
                     .setPositiveButton(R.string.yes, (dialog, which) -> {
                         profileViewModel.addAuthStateListener(firebaseAuthStateListener);
                         profileViewModel.signOut();
+                        Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
+                        startActivity(intent);
+                        requireActivity().finish();
                     })
                     .setNegativeButton(R.string.no, (dialog, which) -> {})
                     .show();

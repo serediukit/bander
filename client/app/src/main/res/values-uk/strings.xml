@@ -9,7 +9,7 @@
     <string name="registration_button">Реєстрація</string>
     <string name="sign_up_button">Зареєструватись</string>
     <string name="sign_out">Вийти</string>
-    <string name="text_sign_up_answer">Не маєш акаунту?</string>
+    <string name="text_sign_up_answer">Не маєте акаунту?</string>
     <string name="text_log_in_answer">Вже є акаунт?</string>
     <string name="text_registration">Зареєструватись</string>
     <string name="text_email">Електронна пошта</string>
@@ -22,6 +22,8 @@
     <string name="description_profile_image">Аватар профілю</string>
     <string name="text_to_sign_out_message">Ви точно хочете вийти?</string>
     <string name="text_to_sign_out_title">Попередження</string>
+    <string name="text_about_title">Про мене</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
+    <string name="text_about">Додайте інфорацію про себе\n\n\n</string>
 </resources>

@@ -11,8 +11,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.serediuk.bander_client.databinding.ActivityMainBinding;
+import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 
 public class MainActivity extends AppCompatActivity {
+    DatabaseConnectionProvider dbcProvider;
 
     private ActivityMainBinding binding;
 
@@ -36,5 +38,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        dbcProvider = DatabaseConnectionProvider.getInstance();
     }
 }

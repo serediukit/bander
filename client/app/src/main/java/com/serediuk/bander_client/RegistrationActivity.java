@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
@@ -82,14 +83,21 @@ public class RegistrationActivity extends AppCompatActivity {
 
         authProvider.register(email, password, confirmPassword).addOnCompleteListener(RegistrationActivity.this, task -> {
             if (task.isSuccessful()) {
-                User user = new User(authProvider.getUid(), name, surname, birthday, city);
+                User user = new User(authProvider.getUid(), email, name, surname, birthday, city);
                 dbcProvider.addUser(user);
 
                 Log.d("Auth", "Created new user: " + user);
                 Log.d("Auth", "SIGN UP successfully");
+                dbcProvider.loadUsers();
             }
             else {
-                Toast.makeText(RegistrationActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                    Toast.makeText(RegistrationActivity.this, "User with this email already exists", Toast.LENGTH_SHORT).show();
+                    Log.d("Auth", "User with this email already exists");
+                } else {
+                    Toast.makeText(RegistrationActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d("Auth", Objects.requireNonNull(task.getException()).getMessage());
+                }
             }
         });
     }

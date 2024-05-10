@@ -27,7 +27,8 @@
             android:id="@+id/userInfoLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="20dp"
             android:orientation="vertical">
 
             <TextView
@@ -54,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/barlow_bold"
+                android:fontFamily="@font/barlow_semibold"
                 android:text="@string/text_birthday"
                 android:textColor="@color/text_primary"
                 android:textSize="18sp" />
@@ -64,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/barlow_bold"
+                android:fontFamily="@font/barlow_semibold"
                 android:text="@string/text_city"
                 android:textColor="@color/text_primary"
                 android:textSize="18sp" />
@@ -73,37 +74,52 @@
 
     <LinearLayout
         android:id="@+id/profileEditLinearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/profileLinearLayout"
-        tools:layout_editor_absoluteX="20dp">
-
-        <ImageButton
-            android:id="@+id/signOutImageButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:importantForAccessibility="no"
-            app:srcCompat="@drawable/ic_exit_24dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileLinearLayout">
 
         <ImageButton
             android:id="@+id/editImageButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="5dp"
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_edit_24dp" />
 
         <ImageButton
-            android:id="@+id/saveImageButton"
+            android:id="@+id/signOutImageButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="5dp"
             android:importantForAccessibility="no"
-            app:srcCompat="@drawable/ic_save_24dp"
-            android:visibility="invisible"/>
+            app:srcCompat="@drawable/ic_exit_24dp" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/profileAboutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="@string/text_about_title"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileLinearLayout"/>
+
+    <TextView
+        android:id="@+id/profileAbout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/barlow_medium"
+        android:text="@string/text_about"
+        android:textColor="@color/text_primary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileAboutTitle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
