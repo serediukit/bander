@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -29,16 +29,13 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textProfile;
-        profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
         firebaseAuthStateListener = firebaseAuth -> {
             Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
             startActivity(intent);
             requireActivity().finish();
         };
 
-        Button mSignOut = binding.signoutButton;
+        ImageButton mSignOut = binding.signOutImageButton;
 
         mSignOut.setOnClickListener(v -> {
             profileViewModel.addAuthStateListener(firebaseAuthStateListener);
