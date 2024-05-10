@@ -8,13 +8,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.serediuk.bander_client.auth.AuthProvider;
+import com.serediuk.bander_client.model.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.entity.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,6 +29,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private AuthProvider authProvider;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+
+    private DatabaseConnectionProvider dbcProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,8 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
+        dbcProvider = DatabaseConnectionProvider.getInstance();
+
         mEmail = findViewById(R.id.emailEditText);
         mPassword = findViewById(R.id.passwordEditText);
         mConfirmPassword = findViewById(R.id.confirmPasswordEditText);
@@ -52,7 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
         mBirthday = findViewById(R.id.dateEditText);
         mCity = findViewById(R.id.cityEditText);
 
-        transformIntoDatePicker(findViewById(R.id.dateEditText), this, "dd/MM/yyyy", new Date());
+        transformIntoDatePicker(findViewById(R.id.dateEditText), this, new Date());
     }
 
     public void registerUser(View view) {
@@ -73,6 +78,10 @@ public class RegistrationActivity extends AppCompatActivity {
         authProvider.register(email, password, confirmPassword).addOnCompleteListener(RegistrationActivity.this, task -> {
             if (task.isSuccessful()) {
                 // TODO load data to the database
+                User user = new User(name, surname, birthday, city);
+                dbcProvider.addUser(user);
+
+                Log.d("Auth", "Created new user: " + user);
                 Log.d("Auth", "SIGN UP successfully");
             }
             else {
@@ -99,7 +108,7 @@ public class RegistrationActivity extends AppCompatActivity {
         authProvider.removeAuthStateListener(firebaseAuthStateListener);
     }
 
-    private static void transformIntoDatePicker(EditText editText, Context context, String format, Date maxDate) {
+    private static void transformIntoDatePicker(EditText editText, Context context, Date maxDate) {
         editText.setFocusableInTouchMode(false);
         editText.setClickable(true);
         editText.setFocusable(false);
@@ -110,7 +119,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     myCalendar.set(Calendar.YEAR, year);
                     myCalendar.set(Calendar.MONTH, monthOfYear);
                     myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                    SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.UK);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.UK);
                     editText.setText(sdf.format(myCalendar.getTime()));
                     Log.d("Auth", "Date picked: " + sdf.format(myCalendar.getTime()));
                 };
