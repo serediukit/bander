@@ -3,16 +3,30 @@ package com.serediuk.bander_client.model.entity;
 import androidx.annotation.NonNull;
 
 public class User {
+    private final String uid;
     private final String name;
     private final String surname;
-    private final String birthDate;
+    private final String birthday;
     private final String city;
 
-    public User(String name, String surname, String birthDate, String city) {
+    public User(String uid, String name, String surname, String birthday, String city) {
+        this.uid = uid;
         this.name = name;
         this.surname = surname;
-        this.birthDate = birthDate;
+        this.birthday = birthday;
         this.city = city;
+    }
+
+    public User(User user) {
+        this.uid = user.uid;
+        this.name = user.name;
+        this.surname = user.surname;
+        this.birthday = user.birthday;
+        this.city = user.city;
+    }
+
+    public String getUid() {
+        return uid;
     }
 
     public String getName() {
@@ -23,8 +37,8 @@ public class User {
         return surname;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getBirthday() {
+        return birthday;
     }
 
     public String getCity() {
@@ -34,6 +48,6 @@ public class User {
     @NonNull
     @Override
     public String toString() {
-        return "{\nname: " + name + "\nsurname: " + surname + "\nbirthday: " + birthDate + "\ncity: " + city + "\n}";
+        return "{\nname: " + name + "\nsurname: " + surname + "\nbirthday: " + birthday + "\ncity: " + city + "\n}";
     }
 }

@@ -95,6 +95,15 @@
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_edit_24dp" />
 
+        <ImageButton
+            android:id="@+id/saveImageButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="5dp"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/ic_save_24dp"
+            android:visibility="invisible"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,5 +24,9 @@
 
     <string name="text_blank" translatable="false">Empty</string>
     <string name="description_profile_image">Profile image</string>
+    <string name="text_to_sign_out_title">Warning</string>
+    <string name="text_to_sign_out_message">Are you sure about exiting?</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

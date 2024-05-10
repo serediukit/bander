@@ -77,8 +77,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         authProvider.register(email, password, confirmPassword).addOnCompleteListener(RegistrationActivity.this, task -> {
             if (task.isSuccessful()) {
-                // TODO load data to the database
-                User user = new User(name, surname, birthday, city);
+                User user = new User(authProvider.getUid(), name, surname, birthday, city);
                 dbcProvider.addUser(user);
 
                 Log.d("Auth", "Created new user: " + user);
