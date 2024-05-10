@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -84,7 +85,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 Log.d("Auth", "SIGN UP successfully");
             }
             else {
-                Toast.makeText(RegistrationActivity.this, "Sign up error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

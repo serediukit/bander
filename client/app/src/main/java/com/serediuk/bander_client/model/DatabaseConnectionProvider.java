@@ -35,27 +35,27 @@ public class DatabaseConnectionProvider {
         Log.d("DATABASE", "Adding user: " + user.toString());
     }
 
-    public User getUserData(String uid) {
-        DatabaseReference userReference = database.getReference("users");
-        final User[] findedUser = new User[1];
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    User user = ds.getValue(User.class);
-                    if (user != null && user.getUid().equals(uid)) {
-                        findedUser[0] = user;
-                        return;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        userReference.addValueEventListener(listener);
-        return findedUser[0];
-    }
+//    public User getUserData(String uid) {
+//        DatabaseReference userReference = database.getReference("users");
+//        final User[] findedUser = new User[1];
+//        ValueEventListener listener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot ds : snapshot.getChildren()) {
+//                    User user = ds.getValue(User.class);
+//                    if (user != null && user.getUid().equals(uid)) {
+//                        findedUser[0] = user;
+//                        return;
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        };
+//        userReference.addValueEventListener(listener);
+//        return findedUser[0];
+//    }
 }

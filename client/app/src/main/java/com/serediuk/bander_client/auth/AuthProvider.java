@@ -37,6 +37,9 @@ public class AuthProvider {
         if (Validator.isValidEmail(email) && Validator.isValidPassword(password)) {
             if (password.equals(confirmPassword))
                 return auth.createUserWithEmailAndPassword(email, password);
+            else {
+                return Tasks.forException(new AuthException("Passwords do not match"));
+            }
         }
         return Tasks.forException(new AuthException());
     }

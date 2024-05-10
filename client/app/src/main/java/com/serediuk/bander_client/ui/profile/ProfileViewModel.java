@@ -1,6 +1,7 @@
 package com.serediuk.bander_client.ui.profile;
 
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -21,6 +22,7 @@ public class ProfileViewModel extends ViewModel {
     public ProfileViewModel() {
         authProvider = AuthProvider.getInstance();
         dbcProvider = DatabaseConnectionProvider.getInstance();
+        Log.d("PROFILE", "UID: " + authProvider.getUid());
     }
 
     public void signOut() {
@@ -31,7 +33,7 @@ public class ProfileViewModel extends ViewModel {
         authProvider.addAuthStateListener(listener);
     }
 
-    public User getUserProfileData() {
-        return dbcProvider.getUserData(authProvider.getUid());
-    }
+//    public User getUserProfileData() {
+//        return dbcProvider.getUserData(authProvider.getUid());
+//    }
 }
