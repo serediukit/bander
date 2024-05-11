@@ -22,6 +22,7 @@
     <string name="description_profile_image">Аватар профілю</string>
     <string name="text_to_sign_out_message">Ви точно хочете вийти?</string>
     <string name="text_to_sign_out_title">Попередження</string>
+    <string name="text_experience_title">Досвід</string>
     <string name="text_experience">Досвід: відсутній</string>
     <string name="text_about_title">Про мене</string>
     <string name="text_roles_title">Ролі</string>
@@ -31,4 +32,6 @@
     <string name="text_about">Додайте інфорацію про себе\n\n\n</string>
     <string name="text_links_title">Відео посилання</string>
     <string name="text_links">Додайте посилання на свої відео</string>
+    <string name="save_button">Зберегти</string>
+    <string name="text_profile_edit_title">Редагувати профіль</string>
 </resources>

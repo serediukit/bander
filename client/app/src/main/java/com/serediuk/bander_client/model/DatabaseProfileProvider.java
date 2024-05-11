@@ -23,7 +23,7 @@ public class DatabaseProfileProvider {
         database = DatabaseConnectionProvider.getInstance().getDatabase();
 
         userProfileInfoList = new ArrayList<>();
-        loadUserProfileInfos();
+        loadUserProfileInfo();
     }
 
     public static DatabaseProfileProvider getInstance() {
@@ -48,7 +48,7 @@ public class DatabaseProfileProvider {
         return new UserProfileInfo();
     }
 
-    public void loadUserProfileInfos() {
+    public void loadUserProfileInfo() {
         userProfileInfoList.clear();
         Log.d("DATABASE", "Loading user profile info...");
         DatabaseReference profileReference = database.getReference("profile_info");
@@ -82,5 +82,4 @@ public class DatabaseProfileProvider {
             }
         });
     }
-
 }

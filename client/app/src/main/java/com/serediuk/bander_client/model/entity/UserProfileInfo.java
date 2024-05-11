@@ -6,13 +6,15 @@ import java.util.ArrayList;
 
 public class UserProfileInfo {
     private String uid;
+    private String experience;
     private String about;
     private ArrayList<String> roles;
     private ArrayList<String> links;
     private String imageName;
 
-    public UserProfileInfo(String uid, String about, ArrayList<String> roles, ArrayList<String> links, String imageName) {
+    public UserProfileInfo(String uid, String experience, String about, ArrayList<String> roles, ArrayList<String> links, String imageName) {
         this.uid = uid;
+        this.experience = experience;
         this.about = about;
         this.roles = roles;
         this.links = links;
@@ -21,6 +23,7 @@ public class UserProfileInfo {
 
     public UserProfileInfo(UserProfileInfo userProfileInfo) {
         this.uid = userProfileInfo.uid;
+        this.experience = userProfileInfo.experience;
         this.about = userProfileInfo.about;
         this.roles = userProfileInfo.roles;
         this.links = userProfileInfo.links;
@@ -33,6 +36,10 @@ public class UserProfileInfo {
 
     public String getUid() {
         return uid;
+    }
+
+    public String getExperience() {
+        return experience;
     }
 
     public String getAbout() {
@@ -53,6 +60,7 @@ public class UserProfileInfo {
 
     public void clear() {
         this.uid = "Empty";
+        this.experience = "Empty";
         this.about = "Empty";
         this.roles = new ArrayList<>();
         roles.add("Empty");
@@ -64,11 +72,12 @@ public class UserProfileInfo {
     @NonNull
     @Override
     public String toString() {
-        return "{\nuid" + uid +
-                "\nabout" + about +
-                "\nlinks" + links +
-                "\nroles" + roles +
-                "\nimageName" + imageName +
+        return "{\nuid: " + uid +
+                "\nexperience: " + experience +
+                "\nabout: " + about +
+                "\nlinks: " + links +
+                "\nroles: " + roles +
+                "\nimageName: " + imageName +
                 "\n}";
     }
 }

@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.serediuk.bander_client.LoginRegisterActivity;
 import com.serediuk.bander_client.MainActivity;
+import com.serediuk.bander_client.ProfileEditActivity;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.databinding.FragmentProfileBinding;
 import com.serediuk.bander_client.model.entity.User;
@@ -83,6 +84,13 @@ public class ProfileFragment extends Fragment {
                     })
                     .setNegativeButton(R.string.no, (dialog, which) -> {})
                     .show();
+        });
+
+        ImageButton mEdit = binding.editImageButton;
+        mEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), ProfileEditActivity.class);
+            startActivity(intent);
+            requireActivity().finish();
         });
     }
 
