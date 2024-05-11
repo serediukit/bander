@@ -52,7 +52,7 @@ public class DatabaseConnectionProvider {
     public void addUser(User user) {
         DatabaseReference userReference = database.getReference("users");
         userReference.push().setValue(user);
-        Log.d("DATABASE", "Adding user: " + user.toString());
+        Log.d("DATABASE", "Adding user:\n" + user);
     }
 
     public User getUser() {
