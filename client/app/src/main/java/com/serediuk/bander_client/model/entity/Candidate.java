@@ -10,9 +10,9 @@ public class Candidate {
     private String birthday;
     private String city;
     private String role;
-    private String preferred_genres;
+    private String preferredGenres;
     private String experience;
-    private String video_links;
+    private String videoLinks;
 
     public Candidate(String candidateUID,
                      String email,
@@ -21,9 +21,9 @@ public class Candidate {
                      String birthday,
                      String city,
                      String role,
-                     String preferred_genres,
+                     String preferredGenres,
                      String experience,
-                     String video_links) {
+                     String videoLinks) {
         this.candidateUID = candidateUID;
         this.email = email;
         this.name = name;
@@ -31,9 +31,9 @@ public class Candidate {
         this.birthday = birthday;
         this.city = city;
         this.role = role;
-        this.preferred_genres = preferred_genres;
+        this.preferredGenres = preferredGenres;
         this.experience = experience;
-        this.video_links = video_links;
+        this.videoLinks = videoLinks;
     }
 
     public Candidate(Candidate candidate) {
@@ -44,9 +44,9 @@ public class Candidate {
         this.birthday = candidate.birthday;
         this.city = candidate.city;
         this.role = candidate.role;
-        this.preferred_genres = candidate.preferred_genres;
+        this.preferredGenres = candidate.preferredGenres;
         this.experience = candidate.experience;
-        this.video_links = candidate.video_links;
+        this.videoLinks = candidate.videoLinks;
     }
 
     public Candidate() {
@@ -81,16 +81,16 @@ public class Candidate {
         return role;
     }
 
-    public String getPreferred_genres() {
-        return preferred_genres;
+    public String getPreferredGenres() {
+        return preferredGenres;
     }
 
     public String getExperience() {
         return experience;
     }
 
-    public String getVideo_links() {
-        return video_links;
+    public String getVideoLinks() {
+        return videoLinks;
     }
 
     private void clear() {
@@ -101,9 +101,9 @@ public class Candidate {
         this.birthday = null;
         this.city = null;
         this.role = null;
-        this.preferred_genres = null;
+        this.preferredGenres = null;
         this.experience = null;
-        this.video_links = null;
+        this.videoLinks = null;
     }
 
     @NonNull
@@ -116,9 +116,9 @@ public class Candidate {
                 "\nbirthday: " + birthday +
                 "\ncity: " + city +
                 "\nrole: " + role +
-                "\npreferred_genres: " + preferred_genres +
+                "\npreferredGenres: " + preferredGenres +
                 "\nexperience: " + experience +
-                "\nvideo_links: " + video_links +
+                "\nvideoLinks: " + videoLinks +
                 "\n}";
     }
 }

@@ -3,23 +3,19 @@ package com.serediuk.bander_client.model.entity;
 import androidx.annotation.NonNull;
 
 public class Message {
-    private String chatUID;
     private String senderUID;
     private String message;
     private String datetime;
 
-    public Message(String chatUID,
-                   String senderUID,
+    public Message(String senderUID,
                    String message,
                    String datetime) {
-        this.chatUID = chatUID;
         this.senderUID = senderUID;
         this.message = message;
         this.datetime = datetime;
     }
 
     public Message(Message message) {
-        this.chatUID = message.chatUID;
         this.senderUID = message.senderUID;
         this.message = message.message;
         this.datetime = message.datetime;
@@ -27,10 +23,6 @@ public class Message {
 
     public Message() {
         clear();
-    }
-
-    public String getChatUID() {
-        return chatUID;
     }
 
     public String getSenderUID() {
@@ -46,7 +38,6 @@ public class Message {
     }
 
     private void clear() {
-        this.chatUID = null;
         this.senderUID = null;
         this.message = null;
         this.datetime = null;
@@ -55,8 +46,7 @@ public class Message {
     @NonNull
     @Override
     public String toString() {
-        return "{\nchatUID: " + chatUID +
-                "\nsenderUID: " + senderUID +
+        return "{\nsenderUID: " + senderUID +
                 "\nmessage: " + message +
                 "\ndatetime: " + datetime +
                 "\n}";
