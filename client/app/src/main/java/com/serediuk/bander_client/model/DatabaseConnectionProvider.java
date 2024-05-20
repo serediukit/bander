@@ -1,7 +1,6 @@
 package com.serediuk.bander_client.model;
 
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 
@@ -12,13 +11,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
-import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.entity.User;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class DatabaseConnectionProvider {
     private static DatabaseConnectionProvider instance;
@@ -32,6 +28,7 @@ public class DatabaseConnectionProvider {
         database = FirebaseDatabase.getInstance("https://bander-63922-default-rtdb.europe-west1.firebasedatabase.app/");
         Log.d("DATABASE", "DB Connection Provider initialized");
 
+        // old code
         usersList = new ArrayList<>();
         user = new User();
         loadUsers();

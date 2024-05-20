@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.serediuk.bander_client.databinding.FragmentHomeBinding;
+import com.serediuk.bander_client.model.dao.*;
 
 public class HomeFragment extends Fragment {
 
@@ -26,6 +27,9 @@ public class HomeFragment extends Fragment {
 
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        UsersDAO users = UsersDAO.getInstance();
+
         return root;
     }
 

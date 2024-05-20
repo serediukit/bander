@@ -19,6 +19,7 @@
     <string name="text_surname">Прізвище</string>
     <string name="text_birthday">Дата народження</string>
     <string name="text_city">Місто</string>
+    <string name="text_blank">Порожньо</string>
     <string name="description_profile_image">Аватар профілю</string>
     <string name="text_to_sign_out_message">Ви точно хочете вийти?</string>
     <string name="text_to_sign_out_title">Попередження</string>
