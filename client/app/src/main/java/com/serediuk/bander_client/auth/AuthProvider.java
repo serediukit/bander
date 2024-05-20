@@ -51,7 +51,6 @@ public class AuthProvider {
 
     public void signOut() {
         auth.signOut();
-        DatabaseConnectionProvider.clear();
     }
 
     public String getUid() {

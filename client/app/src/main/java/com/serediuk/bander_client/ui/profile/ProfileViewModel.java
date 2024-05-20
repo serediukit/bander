@@ -7,17 +7,19 @@ import androidx.lifecycle.ViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.dao.CandidatesDAO;
+import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.User;
 
 import java.util.ArrayList;
 
 public class ProfileViewModel extends ViewModel {
     AuthProvider authProvider;
-    DatabaseConnectionProvider dbcProvider;
+    CandidatesDAO candidatesDAO;
 
     public ProfileViewModel() {
         authProvider = AuthProvider.getInstance();
-        dbcProvider = DatabaseConnectionProvider.getInstance();
+        candidatesDAO = CandidatesDAO.getInstance();
         Log.d("PROFILE", "UID: " + authProvider.getUid());
     }
 
@@ -29,16 +31,11 @@ public class ProfileViewModel extends ViewModel {
         authProvider.addAuthStateListener(listener);
     }
 
-    public User getUserProfileData() {
-        dbcProvider.loadUsers();
-        User user = dbcProvider.getUser();
-        if (!user.getUid().equals("Empty"))
-            return user;
-        else
-            return dbcProvider.getUserByUid(authProvider.getUid());
+    public Candidate getCandidate() {
+        return candidatesDAO.readCandidate(authProvider.getUid());
     }
 
-    public ArrayList<User> getUsersList() {
-        return dbcProvider.getUsersList();
+    public ArrayList<Candidate> getCandidatesList() {
+        return candidatesDAO.getAllCandidates();
     }
 }

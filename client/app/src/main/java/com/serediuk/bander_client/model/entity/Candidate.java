@@ -2,6 +2,8 @@ package com.serediuk.bander_client.model.entity;
 
 import androidx.annotation.NonNull;
 
+import com.serediuk.bander_client.auth.AuthProvider;
+
 public class Candidate {
     private String candidateUID;
     private String email;
@@ -57,6 +59,10 @@ public class Candidate {
         return candidateUID;
     }
 
+    public void setCandidateUID(String key) {
+        this.candidateUID = key;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -94,7 +100,7 @@ public class Candidate {
     }
 
     public User getUser() {
-        return new User(candidateUID, email, name, city);
+        return new User(candidateUID, email, name + " " + surname, city, "candidate");
     }
 
     private void clear() {

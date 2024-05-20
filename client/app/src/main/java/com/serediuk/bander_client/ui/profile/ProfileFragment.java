@@ -19,6 +19,7 @@ import com.serediuk.bander_client.LoginRegisterActivity;
 import com.serediuk.bander_client.ProfileEditActivity;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.databinding.FragmentProfileBinding;
+import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.User;
 
 public class ProfileFragment extends Fragment {
@@ -43,17 +44,18 @@ public class ProfileFragment extends Fragment {
     }
 
     private void loadData() {
-        User user = profileViewModel.getUserProfileData();
-        Log.d("PROFILE", "Loaded usersList:\n" + profileViewModel.getUsersList());
-        Log.d("PROFILE", "Loaded user:\n" + user);
-        TextView mName = binding.profileNameTextView;
-        mName.setText(user.getName());
-        TextView mSurname = binding.profileSurnameTextView;
-        mSurname.setText(user.getSurname());
-        TextView mBirthday = binding.profileBirthdayTextView;
-        mBirthday.setText(user.getBirthday());
-        TextView mCity = binding.profileCityTextView;
-        mCity.setText(user.getCity());
+
+        Candidate candidate = profileViewModel.getCandidate();
+        Log.d("PROFILE", "Loaded usersList:\n" + profileViewModel.getCandidatesList());
+        Log.d("PROFILE", "Loaded candidate:\n" + candidate);
+//        TextView mName = binding.profileNameTextView;
+//        mName.setText(user.getName());
+//        TextView mSurname = binding.profileSurnameTextView;
+//        mSurname.setText(user.getSurname());
+//        TextView mBirthday = binding.profileBirthdayTextView;
+//        mBirthday.setText(user.getBirthday());
+//        TextView mCity = binding.profileCityTextView;
+//        mCity.setText(user.getCity());
     }
 
     private void init() {

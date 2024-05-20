@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.dao.CandidatesDAO;
+import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.User;
 
 import java.text.SimpleDateFormat;
@@ -32,7 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private AuthProvider authProvider;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
-    private DatabaseConnectionProvider dbcProvider;
+    private CandidatesDAO candidatesDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-        dbcProvider = DatabaseConnectionProvider.getInstance();
+        candidatesDAO = CandidatesDAO.getInstance();
 
         mEmail = findViewById(R.id.emailEditText);
         mPassword = findViewById(R.id.passwordEditText);
@@ -83,12 +85,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
         authProvider.register(email, password, confirmPassword).addOnCompleteListener(RegistrationActivity.this, task -> {
             if (task.isSuccessful()) {
-                User user = new User(authProvider.getUid(), email, name, surname, birthday, city);
-                dbcProvider.addUser(user);
+                Candidate candidate = new Candidate(authProvider.getUid(), email, name, surname, "", "Kyiv", "", "", "", "");
+                candidatesDAO.createCandidate(candidate);
 
-                Log.d("Auth", "Created new user: " + user);
+                Log.d("Auth", "Created new candidate: " + candidate);
                 Log.d("Auth", "SIGN UP successfully");
-                dbcProvider.loadUsers();
             }
             else {
                 if (task.getException() instanceof FirebaseAuthUserCollisionException) {
@@ -96,7 +97,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     Log.d("Auth", "User with this email already exists");
                 } else {
                     Toast.makeText(RegistrationActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.d("Auth", Objects.requireNonNull(task.getException()).getMessage());
+                    Log.d("Auth", Objects.requireNonNull(task.getException().getMessage()));
                 }
             }
         });
