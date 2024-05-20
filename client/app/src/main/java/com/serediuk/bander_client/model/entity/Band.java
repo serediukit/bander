@@ -22,8 +22,8 @@ public class Band {
                 ArrayList<String> membersID) {
         this.bandUID = bandUID;
         this.email = email;
-        this.name = name;
-        this.city = city;
+        this.name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
+        this.city = city.substring(0,1).toUpperCase() + city.substring(1).toLowerCase();
         this.genres = genres;
         this.membersID = new ArrayList<>(membersID);
     }
@@ -63,6 +63,10 @@ public class Band {
 
     public ArrayList<String> getMembersID() {
         return new ArrayList<>(membersID);
+    }
+
+    public User getUser() {
+        return new User(bandUID, email, name, city);
     }
 
     private void clear() {

@@ -26,10 +26,10 @@ public class Candidate {
                      String videoLinks) {
         this.candidateUID = candidateUID;
         this.email = email;
-        this.name = name;
-        this.surname = surname;
+        this.name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
+        this.surname = surname.substring(0,1).toUpperCase() + surname.substring(1).toLowerCase();
         this.birthday = birthday;
-        this.city = city;
+        this.city = city.substring(0,1).toUpperCase() + city.substring(1).toLowerCase();
         this.role = role;
         this.preferredGenres = preferredGenres;
         this.experience = experience;
@@ -91,6 +91,10 @@ public class Candidate {
 
     public String getVideoLinks() {
         return videoLinks;
+    }
+
+    public User getUser() {
+        return new User(candidateUID, email, name, city);
     }
 
     private void clear() {
