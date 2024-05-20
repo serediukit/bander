@@ -1,4 +1,4 @@
-package com.serediuk.bander_client;
+package com.serediuk.bander_client.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.serediuk.bander_client.MainActivity;
+import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
 
 public class LoginRegisterActivity extends AppCompatActivity {

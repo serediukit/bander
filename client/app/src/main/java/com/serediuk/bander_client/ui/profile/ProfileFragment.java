@@ -15,12 +15,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.serediuk.bander_client.LoginRegisterActivity;
+import com.serediuk.bander_client.model.entity.User;
+import com.serediuk.bander_client.model.enums.UserType;
+import com.serediuk.bander_client.ui.LoginRegisterActivity;
 import com.serediuk.bander_client.ProfileEditActivity;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.databinding.FragmentProfileBinding;
 import com.serediuk.bander_client.model.entity.Candidate;
-import com.serediuk.bander_client.model.entity.User;
+
+import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
@@ -44,17 +47,30 @@ public class ProfileFragment extends Fragment {
     }
 
     private void loadData() {
+        User user = profileViewModel.getUser();
+        if (Objects.equals(user.getType(), UserType.CANDIDATE.toString())) {
+            Candidate candidate = profileViewModel.getCandidate();
+            Log.d("PROFILE", "Loaded candidate:\n" + candidate);
 
-        Candidate candidate = profileViewModel.getCandidate();
-        Log.d("PROFILE", "Loaded candidate:\n" + candidate);
-        TextView mName = binding.profileNameTextView;
-        mName.setText(candidate.getName());
-//        TextView mSurname = binding.profileSurnameTextView;
-//        mSurname.setText(user.getSurname());
-//        TextView mBirthday = binding.profileBirthdayTextView;
-//        mBirthday.setText(user.getBirthday());
-//        TextView mCity = binding.profileCityTextView;
-//        mCity.setText(user.getCity());
+            if (candidate.getName() != null) {
+                TextView mName = binding.profileNameTextView;
+                mName.setText(candidate.getName());
+            }
+            if (candidate.getSurname() != null) {
+                TextView mSurname = binding.profileSurnameTextView;
+                mSurname.setText(candidate.getSurname());
+            }
+            if (candidate.getBirthday() != null) {
+                TextView mBirthday = binding.profileBirthdayTextView;
+                mBirthday.setText(candidate.getBirthday());
+            }
+            if (candidate.getCity() != null) {
+                TextView mCity = binding.profileCityTextView;
+                mCity.setText(candidate.getCity());
+            }
+        } else if (Objects.equals(user.getType(), UserType.BAND.toString())) {
+            // TODO: 21.05.24  
+        }
     }
 
     private void init() {

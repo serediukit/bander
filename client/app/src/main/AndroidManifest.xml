@@ -16,11 +16,11 @@
             android:name=".ProfileEditActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".ui.RegistrationActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".LoginRegisterActivity"
+            android:name=".ui.LoginRegisterActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>

@@ -3,6 +3,7 @@ package com.serediuk.bander_client.model.entity;
 import androidx.annotation.NonNull;
 
 import com.serediuk.bander_client.auth.AuthProvider;
+import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.util.ArrayListStringCreator;
 
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class Band {
     }
 
     public User getUser() {
-        return new User(bandUID, email, name, city, "band");
+        return new User(bandUID, email, name, city, UserType.BAND.toString());
     }
 
     private void clear() {

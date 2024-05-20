@@ -3,6 +3,7 @@ package com.serediuk.bander_client.model.entity;
 import androidx.annotation.NonNull;
 
 import com.serediuk.bander_client.auth.AuthProvider;
+import com.serediuk.bander_client.model.enums.UserType;
 
 public class Candidate {
     private String candidateUID;
@@ -100,7 +101,7 @@ public class Candidate {
     }
 
     public User getUser() {
-        return new User(candidateUID, email, name + " " + surname, city, "candidate");
+        return new User(candidateUID, email, name + " " + surname, city, UserType.CANDIDATE.toString());
     }
 
     private void clear() {
