@@ -27,4 +27,10 @@ public class CandidatesDAO {
 
         Log.d("CANDIDATE DAO", "Adding candidate:\n" + candidate);
     }
+
+    public void updateCandidate(Candidate candidate) {
+        database.getReference("candidates").child(candidate.getCandidateUID()).setValue(candidate);
+
+        Log.d("CANDIDATE DAO", "Updating candidate:\n" + candidate);
+    }
 }
