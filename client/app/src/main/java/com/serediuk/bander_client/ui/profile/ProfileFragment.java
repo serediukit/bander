@@ -46,10 +46,9 @@ public class ProfileFragment extends Fragment {
     private void loadData() {
 
         Candidate candidate = profileViewModel.getCandidate();
-        Log.d("PROFILE", "Loaded usersList:\n" + profileViewModel.getCandidatesList());
         Log.d("PROFILE", "Loaded candidate:\n" + candidate);
-//        TextView mName = binding.profileNameTextView;
-//        mName.setText(user.getName());
+        TextView mName = binding.profileNameTextView;
+        mName.setText(candidate.getName());
 //        TextView mSurname = binding.profileSurnameTextView;
 //        mSurname.setText(user.getSurname());
 //        TextView mBirthday = binding.profileBirthdayTextView;

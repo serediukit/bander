@@ -34,8 +34,4 @@ public class ProfileViewModel extends ViewModel {
     public Candidate getCandidate() {
         return candidatesDAO.readCandidate(authProvider.getUid());
     }
-
-    public ArrayList<Candidate> getCandidatesList() {
-        return candidatesDAO.getAllCandidates();
-    }
 }

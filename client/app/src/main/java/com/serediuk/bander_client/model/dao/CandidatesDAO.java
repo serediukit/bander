@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +28,10 @@ public class CandidatesDAO {
     private ArrayList<Candidate> candidatesList;
 
     private CandidatesDAO() {
+        candidatesList = new ArrayList<>();
+
         database = DatabaseConnectionProvider.getInstance().getDatabase();
-        readCandidates();
+        loadCandidates();
     }
 
     public static CandidatesDAO getInstance() {
@@ -61,29 +64,6 @@ public class CandidatesDAO {
         return null;
     }
 
-    private void readCandidates() {
-        candidatesList = new ArrayList<>();
-        final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference candidatesReference = database.getReference("candidates");
-
-        candidatesReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    Candidate candidate = snapshot.getValue(Candidate.class);
-                    candidatesList.add(candidate);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        Log.d("CANDIDATE DAO", "Reading candidates: " + candidatesList.size() + " candidates");
-    }
-
     public void updateCandidate(Candidate candidate) {
         database.getReference("candidates").child(candidate.getCandidateUID()).setValue(candidate);
         database.getReference("users").child(candidate.getUser().getUid()).setValue(candidate.getUser());
@@ -98,7 +78,26 @@ public class CandidatesDAO {
         Log.d("CANDIDATE DAO", "Deleting candidate: " + candidateUID);
     }
 
-    public ArrayList<Candidate> getAllCandidates() {
-        return candidatesList;
+    private void loadCandidates() {
+        DatabaseReference candidatesReference = database.getReference("candidates");
+
+        candidatesReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                candidatesList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Candidate candidate = dataSnapshot.getValue(Candidate.class);
+                    candidatesList.add(candidate);
+                }
+                Log.d("CANDIDATE DAO", "Read " + candidatesList.size() + " candidates");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Log.d("CANDIDATE DAO", "Loaded " + candidatesList.size() + " candidates");
     }
 }
