@@ -17,6 +17,10 @@ public class User {
         this.type = type;
     }
 
+    public User() {
+        clear();
+    }
+
     public String getUid() {
         return uid;
     }
@@ -43,6 +47,14 @@ public class User {
         this.name = user.name;
         this.city = user.city;
         this.type = user.type;
+    }
+
+    private void clear() {
+        this.uid = null;
+        this.email = null;
+        this.name = null;
+        this.city = null;
+        this.type = null;
     }
 
     @NonNull

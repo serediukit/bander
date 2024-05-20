@@ -12,11 +12,11 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.serediuk.bander_client.databinding.ActivityMainBinding;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.DatabaseInitializer;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.dao.UsersDAO;
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseConnectionProvider dbcProvider;
 
     private ActivityMainBinding binding;
 
@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        dbcProvider = DatabaseConnectionProvider.getInstance();
-        CandidatesDAO candidatesDAO = CandidatesDAO.getInstance();
-        UsersDAO usersDAO = UsersDAO.getInstance();
+        DatabaseInitializer.init();
     }
 }

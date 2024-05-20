@@ -10,7 +10,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
-import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.User;
 
 import java.util.ArrayList;
@@ -25,6 +24,7 @@ public class UsersDAO {
         usersList = new ArrayList<User>();
 
         database = DatabaseConnectionProvider.getInstance().getDatabase();
+        loadUsers();
     }
 
     public static UsersDAO getInstance() {
@@ -58,6 +58,7 @@ public class UsersDAO {
                     User user = dataSnapshot.getValue(User.class);
                     usersList.add(user);
                 }
+                Log.d("USER DAO", "Read " + usersList.size() + " users");
             }
 
             @Override

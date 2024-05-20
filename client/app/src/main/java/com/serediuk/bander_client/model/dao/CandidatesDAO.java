@@ -1,14 +1,9 @@
 package com.serediuk.bander_client.model.dao;
 
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,15 +12,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Candidate;
 
-import org.checkerframework.checker.units.qual.C;
-
 import java.util.ArrayList;
 
 public class CandidatesDAO {
     private static CandidatesDAO instance;
-    private FirebaseDatabase database;
+    private final FirebaseDatabase database;
 
-    private ArrayList<Candidate> candidatesList;
+    private final ArrayList<Candidate> candidatesList;
 
     private CandidatesDAO() {
         candidatesList = new ArrayList<>();
