@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,15 +38,20 @@ public class ReceivedResumesRecyclerAdapter extends RecyclerView.Adapter<Receive
 
     @Override
     public int getItemCount() {
-        return 0;
+        return receivedResumesList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView textTitle, textRole, textGenres, textExperience, textDatetime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-
+            textTitle = itemView.findViewById(R.id.resumeTitle);
+            textRole = itemView.findViewById(R.id.resumeRole);
+            textGenres = itemView.findViewById(R.id.resumeGenres);
+            textExperience = itemView.findViewById(R.id.resumeExperience);
+            textDatetime = itemView.findViewById(R.id.resumeDatetime);
         }
     }
 }
