@@ -80,11 +80,11 @@
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/vacancyInfoDatetime"
+                        android:id="@+id/vacancyInfoCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_thin"
-                        android:text="@string/text_search_vacancy_datetime"
+                        android:text="@string/text_search_vacancy_city"
                         android:textColor="@color/text_secondary"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -165,6 +165,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vacancyInfoBandLinksTitle" />
+
+            <TextView
+                android:id="@+id/vacancyInfoDatetime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_thin"
+                android:text="@string/text_search_vacancy_datetime"
+                android:textColor="@color/text_secondary"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vacancyInfoBandLinks"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

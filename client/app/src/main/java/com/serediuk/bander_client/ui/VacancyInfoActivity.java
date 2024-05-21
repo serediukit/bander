@@ -18,8 +18,8 @@ public class VacancyInfoActivity extends AppCompatActivity {
     BandsDAO bandsDAO;
     Vacancy vacancy;
 
-    TextView mTitle, mBand, mGenres, mSalary, mDatetime;
-    TextView mText, mAbout, mLinks;
+    TextView mTitle, mBand, mGenres, mSalary, mCity;
+    TextView mText, mAbout, mLinks, mDatetime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,11 @@ public class VacancyInfoActivity extends AppCompatActivity {
         mBand = findViewById(R.id.vacancyInfoBand);
         mGenres = findViewById(R.id.vacancyInfoGenres);
         mSalary = findViewById(R.id.vacancyInfoSalary);
-        mDatetime = findViewById(R.id.vacancyInfoDatetime);
+        mCity = findViewById(R.id.vacancyInfoCity);
         mText = findViewById(R.id.vacancyInfoText);
         mAbout = findViewById(R.id.vacancyInfoAboutBand);
         mLinks = findViewById(R.id.vacancyInfoBandLinks);
+        mDatetime = findViewById(R.id.vacancyInfoDatetime);
     }
 
     private void loadData() {
@@ -51,10 +52,11 @@ public class VacancyInfoActivity extends AppCompatActivity {
         mBand.setText(band.getName());
         mGenres.setText(band.getGenres());
         mSalary.setText(vacancy.getSalary());
-        mDatetime.setText(vacancy.getDatetime());
+        mCity.setText(band.getCity());
         mText.setText(vacancy.getText());
         mAbout.setText(band.getAbout());
         mLinks.setText(band.getVideoLinks());
+        mDatetime.setText(vacancy.getDatetime());
     }
 
     public void back(View view) {
