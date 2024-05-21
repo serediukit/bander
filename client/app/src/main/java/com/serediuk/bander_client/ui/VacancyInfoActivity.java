@@ -8,24 +8,53 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.serediuk.bander_client.R;
+import com.serediuk.bander_client.model.dao.BandsDAO;
+import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Vacancy;
 
 import org.w3c.dom.Text;
 
 public class VacancyInfoActivity extends AppCompatActivity {
+    BandsDAO bandsDAO;
+    Vacancy vacancy;
+
+    TextView mTitle, mBand, mGenres, mSalary, mDatetime;
+    TextView mText, mAbout, mLinks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacancy_info);
 
-        Vacancy vacancy = (Vacancy) getIntent().getSerializableExtra("vacancy");
+        bandsDAO = BandsDAO.getInstance();
+        vacancy = (Vacancy) getIntent().getSerializableExtra("vacancy");
 
-        if (vacancy != null) {
-            TextView textView = findViewById(R.id.vacancyInfoText);
-            textView.setText(vacancy.toString());
-        }
+        init();
+        loadData();
+    }
 
+    private void init() {
+        mTitle = findViewById(R.id.vacancyInfoTitle);
+        mBand = findViewById(R.id.vacancyInfoBand);
+        mGenres = findViewById(R.id.vacancyInfoGenres);
+        mSalary = findViewById(R.id.vacancyInfoSalary);
+        mDatetime = findViewById(R.id.vacancyInfoDatetime);
+        mText = findViewById(R.id.vacancyInfoText);
+        mAbout = findViewById(R.id.vacancyInfoAboutBand);
+        mLinks = findViewById(R.id.vacancyInfoBandLinks);
+    }
+
+    private void loadData() {
+        Band band = bandsDAO.readBand(vacancy.getBandUID());
+
+        mTitle.setText(vacancy.getRole());
+        mBand.setText(band.getName());
+        mGenres.setText(band.getGenres());
+        mSalary.setText(vacancy.getSalary());
+        mDatetime.setText(vacancy.getDatetime());
+        mText.setText(vacancy.getText());
+        mAbout.setText(band.getAbout());
+        mLinks.setText(band.getVideoLinks());
     }
 
     public void back(View view) {
