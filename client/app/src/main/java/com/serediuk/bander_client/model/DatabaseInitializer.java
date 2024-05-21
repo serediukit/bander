@@ -7,6 +7,7 @@ public class DatabaseInitializer {
     private static CandidatesDAO candidatesDAO;
     private static BandsDAO bandsDAO;
     private static VacanciesDAO vacanciesDAO;
+    private static ResumesDAO resumesDAO;
 
     public static void init() {
         DatabaseConnectionProvider dbcProvider = DatabaseConnectionProvider.getInstance();
@@ -14,6 +15,7 @@ public class DatabaseInitializer {
         candidatesDAO = CandidatesDAO.getInstance();
         bandsDAO = BandsDAO.getInstance();
         vacanciesDAO = VacanciesDAO.getInstance();
+        resumesDAO = ResumesDAO.getInstance();
     }
 
     public static void load() {
@@ -22,5 +24,6 @@ public class DatabaseInitializer {
         candidatesDAO.loadCandidates();
         bandsDAO.loadBands();
         vacanciesDAO.loadVacancies();
+        resumesDAO.loadResumes();
     }
 }

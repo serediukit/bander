@@ -22,6 +22,7 @@ public class SearchViewModel extends ViewModel {
     public SearchViewModel() {
         usersDAO = UsersDAO.getInstance();
         vacanciesDAO = VacanciesDAO.getInstance();
+        resumesDAO = ResumesDAO.getInstance();
         Log.d("SEARCH", "UID: " + AuthUID.getUID());
     }
 
@@ -38,6 +39,10 @@ public class SearchViewModel extends ViewModel {
     }
 
     public ArrayList<Resume> getReceivedResumesList() {
-        resumesDAO.getReceivedResumes();
+        return resumesDAO.getReceivedResumes();
+    }
+
+    public void setReceivedAdapter(ReceivedResumesRecyclerAdapter receivedResumesAdapter) {
+        resumesDAO.setReceivedResumesRecyclerAdapter(receivedResumesAdapter);
     }
 }

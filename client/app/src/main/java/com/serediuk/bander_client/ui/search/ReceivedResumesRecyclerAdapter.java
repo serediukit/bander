@@ -48,11 +48,11 @@ public class ReceivedResumesRecyclerAdapter extends RecyclerView.Adapter<Receive
         holder.textExperience.setText(candidate.getExperience());
         holder.textDatetime.setText(resume.getDatetime());
 
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ResumeInfoActivity.class);
-            intent.putExtra("resume", resume);
-            context.startActivity(intent);
-        });
+//        holder.itemView.setOnClickListener(v -> {
+//            Intent intent = new Intent(context, ResumeInfoActivity.class);
+//            intent.putExtra("resume", resume);
+//            context.startActivity(intent);
+//        });
     }
 
     @Override

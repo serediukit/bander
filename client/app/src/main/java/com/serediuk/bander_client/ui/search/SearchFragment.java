@@ -27,7 +27,8 @@ public class SearchFragment extends Fragment {
     private RecyclerView receivedResumesRecyclerView;
     private ArrayList<Vacancy> recommendedVacanciesList;
     private ArrayList<Resume> receivedResumesList;
-    private RecommendedVacanciesRecyclerAdapter adapter;
+    private RecommendedVacanciesRecyclerAdapter recommendedVacanciesAdapter;
+    private ReceivedResumesRecyclerAdapter receivedResumesAdapter;
     private TextView mEmptyText, mBandEmptyText;
 
     private ConstraintLayout candidateLayout;
@@ -68,9 +69,9 @@ public class SearchFragment extends Fragment {
             } else {
                 mEmptyText.setVisibility(View.INVISIBLE);
                 recommendedVacanciesRecyclerView.setVisibility(View.VISIBLE);
-                adapter = new RecommendedVacanciesRecyclerAdapter(requireActivity(), recommendedVacanciesList);
-                recommendedVacanciesRecyclerView.setAdapter(adapter);
-                searchViewModel.setRecommendedAdapter(adapter);
+                recommendedVacanciesAdapter = new RecommendedVacanciesRecyclerAdapter(requireActivity(), recommendedVacanciesList);
+                recommendedVacanciesRecyclerView.setAdapter(recommendedVacanciesAdapter);
+                searchViewModel.setRecommendedAdapter(recommendedVacanciesAdapter);
             }
         } else if (userType.equals(UserType.BAND.toString())) {
             mBandEmptyText = binding.searchBandEmptyText;
@@ -78,6 +79,16 @@ public class SearchFragment extends Fragment {
             receivedResumesRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
             receivedResumesList = searchViewModel.getReceivedResumesList();
+            if (receivedResumesList.size() == 0) {
+                mBandEmptyText.setVisibility(View.VISIBLE);
+                receivedResumesRecyclerView.setVisibility(View.INVISIBLE);
+            } else {
+                mBandEmptyText.setVisibility(View.INVISIBLE);
+                receivedResumesRecyclerView.setVisibility(View.VISIBLE);
+                receivedResumesAdapter = new ReceivedResumesRecyclerAdapter(requireActivity(), receivedResumesList);
+                receivedResumesRecyclerView.setAdapter(receivedResumesAdapter);
+                searchViewModel.setReceivedAdapter(receivedResumesAdapter);
+            }
         }
     }
     private void loadData() {
