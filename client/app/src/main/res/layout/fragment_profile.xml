@@ -11,7 +11,7 @@
         android:id="@+id/candidateLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/profileLinearLayout"
@@ -218,7 +218,7 @@
         android:id="@+id/bandLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <LinearLayout
             android:id="@+id/bandProfileLinearLayout"

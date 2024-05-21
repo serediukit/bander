@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileEditActivity"
-    android:padding="20dp">
+    tools:context=".ProfileEditActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
 
         <TextView
             android:id="@+id/profileEditTitle"
@@ -114,6 +114,17 @@
             app:layout_constraintTop_toBottomOf="@+id/profileEditTextAbout" />
 
         <EditText
+            android:id="@+id/profileEditTextGenres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/text_preferred_genres_title"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profileEditTextRoles" />
+
+        <EditText
             android:id="@+id/profileEditTextLinks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,7 +133,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileEditTextRoles" />
+            app:layout_constraintTop_toBottomOf="@+id/profileEditTextGenres" />
 
         <Button
             android:id="@+id/profileButtonSave"
@@ -137,6 +148,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileEditTextLinks"/>
+
+        <Button
+            android:id="@+id/profileButtonCancel"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:fontFamily="@font/barlow_semibold"
+            android:text="@string/cancel_button"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profileButtonSave"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
