@@ -57,6 +57,53 @@ public class ProfileFragment extends Fragment {
         return root;
     }
 
+    private void init() {
+        candidateConstraintLayout = binding.candidateLayout;
+        bandConstraintLayout = binding.bandLayout;
+
+        firebaseAuthStateListener = firebaseAuth -> {
+            try {
+                Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+            } catch (IllegalStateException e) {
+                Log.e("INTENT ERROR", "Can't find requireActivity()");
+            }
+        };
+
+        mSignOut = binding.signOutButton;
+        mSignOut.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            builder
+                    .setTitle(R.string.text_to_sign_out_title)
+                    .setMessage(R.string.text_to_sign_out_message)
+                    .setPositiveButton(R.string.yes, (dialog, which) -> {
+                        Log.d("PROFILE", "Signed out");
+                        profileViewModel.addAuthStateListener(firebaseAuthStateListener);
+                        profileViewModel.signOut();
+                        Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
+                        startActivity(intent);
+                        requireActivity().finish();
+                    })
+                    .setNegativeButton(R.string.no, (dialog, which) -> {})
+                    .show();
+        });
+
+        mEdit = binding.editButton;
+        mEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), ProfileEditActivity.class);
+            startActivity(intent);
+            requireActivity().finish();
+        });
+
+        mBandEdit = binding.bandEditButton;
+        mBandEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), BandEditActivity.class);
+            startActivity(intent);
+            requireActivity().finish();
+        });
+    }
+
     @SuppressLint("SetTextI18n")
     private void loadData() {
         User user = profileViewModel.getUser();
@@ -152,53 +199,6 @@ public class ProfileFragment extends Fragment {
                 mVideoLinks.setText(band.getVideoLinks());
             }
         }
-    }
-
-    private void init() {
-        candidateConstraintLayout = binding.candidateLayout;
-        bandConstraintLayout = binding.bandLayout;
-
-        firebaseAuthStateListener = firebaseAuth -> {
-            try {
-                Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
-                startActivity(intent);
-                requireActivity().finish();
-            } catch (IllegalStateException e) {
-                Log.e("INTENT ERROR", "Can't find requireActivity()");
-            }
-        };
-
-        mSignOut = binding.signOutButton;
-        mSignOut.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-            builder
-                    .setTitle(R.string.text_to_sign_out_title)
-                    .setMessage(R.string.text_to_sign_out_message)
-                    .setPositiveButton(R.string.yes, (dialog, which) -> {
-                        Log.d("PROFILE", "Signed out");
-                        profileViewModel.addAuthStateListener(firebaseAuthStateListener);
-                        profileViewModel.signOut();
-                        Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
-                        startActivity(intent);
-                        requireActivity().finish();
-                    })
-                    .setNegativeButton(R.string.no, (dialog, which) -> {})
-                    .show();
-        });
-
-        mEdit = binding.editButton;
-        mEdit.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), ProfileEditActivity.class);
-            startActivity(intent);
-            requireActivity().finish();
-        });
-
-        mBandEdit = binding.bandEditButton;
-        mBandEdit.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), BandEditActivity.class);
-            startActivity(intent);
-            requireActivity().finish();
-        });
     }
 
     @Override

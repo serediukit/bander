@@ -13,26 +13,40 @@ import androidx.lifecycle.ViewModelProvider;
 import com.serediuk.bander_client.databinding.FragmentSearchBinding;
 
 public class SearchFragment extends Fragment {
+    private SearchViewModel searchViewModel;
 
     private FragmentSearchBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SearchViewModel homeViewModel =
-                new ViewModelProvider(this).get(SearchViewModel.class);
+        searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSearch;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        init();
+        loadData();
 
         return root;
+    }
+
+    private void init() {
+
+    }
+    private void loadData() {
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadData();
     }
 }

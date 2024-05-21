@@ -1,19 +1,21 @@
 package com.serediuk.bander_client.ui.search;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SearchViewModel extends ViewModel {
+import com.serediuk.bander_client.auth.AuthProvider;
+import com.serediuk.bander_client.auth.AuthUID;
+import com.serediuk.bander_client.model.dao.VacanciesDAO;
 
-    private final MutableLiveData<String> mText;
+public class SearchViewModel extends ViewModel {
+    VacanciesDAO vacanciesDAO;
 
     public SearchViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is search fragment");
+        vacanciesDAO = VacanciesDAO.getInstance();
+        Log.d("SEARCH", "UID: " + AuthUID.getUID());
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
 }

@@ -3,6 +3,7 @@ package com.serediuk.bander_client.model;
 import android.util.Log;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.serediuk.bander_client.auth.AuthProvider;
 
 public class DatabaseConnectionProvider {
     private static DatabaseConnectionProvider instance;
