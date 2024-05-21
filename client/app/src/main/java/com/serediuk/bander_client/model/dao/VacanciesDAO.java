@@ -101,7 +101,7 @@ public class VacanciesDAO {
     }
 
     public ArrayList<Vacancy> getRecommendedVacancies() {
-        return new ArrayList<>(vacanciesList);
+        return vacanciesList;
     }
 
     public void setRecommendedVacanciesRecyclerAdapter(RecommendedVacanciesRecyclerAdapter adapter) {

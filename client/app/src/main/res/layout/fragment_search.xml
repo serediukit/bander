@@ -96,10 +96,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchCandidateTitle"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -153,6 +150,47 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/searchBandTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/barlow_semibold"
+            android:text="@string/text_band_resumes_search_title"
+            android:textColor="@color/text_primary"
+            android:textSize="28sp"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBandButtonLayout"/>
 
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/searchBandEmptyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/barlow_medium"
+            android:text="@string/text_band_resumes_search_empty"
+            android:textColor="@color/text_secondary"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:background="@drawable/corner_radius_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBandTitle"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="visible"
+            android:id="@+id/searchBandRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="?attr/actionBarSize"
+            android:layout_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBandTitle"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

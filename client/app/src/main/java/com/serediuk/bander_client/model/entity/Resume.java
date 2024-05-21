@@ -28,6 +28,10 @@ public class Resume {
         return resumeUID;
     }
 
+    public void setResumeUID(String resumeUID) {
+        this.resumeUID = resumeUID;
+    }
+
     public String getCandidateUID() {
         return candidateUID;
     }

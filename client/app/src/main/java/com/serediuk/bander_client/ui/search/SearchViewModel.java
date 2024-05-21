@@ -5,8 +5,10 @@ import android.util.Log;
 import androidx.lifecycle.ViewModel;
 
 import com.serediuk.bander_client.auth.AuthUID;
+import com.serediuk.bander_client.model.dao.ResumesDAO;
 import com.serediuk.bander_client.model.dao.UsersDAO;
 import com.serediuk.bander_client.model.dao.VacanciesDAO;
+import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.entity.Vacancy;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 public class SearchViewModel extends ViewModel {
     UsersDAO usersDAO;
     VacanciesDAO vacanciesDAO;
+    ResumesDAO resumesDAO;
 
 
     public SearchViewModel() {
@@ -32,5 +35,9 @@ public class SearchViewModel extends ViewModel {
 
     public String getUserType() {
         return usersDAO.readUser(AuthUID.getUID()).getType();
+    }
+
+    public ArrayList<Resume> getReceivedResumesList() {
+        resumesDAO.getReceivedResumes();
     }
 }

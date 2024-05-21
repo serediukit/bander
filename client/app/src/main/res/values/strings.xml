@@ -68,6 +68,8 @@
     <string name="send_resume_button">Send resume</string>
     <string name="vacancies_band_button">My vacancies</string>
     <string name="vacancies_create_button">Create vacancy</string>
+    <string name="text_band_resumes_search_title">Received resumes</string>
+    <string name="text_band_resumes_search_empty">There is non resumes for you</string>
 
 
 </resources>

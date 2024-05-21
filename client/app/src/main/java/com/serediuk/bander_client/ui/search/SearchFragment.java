@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.serediuk.bander_client.databinding.FragmentSearchBinding;
+import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.model.enums.UserType;
 
@@ -23,12 +24,16 @@ import java.util.ArrayList;
 public class SearchFragment extends Fragment {
     private SearchViewModel searchViewModel;
     private RecyclerView recommendedVacanciesRecyclerView;
+    private RecyclerView receivedResumesRecyclerView;
     private ArrayList<Vacancy> recommendedVacanciesList;
+    private ArrayList<Resume> receivedResumesList;
     private RecommendedVacanciesRecyclerAdapter adapter;
-    private TextView mEmptyText;
+    private TextView mEmptyText, mBandEmptyText;
 
     private ConstraintLayout candidateLayout;
     private ConstraintLayout bandLayout;
+
+
 
     private FragmentSearchBinding binding;
 
@@ -68,7 +73,11 @@ public class SearchFragment extends Fragment {
                 searchViewModel.setRecommendedAdapter(adapter);
             }
         } else if (userType.equals(UserType.BAND.toString())) {
-            // TODO
+            mBandEmptyText = binding.searchBandEmptyText;
+            receivedResumesRecyclerView = binding.searchBandRecyclerView;
+            receivedResumesRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+
+            receivedResumesList = searchViewModel.getReceivedResumesList();
         }
     }
     private void loadData() {
