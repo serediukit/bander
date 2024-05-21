@@ -8,17 +8,20 @@ public class Resume {
     private String vacancyUID;
     private String text;
     private String datetime;
+    private String status;
 
     public Resume(String resumeUID,
                   String candidateUID,
                   String vacancyUID,
                   String text,
-                  String datetime) {
+                  String datetime,
+                  String status) {
         this.resumeUID = resumeUID;
         this.candidateUID = candidateUID;
         this.vacancyUID = vacancyUID;
         this.text = text;
         this.datetime = datetime;
+        this.status = status;
     }
 
     public String getResumeUID() {
@@ -41,12 +44,17 @@ public class Resume {
         return datetime;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     private void clear() {
         this.resumeUID = null;
         this.candidateUID = null;
         this.vacancyUID = null;
         this.text = null;
         this.datetime = null;
+        this.status = null;
     }
 
     @NonNull
@@ -57,6 +65,7 @@ public class Resume {
                 "\nvacancyUID: " + vacancyUID +
                 "\ntext: " + text +
                 "\ndatetime: " + datetime +
+                "\nstatus: " + status +
                 "\n}";
     }
 }

@@ -9,11 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.serediuk.bander_client.databinding.FragmentSearchBinding;
+import com.serediuk.bander_client.model.entity.Vacancy;
+
+import java.util.ArrayList;
 
 public class SearchFragment extends Fragment {
     private SearchViewModel searchViewModel;
+    private RecyclerView recommendedVacanciesRecyclerView;
+    private ArrayList<Vacancy> recommendedVacanciesItemList;
 
     private FragmentSearchBinding binding;
 
@@ -31,7 +37,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void init() {
-
+        recommendedVacanciesRecyclerView =
     }
     private void loadData() {
 

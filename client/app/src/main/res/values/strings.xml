@@ -53,6 +53,9 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="vacancies_history_button">Vacancies history</string>
+    <string name="vacancies_send_button">Vacancies sended</string>
+    <string name="text_candidate_vacancies_search_title">Recommended vacancies</string>
+    <string name="text_candidate_vacancies_search_empty">There is no recommended vacancies</string>
 
 
 </resources>
