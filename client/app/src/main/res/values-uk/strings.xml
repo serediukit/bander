@@ -9,6 +9,7 @@
     <string name="registration_button">Реєстрація</string>
     <string name="sign_up_button">Зареєструватись</string>
     <string name="sign_out">Вийти</string>
+    <string name="cancel_button">Скасувати</string>
     <string name="text_sign_up_answer">Не маєте акаунту?</string>
     <string name="text_log_in_answer">Вже є акаунт?</string>
     <string name="text_registration">Зареєструватись</string>
@@ -35,4 +36,15 @@
     <string name="text_links">Додайте посилання на свої відео</string>
     <string name="save_button">Зберегти</string>
     <string name="text_profile_edit_title">Редагувати профіль</string>
+    <string name="text_band_registration">Реєстрація гурту</string>
+    <string name="text_band_sign_up_answer">Бажаєте створити гурт?</string>
+    <string name="band_sign_up_button">Створити</string>
+    <string name="text_genres">Жанри</string>
+    <string name="text_members_title">Склад гурту</string>
+    <string name="text_members">Додайту увачників гурту</string>
+    <string name="text_preferred_genres_title">Рекомендовані жанри</string>
+    <string name="text_preferred_genres">Додайте рекомендовані жанри</string>
+    <string name="text_to_save_message">Ви впевненні, що хочете зберегти зміни?</string>
+    <string name="text_band_edit_title">Редагувати гурт</string>
+    <string name="edit_button">Редагувати</string>
 </resources>
