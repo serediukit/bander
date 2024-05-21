@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent"
+    tools:context=".ui.BandRegistrationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        tools:context=".ui.RegistrationActivity"
-        android:paddingVertical="40dp">
+        android:layout_centerInParent="true">
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -53,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/barlow_bold"
-            android:text="@string/text_registration"
+            android:text="@string/text_band_registration"
             android:textAlignment="center"
             android:textColor="@color/text_primary"
             android:textSize="20sp"
@@ -91,34 +88,6 @@
             app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
         <EditText
-            android:id="@+id/surnameEditText"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:autofillHints=""
-            android:fontFamily="@font/barlow_medium"
-            android:hint="@string/text_surname"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
-
-        <EditText
-            android:id="@+id/dateEditText"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:autofillHints=""
-            android:fontFamily="@font/barlow_medium"
-            android:hint="@string/text_birthday"
-            android:inputType="date"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/surnameEditText"/>
-
-        <EditText
             android:id="@+id/cityEditText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -130,7 +99,7 @@
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dateEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -170,7 +139,7 @@
             android:fontFamily="@font/barlow_semibold"
             android:text="@string/sign_up_button"
             android:textSize="18sp"
-            android:onClick="registerCandidate"
+            android:onClick="registerBand"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditText" />
@@ -214,4 +183,5 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+</RelativeLayout>

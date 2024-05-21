@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Banderclient"
         tools:targetApi="31">
         <activity
+            android:name=".BandEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.BandRegistrationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileEditActivity"
             android:exported="false" />
         <activity

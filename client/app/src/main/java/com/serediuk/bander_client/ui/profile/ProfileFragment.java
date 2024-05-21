@@ -1,5 +1,6 @@
 package com.serediuk.bander_client.ui.profile;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +12,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.User;
 import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.ui.LoginRegisterActivity;
@@ -27,6 +30,8 @@ import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
+    private ConstraintLayout candidateConstraintLayout;
+    private ConstraintLayout bandConstraintLayout;
 
     private FragmentProfileBinding binding;
 
@@ -40,15 +45,29 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        candidateConstraintLayout = binding.candidateLayout;
+        bandConstraintLayout = binding.bandLayout;
+
         loadData();
         init();
 
         return root;
     }
 
+    @SuppressLint("SetTextI18n")
     private void loadData() {
         User user = profileViewModel.getUser();
+        while (user.getType() == null) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         if (Objects.equals(user.getType(), UserType.CANDIDATE.toString())) {
+            candidateConstraintLayout.setVisibility(View.VISIBLE);
+            bandConstraintLayout.setVisibility(View.INVISIBLE);
+
             Candidate candidate = profileViewModel.getCandidate();
             Log.d("PROFILE", "Loaded candidate:\n" + candidate);
 
@@ -68,8 +87,18 @@ public class ProfileFragment extends Fragment {
                 TextView mCity = binding.profileCityTextView;
                 mCity.setText(candidate.getCity());
             }
+            if (candidate.getExperience() != null) {
+                TextView mExperience = binding.profileExperience;
+                mExperience.setText(R.string.text_experience_title + ": " + candidate.getExperience());
+            }
+
+
         } else if (Objects.equals(user.getType(), UserType.BAND.toString())) {
-            // TODO: 21.05.24  
+            candidateConstraintLayout.setVisibility(View.INVISIBLE);
+            bandConstraintLayout.setVisibility(View.VISIBLE);
+
+            Band band = profileViewModel.getBand();
+            Log.d("PROFILE", "Loaded band:\n" + band);
         }
     }
 
@@ -104,6 +133,30 @@ public class ProfileFragment extends Fragment {
         ImageButton mEdit = binding.editImageButton;
         mEdit.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), ProfileEditActivity.class);
+            startActivity(intent);
+            requireActivity().finish();
+        });
+
+        ImageButton mBandSighOut = binding.bandSignOutImageButton;
+        mBandSighOut.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            builder
+                    .setTitle(R.string.text_to_sign_out_title)
+                    .setMessage(R.string.text_to_sign_out_message)
+                    .setPositiveButton(R.string.yes, (dialog, which) -> {
+                        profileViewModel.addAuthStateListener(firebaseAuthStateListener);
+                        profileViewModel.signOut();
+                        Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
+                        startActivity(intent);
+                        requireActivity().finish();
+                    })
+                    .setNegativeButton(R.string.no, (dialog, which) -> {})
+                    .show();
+        });
+
+        ImageButton mBandEdit = binding.bandEditImageButton;
+        mBandEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), BandEditActivity.class);
             startActivity(intent);
             requireActivity().finish();
         });

@@ -40,4 +40,12 @@
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="text_band_registration">Band sign up</string>
+    <string name="text_band_sign_up_answer">Want to create band?</string>
+    <string name="band_sign_up_button">CREATE</string>
+    <string name="text_genres">Genres</string>
+    <string name="text_members_title">Band members</string>
+    <string name="text_members">Add your band members</string>
+    <string name="text_preferred_genres_title">Preferred genres</string>
+    <string name="text_preferred_genres">Add some preferred genres</string>
 </resources>

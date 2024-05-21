@@ -77,4 +77,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
         super.onStop();
         authProvider.removeAuthStateListener(firebaseAuthStateListener);
     }
+
+    public void openBandRegistrationActivity(View view) {
+        Intent intent = new Intent(LoginRegisterActivity.this, BandRegistrationActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

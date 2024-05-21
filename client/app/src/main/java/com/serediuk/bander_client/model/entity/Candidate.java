@@ -12,6 +12,7 @@ public class Candidate {
     private String surname;
     private String birthday;
     private String city;
+    private String about;
     private String role;
     private String preferredGenres;
     private String experience;
@@ -23,6 +24,7 @@ public class Candidate {
                      String surname,
                      String birthday,
                      String city,
+                     String about,
                      String role,
                      String preferredGenres,
                      String experience,
@@ -33,6 +35,7 @@ public class Candidate {
         this.surname = surname.substring(0,1).toUpperCase() + surname.substring(1).toLowerCase();
         this.birthday = birthday;
         this.city = city.substring(0,1).toUpperCase() + city.substring(1).toLowerCase();
+        this.about = about;
         this.role = role;
         this.preferredGenres = preferredGenres;
         this.experience = experience;
@@ -46,6 +49,7 @@ public class Candidate {
         this.surname = candidate.surname;
         this.birthday = candidate.birthday;
         this.city = candidate.city;
+        this.about = candidate.about;
         this.role = candidate.role;
         this.preferredGenres = candidate.preferredGenres;
         this.experience = candidate.experience;
@@ -84,6 +88,10 @@ public class Candidate {
         return city;
     }
 
+    public String getAbout() {
+        return about;
+    }
+
     public String getRole() {
         return role;
     }
@@ -111,6 +119,7 @@ public class Candidate {
         this.surname = null;
         this.birthday = null;
         this.city = null;
+        this.about = null;
         this.role = null;
         this.preferredGenres = null;
         this.experience = null;
@@ -126,6 +135,7 @@ public class Candidate {
                 "\nsurname: " + surname +
                 "\nbirthday: " + birthday +
                 "\ncity: " + city +
+                "\nabout" + about +
                 "\nrole: " + role +
                 "\npreferredGenres: " + preferredGenres +
                 "\nexperience: " + experience +

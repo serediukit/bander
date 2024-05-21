@@ -68,7 +68,7 @@ public class RegistrationActivity extends AppCompatActivity {
         transformIntoDatePicker(findViewById(R.id.dateEditText), this, calendar.getTime());
     }
 
-    public void registerUser(View view) {
+    public void registerCandidate(View view) {
         final String email = mEmail.getText().toString();
         final String password = mPassword.getText().toString();
         final String confirmPassword = mConfirmPassword.getText().toString();
@@ -85,7 +85,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         authProvider.register(email, password, confirmPassword).addOnCompleteListener(RegistrationActivity.this, task -> {
             if (task.isSuccessful()) {
-                Candidate candidate = new Candidate(authProvider.getUid(), email, name, surname, "", "Kyiv", "", "", "", "");
+                Candidate candidate = new Candidate(authProvider.getUid(), email, name, surname, birthday, city, "", "", "", "", "");
                 candidatesDAO.createCandidate(candidate);
 
                 Log.d("Auth", "Created new candidate: " + candidate);
