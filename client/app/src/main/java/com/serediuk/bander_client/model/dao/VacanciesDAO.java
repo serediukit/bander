@@ -28,13 +28,6 @@ public class VacanciesDAO {
         vacanciesList = new ArrayList<>();
 
         database = DatabaseConnectionProvider.getInstance().getDatabase();
-        createVacancy(new Vacancy(
-                "234n12n3r13r1fsa2csafsa",
-                "f1f442gfwfwff3",
-                "drummer",
-                "Searching for drummer",
-                "500 dolars",
-                "2024-12-31"));
         loadVacancies();
     }
 
