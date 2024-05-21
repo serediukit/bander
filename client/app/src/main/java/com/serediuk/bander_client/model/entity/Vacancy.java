@@ -41,6 +41,10 @@ public class Vacancy {
         return vacancyUID;
     }
 
+    public void setVacancyUID(String vacancyUID) {
+        this.vacancyUID = vacancyUID;
+    }
+
     public String getBandUID() {
         return bandUID;
     }

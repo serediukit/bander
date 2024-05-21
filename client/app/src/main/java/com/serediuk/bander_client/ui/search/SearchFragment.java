@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -44,10 +43,10 @@ public class SearchFragment extends Fragment {
         recommendedVacanciesRecyclerView = binding.searchCandidateRecyclerView;
         recommendedVacanciesRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
-        recommendedVacanciesList = searchViewModel.getRecommendetVacancies();
+        recommendedVacanciesList = searchViewModel.getRecommendedVacancies();
         adapter = new RecommendedVacanciesRecyclerAdapter(requireActivity(), recommendedVacanciesList);
         recommendedVacanciesRecyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        searchViewModel.setRecommendedAdapter(adapter);
     }
     private void loadData() {
 

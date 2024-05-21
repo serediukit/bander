@@ -1,5 +1,6 @@
 package com.serediuk.bander_client.model.dao;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Vacancy;
+import com.serediuk.bander_client.ui.search.RecommendedVacanciesRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -20,10 +22,19 @@ public class VacanciesDAO {
 
     private static ArrayList<Vacancy> vacanciesList;
 
+    private static RecommendedVacanciesRecyclerAdapter recommendedVacanciesRecyclerAdapter;
+
     private VacanciesDAO() {
         vacanciesList = new ArrayList<>();
 
         database = DatabaseConnectionProvider.getInstance().getDatabase();
+        createVacancy(new Vacancy(
+                "234n12n3r13r1fsa2csafsa",
+                "f1f442gfwfwff3",
+                "drummer",
+                "Searching for drummer",
+                "500 dolars",
+                "2024-12-31"));
         loadVacancies();
     }
 
@@ -35,8 +46,15 @@ public class VacanciesDAO {
     }
 
     public void createVacancy(Vacancy vacancy) {
-        database.getReference("vacancies").push().setValue(vacancy);
-        Log.d("VACANCY DAO", "Adding vacancy:\n" + vacancy);
+        String key = database.getReference("vacancies").push().getKey();
+
+        if (key != null) {
+            vacancy.setVacancyUID(key);
+            database.getReference("vacancies").child(key).setValue(vacancy);
+            Log.d("VACANCY DAO", "Adding vacancy:\n" + vacancy);
+        } else {
+            Log.d("VACANCY DAO", "Key is null");
+        }
     }
 
     public Vacancy readVacancy(String vacancyUID) {
@@ -67,6 +85,7 @@ public class VacanciesDAO {
         DatabaseReference vacanciesReference = database.getReference("vacancies");
 
         vacanciesReference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 vacanciesList.clear();
@@ -74,6 +93,8 @@ public class VacanciesDAO {
                     Vacancy vacancy = dataSnapshot.getValue(Vacancy.class);
                     vacanciesList.add(vacancy);
                 }
+                if (recommendedVacanciesRecyclerAdapter != null)
+                    recommendedVacanciesRecyclerAdapter.notifyDataSetChanged();
                 Log.d("VACANCY DAO", "Read " + vacanciesList.size() + " vacancies");
             }
 
@@ -88,5 +109,9 @@ public class VacanciesDAO {
 
     public ArrayList<Vacancy> getRecommendedVacancies() {
         return new ArrayList<>(vacanciesList);
+    }
+
+    public void setRecommendedVacanciesRecyclerAdapter(RecommendedVacanciesRecyclerAdapter adapter) {
+        this.recommendedVacanciesRecyclerAdapter = adapter;
     }
 }

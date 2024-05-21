@@ -33,7 +33,13 @@ public class RecommendedVacanciesRecyclerAdapter extends RecyclerView.Adapter<Re
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Vacancy vacancy = recommendedVacanciesList.get(position);
 
+        holder.textTitle.setText(vacancy.getRole());
+        holder.textBand.setText(vacancy.getBandUID());
+        holder.textInfo.setText(vacancy.getText());
+        holder.textSalary.setText(vacancy.getSalary());
+        holder.textDatetime.setText(vacancy.getDatetime());
     }
 
     @Override
