@@ -35,6 +35,7 @@
     <string name="text_experience_title">Experience</string>
     <string name="text_experience">Experience: none</string>
     <string name="text_about_title">About</string>
+    <string name="text_band_about_title">About</string>
     <string name="text_about">Add some information about yourself\n\n\n</string>
     <string name="text_roles_title">Roles</string>
     <string name="text_roles">Add some roles that you have</string>

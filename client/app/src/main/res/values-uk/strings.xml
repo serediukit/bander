@@ -41,10 +41,11 @@
     <string name="band_sign_up_button">Створити</string>
     <string name="text_genres">Жанри</string>
     <string name="text_members_title">Склад гурту</string>
-    <string name="text_members">Додайту увачників гурту</string>
+    <string name="text_members">Додайту учасників гурту</string>
     <string name="text_preferred_genres_title">Рекомендовані жанри</string>
     <string name="text_preferred_genres">Додайте рекомендовані жанри</string>
     <string name="text_to_save_message">Ви впевненні, що хочете зберегти зміни?</string>
     <string name="text_band_edit_title">Редагувати гурт</string>
     <string name="edit_button">Редагувати</string>
+    <string name="text_band_about_title">Про гурт</string>
 </resources>
