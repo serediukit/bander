@@ -51,4 +51,5 @@
     <string name="text_preferred_genres">Add some preferred genres</string>
     <string name="text_to_save_message">Are you sure about saving data?</string>
     <string name="text_band_edit_title">Edit band profile</string>
+    <string name="edit_button">Edit</string>
 </resources>

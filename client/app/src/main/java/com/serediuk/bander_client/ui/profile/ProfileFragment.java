@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,8 +35,9 @@ import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
-    private ConstraintLayout candidateConstraintLayout;
-    private ConstraintLayout bandConstraintLayout;
+    private ScrollView candidateConstraintLayout;
+    private ScrollView bandConstraintLayout;
+    private Button mEdit, mBandEdit, mSignOut;
 
     private FragmentProfileBinding binding;
 
@@ -48,11 +51,8 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        candidateConstraintLayout = binding.candidateLayout;
-        bandConstraintLayout = binding.bandLayout;
-
-        loadData();
         init();
+        loadData();
 
         return root;
     }
@@ -71,6 +71,10 @@ public class ProfileFragment extends Fragment {
         if (Objects.equals(user.getType(), UserType.CANDIDATE.toString())) {
             candidateConstraintLayout.setVisibility(View.VISIBLE);
             bandConstraintLayout.setVisibility(View.INVISIBLE);
+            mEdit.setVisibility(View.VISIBLE);
+            mEdit.setHeight(mSignOut.getHeight());
+            mBandEdit.setVisibility(View.INVISIBLE);
+            mBandEdit.setHeight(0);
 
             Candidate candidate = profileViewModel.getCandidate();
             Log.d("PROFILE", "Loaded candidate:\n" + candidate);
@@ -115,6 +119,10 @@ public class ProfileFragment extends Fragment {
         } else if (Objects.equals(user.getType(), UserType.BAND.toString())) {
             candidateConstraintLayout.setVisibility(View.INVISIBLE);
             bandConstraintLayout.setVisibility(View.VISIBLE);
+            mBandEdit.setVisibility(View.VISIBLE);
+            mBandEdit.setHeight(mSignOut.getHeight());
+            mEdit.setVisibility(View.INVISIBLE);
+            mEdit.setHeight(0);
 
             Band band = profileViewModel.getBand();
             Log.d("PROFILE", "Loaded band:\n" + band);
@@ -147,6 +155,9 @@ public class ProfileFragment extends Fragment {
     }
 
     private void init() {
+        candidateConstraintLayout = binding.candidateLayout;
+        bandConstraintLayout = binding.bandLayout;
+
         firebaseAuthStateListener = firebaseAuth -> {
             try {
                 Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
@@ -157,7 +168,7 @@ public class ProfileFragment extends Fragment {
             }
         };
 
-        ImageButton mSignOut = binding.signOutImageButton;
+        mSignOut = binding.signOutButton;
         mSignOut.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
             builder
@@ -175,32 +186,14 @@ public class ProfileFragment extends Fragment {
                     .show();
         });
 
-        ImageButton mEdit = binding.editImageButton;
+        mEdit = binding.editButton;
         mEdit.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), ProfileEditActivity.class);
             startActivity(intent);
             requireActivity().finish();
         });
 
-        ImageButton mBandSighOut = binding.bandSignOutImageButton;
-        mBandSighOut.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-            builder
-                    .setTitle(R.string.text_to_sign_out_title)
-                    .setMessage(R.string.text_to_sign_out_message)
-                    .setPositiveButton(R.string.yes, (dialog, which) -> {
-                        Log.d("PROFILE", "Signed out");
-                        profileViewModel.addAuthStateListener(firebaseAuthStateListener);
-                        profileViewModel.signOut();
-                        Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
-                        startActivity(intent);
-                        requireActivity().finish();
-                    })
-                    .setNegativeButton(R.string.no, (dialog, which) -> {})
-                    .show();
-        });
-
-        ImageButton mBandEdit = binding.bandEditImageButton;
+        mBandEdit = binding.bandEditButton;
         mBandEdit.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), BandEditActivity.class);
             startActivity(intent);

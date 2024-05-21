@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         DatabaseInitializer.load();
+        Log.d("MENU HEIGHT", String.valueOf(findViewById(R.id.nav_view).getHeight()));
     }
 
     @Override

@@ -5,373 +5,392 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:layout_gravity="top"
+    android:paddingTop="?attr/actionBarSize">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:id="@+id/candidateLayout"
+        android:visibility="visible"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/editButton"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp">
 
-        <LinearLayout
-            android:id="@+id/profileLinearLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/accountImageView"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:contentDescription="@string/description_profile_image"
-                app:srcCompat="@drawable/blank_profile" />
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/userInfoLinearLayout"
+                android:id="@+id/profileLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/profileNameTextView"
+                <ImageView
+                    android:id="@+id/accountImageView"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:contentDescription="@string/description_profile_image"
+                    app:srcCompat="@drawable/blank_profile" />
+
+                <LinearLayout
+                    android:id="@+id/userInfoLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_bold"
-                    android:text="@string/text_name"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp" />
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/profileSurnameTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/barlow_bold"
-                    android:text="@string/text_surname"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/profileNameTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_bold"
+                        android:text="@string/text_name"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/profileBirthdayTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/barlow_medium"
-                    android:text="@string/text_birthday"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/profileSurnameTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/barlow_bold"
+                        android:text="@string/text_surname"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/profileCityTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/barlow_semibold"
-                    android:text="@string/text_city"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/profileBirthdayTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/barlow_medium"
+                        android:text="@string/text_birthday"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/profileCityTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/barlow_semibold"
+                        android:text="@string/text_city"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/profileEditLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileLinearLayout">
+            <TextView
+                android:id="@+id/profileExperience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_bold"
+                android:text="@string/text_experience"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileLinearLayout"/>
 
-            <ImageButton
-                android:id="@+id/editImageButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:importantForAccessibility="no"
-                app:srcCompat="@drawable/ic_edit_24dp" />
+            <TextView
+                android:id="@+id/profileAboutTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="@string/text_about_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileExperience"/>
 
-            <ImageButton
-                android:id="@+id/signOutImageButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="5dp"
-                android:importantForAccessibility="no"
-                app:srcCompat="@drawable/ic_exit_24dp" />
+            <TextView
+                android:id="@+id/profileAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="@string/text_about"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileAboutTitle"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/profileRolesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="@string/text_roles_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileAbout"/>
 
-        <TextView
-            android:id="@+id/profileExperience"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_bold"
-            android:text="@string/text_experience"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileLinearLayout"/>
+            <TextView
+                android:id="@+id/profileRoles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="@string/text_roles"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileRolesTitle"/>
 
-        <TextView
-            android:id="@+id/profileAboutTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_semibold"
-            android:text="@string/text_about_title"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileEditLinearLayout"/>
+            <TextView
+                android:id="@+id/profileGenresTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="@string/text_preferred_genres_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileRoles"/>
 
-        <TextView
-            android:id="@+id/profileAbout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_medium"
-            android:text="@string/text_about"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileAboutTitle"/>
+            <TextView
+                android:id="@+id/profileGenres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="@string/text_preferred_genres"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileGenresTitle"/>
 
-        <TextView
-            android:id="@+id/profileRolesTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/barlow_semibold"
-            android:text="@string/text_roles_title"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileAbout"/>
+            <TextView
+                android:id="@+id/profileLinksTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="@string/text_links_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileGenres"/>
 
-        <TextView
-            android:id="@+id/profileRoles"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_medium"
-            android:text="@string/text_roles"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileRolesTitle"/>
+            <TextView
+                android:id="@+id/profileLinks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="@string/text_links"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileLinksTitle"/>
 
-        <TextView
-            android:id="@+id/profileGenresTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/barlow_semibold"
-            android:text="@string/text_preferred_genres_title"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileRoles"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/profileGenres"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_medium"
-            android:text="@string/text_preferred_genres"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileGenresTitle"/>
-
-        <TextView
-            android:id="@+id/profileLinksTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/barlow_semibold"
-            android:text="@string/text_links_title"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileGenres"/>
-
-        <TextView
-            android:id="@+id/profileLinks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_medium"
-            android:text="@string/text_links"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileLinksTitle"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:id="@+id/bandLayout"
+        android:visibility="invisible"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/editButton"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp">
 
-        <LinearLayout
-            android:id="@+id/bandProfileLinearLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/bandAccountImageView"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:contentDescription="@string/description_profile_image"
-                app:srcCompat="@drawable/blank_profile" />
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/bandInfoLinearLayout"
+                android:id="@+id/bandProfileLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/bandNameTextView"
+                <ImageView
+                    android:id="@+id/bandAccountImageView"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:contentDescription="@string/description_profile_image"
+                    app:srcCompat="@drawable/blank_profile" />
+
+                <LinearLayout
+                    android:id="@+id/bandInfoLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/barlow_bold"
-                    android:text="@string/text_name"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/bandCityTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/barlow_semibold"
-                    android:text="@string/text_city"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/bandNameTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_bold"
+                        android:text="@string/text_name"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/bandGenresTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/barlow_semibold"
-                    android:text="@string/text_genres"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/bandCityTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/barlow_semibold"
+                        android:text="@string/text_city"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/bandGenresTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/barlow_semibold"
+                        android:text="@string/text_genres"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/bandEditLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bandProfileLinearLayout">
+            <TextView
+                android:id="@+id/bandAboutTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="@string/text_about_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bandProfileLinearLayout"/>
 
-            <ImageButton
-                android:id="@+id/bandEditImageButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:importantForAccessibility="no"
-                app:srcCompat="@drawable/ic_edit_24dp" />
+            <TextView
+                android:id="@+id/bandAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="@string/text_about"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bandAboutTitle"/>
 
-            <ImageButton
-                android:id="@+id/bandSignOutImageButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="5dp"
-                android:importantForAccessibility="no"
-                app:srcCompat="@drawable/ic_exit_24dp" />
+            <TextView
+                android:id="@+id/bandMembersTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="@string/text_members_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bandAbout"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/bandMembers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="@string/text_members"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bandMembersTitle"/>
 
-        <TextView
-            android:id="@+id/bandAboutTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_semibold"
-            android:text="@string/text_about_title"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bandEditLinearLayout"/>
+            <TextView
+                android:id="@+id/bandLinksTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="@string/text_links_title"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bandMembers"/>
 
-        <TextView
-            android:id="@+id/bandAbout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_medium"
-            android:text="@string/text_about"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bandAboutTitle"/>
+            <TextView
+                android:id="@+id/bandLinks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="@string/text_links"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bandLinksTitle"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/bandMembersTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/barlow_semibold"
-            android:text="@string/text_members_title"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bandAbout"/>
+    <Button
+        android:visibility="visible"
+        android:id="@+id/editButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/primary"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="@string/edit_button"
+        android:textSize="18sp"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signOutButton"
+        />
 
-        <TextView
-            android:id="@+id/bandMembers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_medium"
-            android:text="@string/text_members"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bandMembersTitle"/>
+    <Button
+        android:visibility="invisible"
+        android:id="@+id/bandEditButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/primary"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="@string/edit_button"
+        android:textSize="18sp"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signOutButton"
+        />
 
-        <TextView
-            android:id="@+id/bandLinksTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/barlow_semibold"
-            android:text="@string/text_links_title"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bandMembers"/>
-
-        <TextView
-            android:id="@+id/bandLinks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_medium"
-            android:text="@string/text_links"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bandLinksTitle"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/signOutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="?attr/actionBarSize"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:background="@color/light_red_gray"
+        android:fontFamily="@font/barlow_semibold"
+        android:text="@string/sign_out"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

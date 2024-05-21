@@ -12,4 +12,6 @@
     <color name="text_header">#f2faf7</color>
     <color name="text_primary">#141716</color>
     <color name="text_secondary">#464f4c</color>
+    <color name="red">#FF0000</color>
+    <color name="light_red_gray">#d14343</color>
 </resources>
