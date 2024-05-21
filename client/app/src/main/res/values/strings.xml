@@ -66,6 +66,8 @@
     <string name="back_button">Back</string>
     <string name="text_search_vacancy_about_band">Vacancy about band</string>
     <string name="send_resume_button">Send resume</string>
+    <string name="vacancies_band_button">My vacancies</string>
+    <string name="vacancies_create_button">Create vacancy</string>
 
 
 </resources>

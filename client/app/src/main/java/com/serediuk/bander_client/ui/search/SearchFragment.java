@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.serediuk.bander_client.databinding.FragmentSearchBinding;
 import com.serediuk.bander_client.model.entity.Vacancy;
+import com.serediuk.bander_client.model.enums.UserType;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,10 @@ public class SearchFragment extends Fragment {
     private RecyclerView recommendedVacanciesRecyclerView;
     private ArrayList<Vacancy> recommendedVacanciesList;
     private RecommendedVacanciesRecyclerAdapter adapter;
+    private TextView mEmptyText;
+
+    private ConstraintLayout candidateLayout;
+    private ConstraintLayout bandLayout;
 
     private FragmentSearchBinding binding;
 
@@ -40,16 +47,48 @@ public class SearchFragment extends Fragment {
 
     @SuppressLint("NotifyDataSetChanged")
     private void init() {
-        recommendedVacanciesRecyclerView = binding.searchCandidateRecyclerView;
-        recommendedVacanciesRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        candidateLayout = binding.candidateSearchLayout;
+        bandLayout = binding.bandSearchLayout;
+        String userType = searchViewModel.getUserType();
 
-        recommendedVacanciesList = searchViewModel.getRecommendedVacancies();
-        adapter = new RecommendedVacanciesRecyclerAdapter(requireActivity(), recommendedVacanciesList);
-        recommendedVacanciesRecyclerView.setAdapter(adapter);
-        searchViewModel.setRecommendedAdapter(adapter);
+        if (userType.equals(UserType.CANDIDATE.toString())) {
+            mEmptyText = binding.searchCandidateEmptyText;
+            recommendedVacanciesRecyclerView = binding.searchCandidateRecyclerView;
+            recommendedVacanciesRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+
+            recommendedVacanciesList = searchViewModel.getRecommendedVacancies();
+            if (recommendedVacanciesList.size() == 0) {
+                mEmptyText.setVisibility(View.VISIBLE);
+                recommendedVacanciesRecyclerView.setVisibility(View.INVISIBLE);
+            } else {
+                mEmptyText.setVisibility(View.INVISIBLE);
+                recommendedVacanciesRecyclerView.setVisibility(View.VISIBLE);
+                adapter = new RecommendedVacanciesRecyclerAdapter(requireActivity(), recommendedVacanciesList);
+                recommendedVacanciesRecyclerView.setAdapter(adapter);
+                searchViewModel.setRecommendedAdapter(adapter);
+            }
+        } else if (userType.equals(UserType.BAND.toString())) {
+            // TODO
+        }
     }
     private void loadData() {
+        String userType = searchViewModel.getUserType();
 
+        if (userType.equals(UserType.CANDIDATE.toString())) {
+            candidateLayout.setVisibility(View.VISIBLE);
+            bandLayout.setVisibility(View.INVISIBLE);
+
+            if (recommendedVacanciesList.size() == 0) {
+                mEmptyText.setVisibility(View.VISIBLE);
+                recommendedVacanciesRecyclerView.setVisibility(View.INVISIBLE);
+            } else {
+                mEmptyText.setVisibility(View.INVISIBLE);
+                recommendedVacanciesRecyclerView.setVisibility(View.VISIBLE);
+            }
+        } else if (userType.equals(UserType.BAND.toString())) {
+            candidateLayout.setVisibility(View.INVISIBLE);
+            bandLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

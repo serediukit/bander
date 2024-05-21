@@ -29,4 +29,8 @@ public class SearchViewModel extends ViewModel {
     public void setRecommendedAdapter(RecommendedVacanciesRecyclerAdapter adapter) {
         vacanciesDAO.setRecommendedVacanciesRecyclerAdapter(adapter);
     }
+
+    public String getUserType() {
+        return usersDAO.readUser(AuthUID.getUID()).getType();
+    }
 }
