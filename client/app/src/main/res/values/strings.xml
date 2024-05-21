@@ -52,8 +52,8 @@
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="vacancies_history_button">Vacancies history</string>
-    <string name="vacancies_send_button">Vacancies sended</string>
+    <string name="vacancies_history_button">My history</string>
+    <string name="vacancies_send_button">Active vacancies requests</string>
     <string name="text_candidate_vacancies_search_title">Recommended vacancies</string>
     <string name="text_candidate_vacancies_search_empty">There is no recommended vacancies</string>
     <string name="text_search_vacancy_title">Vacancy title</string>
@@ -61,6 +61,8 @@
     <string name="text_search_vacancy_text">Vacancy text</string>
     <string name="text_search_vacancy_salary">Vacancy salary</string>
     <string name="text_search_vacancy_datetime">Vacancy datetime</string>
+    <string name="text_search_vacancy_genres">Vacancy genres</string>
+    <string name="back_button">Back</string>
 
 
 </resources>
