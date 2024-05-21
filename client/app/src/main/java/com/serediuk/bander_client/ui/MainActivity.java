@@ -1,6 +1,7 @@
-package com.serediuk.bander_client;
+package com.serediuk.bander_client.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -10,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.databinding.ActivityMainBinding;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.DatabaseInitializer;
@@ -41,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        DatabaseInitializer.init();
+        DatabaseInitializer.load();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        DatabaseInitializer.load();
     }
 }

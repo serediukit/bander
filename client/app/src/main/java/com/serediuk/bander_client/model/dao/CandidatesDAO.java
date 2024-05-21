@@ -12,13 +12,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Candidate;
 
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.ArrayList;
 
 public class CandidatesDAO {
     private static CandidatesDAO instance;
     private final FirebaseDatabase database;
 
-    private final ArrayList<Candidate> candidatesList;
+    private static ArrayList<Candidate> candidatesList;
 
     private CandidatesDAO() {
         candidatesList = new ArrayList<>();
@@ -59,7 +61,7 @@ public class CandidatesDAO {
 
     public void updateCandidate(Candidate candidate) {
         database.getReference("candidates").child(candidate.getCandidateUID()).setValue(candidate);
-        database.getReference("users").child(candidate.getUser().getUid()).setValue(candidate.getUser());
+        database.getReference("users").child(candidate.getCandidateUID()).setValue(candidate.getUser());
 
         Log.d("CANDIDATE DAO", "Updating candidate:\n" + candidate);
     }
@@ -71,7 +73,7 @@ public class CandidatesDAO {
         Log.d("CANDIDATE DAO", "Deleting candidate: " + candidateUID);
     }
 
-    private void loadCandidates() {
+    public void loadCandidates() {
         DatabaseReference candidatesReference = database.getReference("candidates");
 
         candidatesReference.addValueEventListener(new ValueEventListener() {
@@ -92,5 +94,9 @@ public class CandidatesDAO {
         });
 
         Log.d("CANDIDATE DAO", "Loaded " + candidatesList.size() + " candidates");
+    }
+
+    public ArrayList<Candidate> getCandidates() {
+        return new ArrayList<>(candidatesList);
     }
 }

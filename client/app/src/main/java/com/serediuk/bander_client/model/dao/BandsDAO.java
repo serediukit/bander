@@ -60,7 +60,7 @@ public class BandsDAO {
 
     public void updateBand(Band band) {
         database.getReference("bands").child(band.getBandUID()).setValue(band);
-        database.getReference("users").child(band.getUser().getUid()).setValue(band.getUser());
+        database.getReference("users").child(band.getBandUID()).setValue(band.getUser());
 
         Log.d("BAND DAO", "Updating band:\n" + band);
     }
@@ -72,7 +72,7 @@ public class BandsDAO {
         Log.d("BAND DAO", "Deleting band: " + bandUID);
     }
 
-    private void loadBands() {
+    public void loadBands() {
         DatabaseReference bandsReference = database.getReference("bands");
 
         bandsReference.addValueEventListener(new ValueEventListener() {

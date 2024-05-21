@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.serediuk.bander_client.MainActivity;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
+import com.serediuk.bander_client.model.DatabaseInitializer;
 
 public class LoginRegisterActivity extends AppCompatActivity {
     private EditText mEmail, mPassword;

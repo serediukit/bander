@@ -135,7 +135,7 @@ public class Candidate {
                 "\nsurname: " + surname +
                 "\nbirthday: " + birthday +
                 "\ncity: " + city +
-                "\nabout" + about +
+                "\nabout: " + about +
                 "\nrole: " + role +
                 "\npreferredGenres: " + preferredGenres +
                 "\nexperience: " + experience +

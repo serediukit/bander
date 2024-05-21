@@ -47,7 +47,7 @@ public class UsersDAO {
         return null;
     }
 
-    private void loadUsers() {
+    public void loadUsers() {
         DatabaseReference candidatesReference = database.getReference("users");
 
         candidatesReference.addValueEventListener(new ValueEventListener() {

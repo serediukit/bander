@@ -17,15 +17,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.serediuk.bander_client.BandEditActivity;
+import com.serediuk.bander_client.databinding.FragmentProfileBinding;
+import com.serediuk.bander_client.model.dao.CandidatesDAO;
+import com.serediuk.bander_client.ui.BandEditActivity;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.User;
 import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.ui.LoginRegisterActivity;
-import com.serediuk.bander_client.ProfileEditActivity;
+import com.serediuk.bander_client.ui.ProfileEditActivity;
 import com.serediuk.bander_client.R;
-import com.serediuk.bander_client.databinding.FragmentProfileBinding;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.util.ArrayListStringCreator;
 
 import java.util.Objects;
 
@@ -65,6 +67,7 @@ public class ProfileFragment extends Fragment {
                 throw new RuntimeException(e);
             }
         }
+        Log.d("PROFILE", "User type: " + user.getType());
         if (Objects.equals(user.getType(), UserType.CANDIDATE.toString())) {
             candidateConstraintLayout.setVisibility(View.VISIBLE);
             bandConstraintLayout.setVisibility(View.INVISIBLE);
@@ -90,21 +93,22 @@ public class ProfileFragment extends Fragment {
             }
             if (candidate.getExperience() != null) {
                 TextView mExperience = binding.profileExperience;
-                mExperience.setText(R.string.text_experience_title + ": " + candidate.getExperience());
+                String experienceText = getResources().getString(R.string.text_experience_title);
+                mExperience.setText(experienceText + ": " + candidate.getExperience());
             }
-            if (candidate.getAbout() != null) {
+            if (candidate.getAbout() != null && !candidate.getAbout().isEmpty()) {
                 TextView mAbout = binding.profileAbout;
                 mAbout.setText(candidate.getAbout());
             }
-            if (candidate.getRole() != null) {
+            if (candidate.getRole() != null && !candidate.getRole().isEmpty()) {
                 TextView mRole = binding.profileRoles;
                 mRole.setText(candidate.getRole());
             }
-            if (candidate.getPreferredGenres() != null) {
+            if (candidate.getPreferredGenres() != null && !candidate.getPreferredGenres().isEmpty()) {
                 TextView mPreferredGenres = binding.profileGenres;
                 mPreferredGenres.setText(candidate.getPreferredGenres());
             }
-            if (candidate.getVideoLinks()!= null) {
+            if (candidate.getVideoLinks()!= null && !candidate.getVideoLinks().isEmpty()) {
                 TextView mVideoLinks = binding.profileLinks;
                 mVideoLinks.setText(candidate.getVideoLinks());
             }
@@ -127,15 +131,15 @@ public class ProfileFragment extends Fragment {
                 TextView mGenres = binding.bandGenresTextView;
                 mGenres.setText(band.getGenres());
             }
-            if (band.getAbout() != null) {
+            if (band.getAbout() != null && !band.getAbout().isEmpty()) {
                 TextView mAbout = binding.bandAbout;
                 mAbout.setText(band.getAbout());
             }
-            if (band.getMembersID() != null) {
+            if (band.getMembersID() != null && !band.getMembersID().isEmpty()) {
                 TextView mMembers = binding.bandMembers;
-                mMembers.setText(band.getMembersID().toString());
+                mMembers.setText(ArrayListStringCreator.getStringsFromArrayList(band.getMembersID()));
             }
-            if (band.getVideoLinks() != null) {
+            if (band.getVideoLinks() != null && !band.getVideoLinks().isEmpty()) {
                 TextView mVideoLinks = binding.bandLinks;
                 mVideoLinks.setText(band.getVideoLinks());
             }
@@ -160,6 +164,7 @@ public class ProfileFragment extends Fragment {
                     .setTitle(R.string.text_to_sign_out_title)
                     .setMessage(R.string.text_to_sign_out_message)
                     .setPositiveButton(R.string.yes, (dialog, which) -> {
+                        Log.d("PROFILE", "Signed out");
                         profileViewModel.addAuthStateListener(firebaseAuthStateListener);
                         profileViewModel.signOut();
                         Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
@@ -184,6 +189,7 @@ public class ProfileFragment extends Fragment {
                     .setTitle(R.string.text_to_sign_out_title)
                     .setMessage(R.string.text_to_sign_out_message)
                     .setPositiveButton(R.string.yes, (dialog, which) -> {
+                        Log.d("PROFILE", "Signed out");
                         profileViewModel.addAuthStateListener(firebaseAuthStateListener);
                         profileViewModel.signOut();
                         Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);

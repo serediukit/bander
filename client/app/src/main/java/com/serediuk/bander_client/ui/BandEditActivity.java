@@ -1,4 +1,4 @@
-package com.serediuk.bander_client;
+package com.serediuk.bander_client.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,10 +10,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.entity.Band;
-import com.serediuk.bander_client.model.entity.Candidate;
 
 public class BandEditActivity extends AppCompatActivity {
     EditText mName, mCity, mGenres;
