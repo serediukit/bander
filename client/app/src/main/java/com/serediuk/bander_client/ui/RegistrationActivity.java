@@ -41,6 +41,10 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        init();
+    }
+
+    private void init() {
         authProvider = AuthProvider.getInstance();
         firebaseAuthStateListener = firebaseAuth -> {
             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -65,7 +69,7 @@ public class RegistrationActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(currentDate);
         calendar.add(Calendar.YEAR, -12);
-        transformIntoDatePicker(findViewById(R.id.dateEditText), this, calendar.getTime());
+        transformIntoDatePicker(mBirthday, this, calendar.getTime());
     }
 
     public void registerCandidate(View view) {
