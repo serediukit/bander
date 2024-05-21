@@ -52,6 +52,7 @@
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="empty"></string>
     <string name="vacancies_history_button">My history</string>
     <string name="vacancies_send_button">Active vacancies requests</string>
     <string name="text_candidate_vacancies_search_title">Recommended vacancies</string>
@@ -63,6 +64,8 @@
     <string name="text_search_vacancy_datetime">Vacancy datetime</string>
     <string name="text_search_vacancy_genres">Vacancy genres</string>
     <string name="back_button">Back</string>
+    <string name="text_search_vacancy_about_band">Vacancy about band</string>
+    <string name="send_resume_button">Send resume</string>
 
 
 </resources>

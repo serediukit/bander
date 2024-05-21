@@ -22,7 +22,7 @@ public class VacancyInfoActivity extends AppCompatActivity {
         Vacancy vacancy = (Vacancy) getIntent().getSerializableExtra("vacancy");
 
         if (vacancy != null) {
-            TextView textView = findViewById(R.id.textView);
+            TextView textView = findViewById(R.id.vacancyInfoText);
             textView.setText(vacancy.toString());
         }
 
@@ -30,5 +30,8 @@ public class VacancyInfoActivity extends AppCompatActivity {
 
     public void back(View view) {
         finish();
+    }
+
+    public void sendResume(View view) {
     }
 }
