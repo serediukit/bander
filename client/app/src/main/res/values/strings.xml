@@ -11,6 +11,7 @@
     <string name="sign_up_button">Sign up</string>
     <string name="sign_out">Sign out</string>
     <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
 
     <string name="text_sign_up_answer">Don\'t have an account?</string>
     <string name="text_log_in_answer">Already have an account?</string>
@@ -48,6 +49,6 @@
     <string name="text_members">Add your band members</string>
     <string name="text_preferred_genres_title">Preferred genres</string>
     <string name="text_preferred_genres">Add some preferred genres</string>
-    <string name="cancel_button">cancel</string>
     <string name="text_to_save_message">Are you sure about saving data?</string>
+    <string name="text_band_edit_title">Edit band profile</string>
 </resources>
