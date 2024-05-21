@@ -16,36 +16,42 @@
             android:layout_height="wrap_content"
             android:padding="20dp">
 
-            <Button
-                android:id="@+id/searchCandidateHistoryButton"
+            <LinearLayout
+                android:id="@+id/searchCandidatesButtonLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:background="@color/primary_variant"
-                android:fontFamily="@font/barlow_semibold"
-                android:text="@string/vacancies_history_button"
-                android:textSize="18sp"
-                android:importantForAccessibility="no"
+                android:orientation="vertical"
+                android:background="@drawable/corner_radius_large"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/searchCandidateSendButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:background="@color/primary_variant"
-                android:fontFamily="@font/barlow_semibold"
-                android:text="@string/vacancies_send_button"
-                android:textSize="18sp"
-                android:importantForAccessibility="no"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchCandidateHistoryButton"
-                />
+                <Button
+                    android:id="@+id/searchCandidateHistoryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:background="@color/primary_variant"
+                    android:fontFamily="@font/barlow_semibold"
+                    android:text="@string/vacancies_history_button"
+                    android:textSize="18sp"
+                    android:importantForAccessibility="no"
+                    />
+
+                <Button
+                    android:id="@+id/searchCandidateSendButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:background="@color/primary_variant"
+                    android:fontFamily="@font/barlow_semibold"
+                    android:text="@string/vacancies_send_button"
+                    android:textSize="18sp"
+                    android:importantForAccessibility="no"
+                    />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/searchCandidateTitle"
@@ -59,7 +65,7 @@
                 android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchCandidateSendButton"/>
+                app:layout_constraintTop_toBottomOf="@+id/searchCandidatesButtonLayout"/>
 
             <TextView
                 android:visibility="invisible"

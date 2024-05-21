@@ -10,6 +10,9 @@ import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.UsersDAO;
 import com.serediuk.bander_client.model.dao.VacanciesDAO;
+import com.serediuk.bander_client.model.entity.Vacancy;
+
+import java.util.ArrayList;
 
 public class SearchViewModel extends ViewModel {
     UsersDAO usersDAO;
@@ -22,4 +25,7 @@ public class SearchViewModel extends ViewModel {
         Log.d("SEARCH", "UID: " + AuthUID.getUID());
     }
 
+    public ArrayList<Vacancy> getRecommendetVacancies() {
+        return vacanciesDAO.getRecommendedVacancies();
+    }
 }

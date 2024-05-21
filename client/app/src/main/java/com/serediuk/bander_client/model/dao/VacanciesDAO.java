@@ -85,4 +85,8 @@ public class VacanciesDAO {
 
         Log.d("VACANCY DAO", "Loaded " + vacanciesList.size() + " vacancies");
     }
+
+    public ArrayList<Vacancy> getRecommendedVacancies() {
+        return new ArrayList<>(vacanciesList);
+    }
 }

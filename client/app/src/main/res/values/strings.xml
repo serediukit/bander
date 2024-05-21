@@ -56,6 +56,11 @@
     <string name="vacancies_send_button">Vacancies sended</string>
     <string name="text_candidate_vacancies_search_title">Recommended vacancies</string>
     <string name="text_candidate_vacancies_search_empty">There is no recommended vacancies</string>
+    <string name="text_search_vacancy_title">Vacancy title</string>
+    <string name="text_search_vacancy_band">Vacancy band</string>
+    <string name="text_search_vacancy_text">Vacancy text</string>
+    <string name="text_search_vacancy_salary">Vacancy salary</string>
+    <string name="text_search_vacancy_datetime">Vacancy datetime</string>
 
 
 </resources>
