@@ -13,12 +13,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.ui.search.ReceivedResumesRecyclerAdapter;
-import com.serediuk.bander_client.ui.search.RecommendedVacanciesRecyclerAdapter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ResumesDAO implements Serializable {
+public class ResumesDAO {
     private static ResumesDAO instance;
     private final FirebaseDatabase database;
 

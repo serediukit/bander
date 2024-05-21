@@ -2,7 +2,9 @@ package com.serediuk.bander_client.model.entity;
 
 import androidx.annotation.NonNull;
 
-public class Resume {
+import java.io.Serializable;
+
+public class Resume implements Serializable {
     private String resumeUID;
     private String candidateUID;
     private String vacancyUID;
