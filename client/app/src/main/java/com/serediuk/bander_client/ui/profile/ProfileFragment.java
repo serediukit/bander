@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.serediuk.bander_client.BandEditActivity;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.User;
 import com.serediuk.bander_client.model.enums.UserType;
@@ -91,14 +92,53 @@ public class ProfileFragment extends Fragment {
                 TextView mExperience = binding.profileExperience;
                 mExperience.setText(R.string.text_experience_title + ": " + candidate.getExperience());
             }
-
-
+            if (candidate.getAbout() != null) {
+                TextView mAbout = binding.profileAbout;
+                mAbout.setText(candidate.getAbout());
+            }
+            if (candidate.getRole() != null) {
+                TextView mRole = binding.profileRoles;
+                mRole.setText(candidate.getRole());
+            }
+            if (candidate.getPreferredGenres() != null) {
+                TextView mPreferredGenres = binding.profileGenres;
+                mPreferredGenres.setText(candidate.getPreferredGenres());
+            }
+            if (candidate.getVideoLinks()!= null) {
+                TextView mVideoLinks = binding.profileLinks;
+                mVideoLinks.setText(candidate.getVideoLinks());
+            }
         } else if (Objects.equals(user.getType(), UserType.BAND.toString())) {
             candidateConstraintLayout.setVisibility(View.INVISIBLE);
             bandConstraintLayout.setVisibility(View.VISIBLE);
 
             Band band = profileViewModel.getBand();
             Log.d("PROFILE", "Loaded band:\n" + band);
+
+            if (band.getName() != null) {
+                TextView mName = binding.bandNameTextView;
+                mName.setText(band.getName());
+            }
+            if (band.getCity() != null) {
+                TextView mCity = binding.bandCityTextView;
+                mCity.setText(band.getCity());
+            }
+            if (band.getGenres() != null) {
+                TextView mGenres = binding.bandGenresTextView;
+                mGenres.setText(band.getGenres());
+            }
+            if (band.getAbout() != null) {
+                TextView mAbout = binding.bandAbout;
+                mAbout.setText(band.getAbout());
+            }
+            if (band.getMembersID() != null) {
+                TextView mMembers = binding.bandMembers;
+                mMembers.setText(band.getMembersID().toString());
+            }
+            if (band.getVideoLinks() != null) {
+                TextView mVideoLinks = binding.bandLinks;
+                mVideoLinks.setText(band.getVideoLinks());
+            }
         }
     }
 
@@ -166,5 +206,12 @@ public class ProfileFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadData();
     }
 }
