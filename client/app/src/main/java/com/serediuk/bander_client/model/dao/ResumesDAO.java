@@ -69,6 +69,7 @@ public class ResumesDAO {
         return null;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateResume(Resume resume) {
         database.getReference("resumes").child(resume.getResumeUID()).setValue(resume);
 
@@ -77,6 +78,19 @@ public class ResumesDAO {
                 resumesList.set(i, resume);
                 break;
             }
+        }
+
+        if (receivedResumesRecyclerAdapter != null) {
+            receivedResumesRecyclerAdapter.setArrayList(getReceivedResumes(AuthUID.getUID()));
+            receivedResumesRecyclerAdapter.notifyDataSetChanged();
+        }
+        if (resumeHistoryRecyclerAdapter != null) {
+            resumeHistoryRecyclerAdapter.setArrayList(getResumeHistory(AuthUID.getUID()));
+            resumeHistoryRecyclerAdapter.notifyDataSetChanged();
+        }
+        if (activeResumeRecyclerAdapter != null) {
+            activeResumeRecyclerAdapter.setArrayList(getActiveResumes(AuthUID.getUID()));
+            activeResumeRecyclerAdapter.notifyDataSetChanged();
         }
 
         Log.d("RESUME DAO", "Updating resume:\n" + resume);
@@ -111,7 +125,6 @@ public class ResumesDAO {
                     receivedResumesRecyclerAdapter.setArrayList(getReceivedResumes(AuthUID.getUID()));
                     receivedResumesRecyclerAdapter.notifyDataSetChanged();
                 }
-
                 if (resumeHistoryRecyclerAdapter != null) {
                     resumeHistoryRecyclerAdapter.setArrayList(getResumeHistory(AuthUID.getUID()));
                     resumeHistoryRecyclerAdapter.notifyDataSetChanged();
@@ -120,7 +133,6 @@ public class ResumesDAO {
                     activeResumeRecyclerAdapter.setArrayList(getActiveResumes(AuthUID.getUID()));
                     activeResumeRecyclerAdapter.notifyDataSetChanged();
                 }
-
                 Log.d("RESUME DAO", "Read " + resumesList.size() + " resumes");
             }
 

@@ -116,6 +116,12 @@
 
     <string name="text_active_resumes_title">Active resumes</string>
     <string name="text_active_resume_empty">There are not active resumes</string>
+    <string name="text_notification_new_resume_title">New resume</string>
+    <string name="text_notification_new_resume">"You have got new resume from "</string>
+    <string name="text_notification_accept_resume_title">Accept your resume</string>
+    <string name="text_notification_accept_resume">has choose you for invitation to chat!</string>
+    <string name="text_notification_decline_resume_title">Decline your resume</string>
+    <string name="text_notification_decline_resume">declined your resume about joining.</string>
 
 
 </resources>
