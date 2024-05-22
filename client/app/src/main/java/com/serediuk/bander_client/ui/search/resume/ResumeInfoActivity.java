@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthUID;
@@ -79,6 +80,8 @@ public class ResumeInfoActivity extends AppCompatActivity {
         resume.setStatus(ResumeStatus.ACCEPTED.toString());
         resumesDAO.updateResume(resume);
 
+        Toast.makeText(ResumeInfoActivity.this, "Resume accepted", Toast.LENGTH_SHORT).show();
+
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         String datetime = now.format(formatter);
@@ -99,6 +102,8 @@ public class ResumeInfoActivity extends AppCompatActivity {
     public void declineResume(View view) {
         resume.setStatus(ResumeStatus.DECLINED.toString());
         resumesDAO.updateResume(resume);
+
+        Toast.makeText(ResumeInfoActivity.this, "Resume declined", Toast.LENGTH_SHORT).show();
 
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
