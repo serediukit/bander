@@ -67,6 +67,10 @@ public class Notification {
         return status;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     private void clear() {
         this.notificationUID = null;
         this.receiverUID = null;

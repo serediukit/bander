@@ -24,4 +24,8 @@ public class NotificationsViewModel extends ViewModel {
     public void setNotificationAdapter(NotificationRecyclerAdapter notificationRecyclerAdapter) {
         notificationsDAO.setNotificationRecyclerAdapter(notificationRecyclerAdapter);
     }
+
+    public void setNotificationsRead(String uid) {
+        notificationsDAO.setNotificationsRead(uid);
+    }
 }

@@ -62,6 +62,7 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        notificationsViewModel.setNotificationsRead(AuthUID.getUID());
         binding = null;
     }
 }

@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Notification;
+import com.serediuk.bander_client.model.enums.NotificationStatus;
 import com.serediuk.bander_client.ui.notifications.adapters.NotificationRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -126,9 +127,9 @@ public class NotificationsDAO {
     public ArrayList<Notification> getNotifications(String userUID) {
         ArrayList<Notification> userNotifications = new ArrayList<>();
 
-        for (Notification notification : notificationsList) {
-            if (notification.getReceiverUID().equals(userUID)) {
-                userNotifications.add(notification);
+        for (int i = notificationsList.size() - 1; i >= 0; i--) {
+            if (notificationsList.get(i).getReceiverUID().equals(userUID)) {
+                userNotifications.add(notificationsList.get(i));
             }
         }
 
@@ -137,5 +138,22 @@ public class NotificationsDAO {
 
     public void setNotificationRecyclerAdapter(NotificationRecyclerAdapter notificationRecyclerAdapter) {
         this.notificationRecyclerAdapter = notificationRecyclerAdapter;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setNotificationsRead(String uid) {
+        for (Notification notification : notificationsList) {
+            if (notification.getReceiverUID().equals(uid)) {
+                notification.setStatus(NotificationStatus.READ.toString());
+                updateNotification(notification);
+            }
+        }
+
+        if (notificationRecyclerAdapter != null) {
+            notificationRecyclerAdapter.setArrayList(notificationsList);
+            notificationRecyclerAdapter.notifyDataSetChanged();
+        }
+
+        Log.d("NOTIFICATION DAO", "Marking notifications as read");
     }
 }
