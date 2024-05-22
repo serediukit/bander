@@ -1,4 +1,4 @@
-package com.serediuk.bander_client.ui;
+package com.serediuk.bander_client.ui.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,7 @@ import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.entity.Band;
+import com.serediuk.bander_client.ui.MainActivity;
 
 public class BandEditActivity extends AppCompatActivity {
     EditText mName, mCity, mGenres;
@@ -92,8 +93,6 @@ public class BandEditActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
-        Intent intent = new Intent(BandEditActivity.this, MainActivity.class);
-        startActivity(intent);
         finish();
     }
 }

@@ -2,7 +2,9 @@ package com.serediuk.bander_client.model.entity;
 
 import androidx.annotation.NonNull;
 
-public class Vacancy {
+import java.io.Serializable;
+
+public class Vacancy implements Serializable {
     private String vacancyUID;
     private String bandUID;
     private String role;
@@ -39,6 +41,10 @@ public class Vacancy {
 
     public String getVacancyUID() {
         return vacancyUID;
+    }
+
+    public void setVacancyUID(String vacancyUID) {
+        this.vacancyUID = vacancyUID;
     }
 
     public String getBandUID() {

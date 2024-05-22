@@ -5,9 +5,11 @@
 
     <color name="status_bar">#136349</color>
     <color name="primary">#136349</color>
-    <color name="primary_variant">#1f945b</color>
-    <color name="secondary">#4f62db</color>
-    <color name="secondary_variant">#0b1c8c</color>
+    <color name="primary_variant">#00A873</color>
+    <color name="primary_light">#E7FFF4</color>
+    <color name="primary_dark_light">#E8F3F5</color>
+    <color name="secondary">#5B4D90</color>
+    <color name="secondary_variant">#735103</color>
 
     <color name="text_header">#f2faf7</color>
     <color name="text_primary">#141716</color>

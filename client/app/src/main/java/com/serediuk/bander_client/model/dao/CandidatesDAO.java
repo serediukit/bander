@@ -63,14 +63,14 @@ public class CandidatesDAO {
         database.getReference("candidates").child(candidate.getCandidateUID()).setValue(candidate);
         database.getReference("users").child(candidate.getCandidateUID()).setValue(candidate.getUser());
 
+        for (int i = 0; i < candidatesList.size(); i++) {
+            if (candidatesList.get(i).getCandidateUID().equals(candidate.getCandidateUID())) {
+                candidatesList.set(i, candidate);
+                break;
+            }
+        }
+
         Log.d("CANDIDATE DAO", "Updating candidate:\n" + candidate);
-    }
-
-    public void deleteCandidate(String candidateUID) {
-        database.getReference("candidates").child(candidateUID).removeValue();
-        database.getReference("users").child(candidateUID).removeValue();
-
-        Log.d("CANDIDATE DAO", "Deleting candidate: " + candidateUID);
     }
 
     public void loadCandidates() {
@@ -94,9 +94,5 @@ public class CandidatesDAO {
         });
 
         Log.d("CANDIDATE DAO", "Loaded " + candidatesList.size() + " candidates");
-    }
-
-    public ArrayList<Candidate> getCandidates() {
-        return new ArrayList<>(candidatesList);
     }
 }

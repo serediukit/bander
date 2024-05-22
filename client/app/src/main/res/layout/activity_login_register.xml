@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:rotation="0"
-    tools:context=".ui.LoginRegisterActivity">
+    tools:context=".ui.auth.LoginRegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

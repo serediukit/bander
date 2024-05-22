@@ -9,24 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.serediuk.bander_client.databinding.FragmentProfileBinding;
-import com.serediuk.bander_client.model.dao.CandidatesDAO;
-import com.serediuk.bander_client.ui.BandEditActivity;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.User;
 import com.serediuk.bander_client.model.enums.UserType;
-import com.serediuk.bander_client.ui.LoginRegisterActivity;
-import com.serediuk.bander_client.ui.ProfileEditActivity;
+import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.util.ArrayListStringCreator;
@@ -57,16 +52,54 @@ public class ProfileFragment extends Fragment {
         return root;
     }
 
+    private void init() {
+        candidateConstraintLayout = binding.candidateLayout;
+        bandConstraintLayout = binding.bandLayout;
+
+        firebaseAuthStateListener = firebaseAuth -> {
+            try {
+                Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+            } catch (IllegalStateException e) {
+                Log.e("INTENT ERROR", "Can't find requireActivity()");
+            }
+        };
+
+        mSignOut = binding.signOutButton;
+        mSignOut.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+            builder
+                    .setTitle(R.string.text_to_sign_out_title)
+                    .setMessage(R.string.text_to_sign_out_message)
+                    .setPositiveButton(R.string.yes, (dialog, which) -> {
+                        Log.d("PROFILE", "Signed out");
+                        profileViewModel.addAuthStateListener(firebaseAuthStateListener);
+                        profileViewModel.signOut();
+                        Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
+                        startActivity(intent);
+                        requireActivity().finish();
+                    })
+                    .setNegativeButton(R.string.no, (dialog, which) -> {})
+                    .show();
+        });
+
+        mEdit = binding.editButton;
+        mEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), ProfileEditActivity.class);
+            startActivity(intent);
+        });
+
+        mBandEdit = binding.bandEditButton;
+        mBandEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), BandEditActivity.class);
+            startActivity(intent);
+        });
+    }
+
     @SuppressLint("SetTextI18n")
     private void loadData() {
         User user = profileViewModel.getUser();
-        while (user.getType() == null) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
         Log.d("PROFILE", "User type: " + user.getType());
         if (Objects.equals(user.getType(), UserType.CANDIDATE.toString())) {
             candidateConstraintLayout.setVisibility(View.VISIBLE);
@@ -152,53 +185,6 @@ public class ProfileFragment extends Fragment {
                 mVideoLinks.setText(band.getVideoLinks());
             }
         }
-    }
-
-    private void init() {
-        candidateConstraintLayout = binding.candidateLayout;
-        bandConstraintLayout = binding.bandLayout;
-
-        firebaseAuthStateListener = firebaseAuth -> {
-            try {
-                Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
-                startActivity(intent);
-                requireActivity().finish();
-            } catch (IllegalStateException e) {
-                Log.e("INTENT ERROR", "Can't find requireActivity()");
-            }
-        };
-
-        mSignOut = binding.signOutButton;
-        mSignOut.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-            builder
-                    .setTitle(R.string.text_to_sign_out_title)
-                    .setMessage(R.string.text_to_sign_out_message)
-                    .setPositiveButton(R.string.yes, (dialog, which) -> {
-                        Log.d("PROFILE", "Signed out");
-                        profileViewModel.addAuthStateListener(firebaseAuthStateListener);
-                        profileViewModel.signOut();
-                        Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
-                        startActivity(intent);
-                        requireActivity().finish();
-                    })
-                    .setNegativeButton(R.string.no, (dialog, which) -> {})
-                    .show();
-        });
-
-        mEdit = binding.editButton;
-        mEdit.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), ProfileEditActivity.class);
-            startActivity(intent);
-            requireActivity().finish();
-        });
-
-        mBandEdit = binding.bandEditButton;
-        mBandEdit.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), BandEditActivity.class);
-            startActivity(intent);
-            requireActivity().finish();
-        });
     }
 
     @Override

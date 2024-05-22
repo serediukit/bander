@@ -15,9 +15,11 @@
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/corner_radius_large"
         app:layout_constraintBottom_toTopOf="@+id/editButton"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="20dp">
+        tools:layout_editor_absoluteX="20dp"
+        android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -205,9 +207,11 @@
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/corner_radius_large"
         app:layout_constraintBottom_toTopOf="@+id/editButton"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="20dp">
+        tools:layout_editor_absoluteX="20dp"
+        android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -274,7 +278,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/barlow_semibold"
-                android:text="@string/text_about_title"
+                android:text="@string/text_band_about_title"
                 android:textColor="@color/text_primary"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -349,7 +353,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:background="@color/primary"
+        android:background="@color/primary_variant"
         android:fontFamily="@font/barlow_semibold"
         android:text="@string/edit_button"
         android:textSize="18sp"
@@ -366,7 +370,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:background="@color/primary"
+        android:background="@color/primary_variant"
         android:fontFamily="@font/barlow_semibold"
         android:text="@string/edit_button"
         android:textSize="18sp"

@@ -39,6 +39,10 @@ public class Notification {
         return notificationUID;
     }
 
+    public void setNotificationUID(String notificationUID) {
+        this.notificationUID = notificationUID;
+    }
+
     public String getReceiverUID() {
         return receiverUID;
     }

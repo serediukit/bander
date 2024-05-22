@@ -1,19 +1,50 @@
 package com.serediuk.bander_client.ui.search;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
-public class SearchViewModel extends ViewModel {
+import com.serediuk.bander_client.auth.AuthUID;
+import com.serediuk.bander_client.model.dao.ResumesDAO;
+import com.serediuk.bander_client.model.dao.UsersDAO;
+import com.serediuk.bander_client.model.dao.VacanciesDAO;
+import com.serediuk.bander_client.model.entity.Resume;
+import com.serediuk.bander_client.model.entity.Vacancy;
+import com.serediuk.bander_client.ui.search.adapters.ReceivedResumesRecyclerAdapter;
+import com.serediuk.bander_client.ui.search.adapters.RecommendedVacanciesRecyclerAdapter;
 
-    private final MutableLiveData<String> mText;
+import java.util.ArrayList;
+
+public class SearchViewModel extends ViewModel {
+    UsersDAO usersDAO;
+    VacanciesDAO vacanciesDAO;
+    ResumesDAO resumesDAO;
+
 
     public SearchViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is search fragment");
+        usersDAO = UsersDAO.getInstance();
+        vacanciesDAO = VacanciesDAO.getInstance();
+        resumesDAO = ResumesDAO.getInstance();
+        Log.d("SEARCH", "UID: " + AuthUID.getUID());
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public ArrayList<Vacancy> getRecommendedVacancies(String candidateUID) {
+        return vacanciesDAO.getRecommendedVacancies(candidateUID);
+    }
+
+    public void setRecommendedAdapter(RecommendedVacanciesRecyclerAdapter adapter) {
+        vacanciesDAO.setRecommendedVacanciesRecyclerAdapter(adapter);
+    }
+
+    public String getUserType() {
+        return usersDAO.readUser(AuthUID.getUID()).getType();
+    }
+
+    public ArrayList<Resume> getReceivedResumesList(String bandUID) {
+        return resumesDAO.getReceivedResumes(bandUID);
+    }
+
+    public void setReceivedAdapter(ReceivedResumesRecyclerAdapter receivedResumesAdapter) {
+        resumesDAO.setReceivedResumesRecyclerAdapter(receivedResumesAdapter);
     }
 }

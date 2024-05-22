@@ -1,4 +1,4 @@
-package com.serediuk.bander_client.ui;
+package com.serediuk.bander_client.ui.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,7 @@ import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.entity.Band;
+import com.serediuk.bander_client.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Objects;

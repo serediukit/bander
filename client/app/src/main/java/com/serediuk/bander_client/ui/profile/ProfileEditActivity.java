@@ -1,6 +1,5 @@
-package com.serediuk.bander_client.ui;
+package com.serediuk.bander_client.ui.profile;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -12,18 +11,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.ui.MainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 public class ProfileEditActivity extends AppCompatActivity {
     EditText mName, mSurname, mBirthday, mCity;
@@ -156,8 +154,6 @@ public class ProfileEditActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
-        Intent intent = new Intent(ProfileEditActivity.this, MainActivity.class);
-        startActivity(intent);
         finish();
     }
 }

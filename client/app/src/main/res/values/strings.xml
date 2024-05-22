@@ -9,9 +9,24 @@
     <string name="login_button">Log in</string>
     <string name="registration_button">Registration</string>
     <string name="sign_up_button">Sign up</string>
+    <string name="band_sign_up_button">Create</string>
     <string name="sign_out">Sign out</string>
     <string name="save_button">Save</string>
     <string name="cancel_button">Cancel</string>
+    <string name="edit_button">Edit</string>
+    <string name="text_band_registration">Band sign up</string>
+    <string name="text_band_sign_up_answer">Want to create band?</string>
+    <string name="vacancies_history_button">My history</string>
+    <string name="vacancies_send_button">Active vacancies requests</string>
+    <string name="back_button">Back</string>
+    <string name="send_resume_button">Send resume</string>
+    <string name="vacancies_band_button">My vacancies</string>
+    <string name="vacancies_create_button">Create vacancy</string>
+    <string name="accept_resume_button">Accept resume</string>
+    <string name="create_button">Create</string>
+    <string name="decline_resume_button">Decline resume</string>
+    <string name="delete_vacancy_button">Delete vacancy</string>
+    <string name="send_button">Send</string>
 
     <string name="text_sign_up_answer">Don\'t have an account?</string>
     <string name="text_log_in_answer">Already have an account?</string>
@@ -28,22 +43,16 @@
     <string name="description_profile_image">Profile image</string>
     <string name="text_to_sign_out_title">Warning</string>
     <string name="text_to_sign_out_message">Are you sure about exiting?</string>
-    <string name="text_experience_title">Experience</string>
+    <string name="text_experience_title">Experience (years)</string>
     <string name="text_experience">Experience: none</string>
     <string name="text_about_title">About</string>
+    <string name="text_band_about_title">About</string>
     <string name="text_about">Add some information about yourself\n\n\n</string>
     <string name="text_roles_title">Roles</string>
     <string name="text_roles">Add some roles that you have</string>
     <string name="text_links_title">Videos links</string>
     <string name="text_links">Add some links on your videos</string>
-
     <string name="text_profile_edit_title">Edit profile</string>
-
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="text_band_registration">Band sign up</string>
-    <string name="text_band_sign_up_answer">Want to create band?</string>
-    <string name="band_sign_up_button">CREATE</string>
     <string name="text_genres">Genres</string>
     <string name="text_members_title">Band members</string>
     <string name="text_members">Add your band members</string>
@@ -51,5 +60,62 @@
     <string name="text_preferred_genres">Add some preferred genres</string>
     <string name="text_to_save_message">Are you sure about saving data?</string>
     <string name="text_band_edit_title">Edit band profile</string>
-    <string name="edit_button">Edit</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="empty" translatable="false"></string>
+    <string name="text_money" translatable="false">$</string>
+    <string name="dollars" translatable="false">$USD</string>
+    <string name="hryvnya" translatable="false">₴UAH</string>
+
+
+    <string name="text_candidate_vacancies_search_title">Recommended vacancies</string>
+    <string name="text_candidate_vacancies_search_empty">There is no recommended vacancies</string>
+
+    <string name="text_search_vacancy_title">Vacancy title</string>
+    <string name="text_search_vacancy_band">Vacancy band</string>
+    <string name="text_search_vacancy_text">Vacancy text</string>
+    <string name="text_search_vacancy_salary">Vacancy salary</string>
+    <string name="text_search_vacancy_datetime">Vacancy datetime</string>
+    <string name="text_search_vacancy_genres">Vacancy genres</string>
+    <string name="text_search_vacancy_about_band">Vacancy about band</string>
+    <string name="text_search_vacancy_city">Vacancy city</string>
+
+    <string name="text_band_resumes_search_title">Received resumes</string>
+    <string name="text_band_resumes_search_empty">There is not resumes for you</string>
+    <string name="text_search_resume_title">Resume title</string>
+    <string name="text_search_role">Resume role</string>
+    <string name="text_search_resume_genres">Resume genres</string>
+    <string name="text_search_resume_datetime">Resume datetime</string>
+    <string name="text_search_experience">Resume experience</string>
+    <string name="text_search_resume_name">Resume name</string>
+    <string name="text_search_resume_surname">Resume surname</string>
+    <string name="text_search_resume_city">Resume city</string>
+    <string name="text_search_resume_role">Resume role</string>
+    <string name="text_search_resume_experience">Resume experience</string>
+    <string name="text_search_resume_birthday">Resume birthday</string>
+    <string name="text_search_resume_text">Resume text</string>
+
+    <string name="text_creating_vacancy">Create vacancy</string>
+    <string name="text_vacancy_create_role">Role</string>
+    <string name="text_vacancy_create_text">Description</string>
+    <string name="text_vacancy_create_salary">Salary</string>
+    <string name="text_band_vacancies_title">Your band vacancies</string>
+    <string name="text_band_vacancies_empty">You have not any vacancies</string>
+    <string name="text_delete_vacancy_warning">Are you sure about deleting vacancy?</string>
+
+    <string name="text_sending_resume">Send resume</string>
+    <string name="text_resume_sending_text">Addition information</string>
+    <string name="text_resume_history_title">Resume history</string>
+    <string name="text_resume_history_empty">There is not resumes history</string>
+    <string name="text_resume_history_datetime">Resume datetime</string>
+    <string name="text_search_vacancy_text_title">Vacancy text</string>
+    <string name="text_resume_history_text_title">Your text</string>
+    <string name="text_resume_status">Resume status</string>
+    <string name="text_send_empty_resume_message">Your data is not full. You can fill it in the profile.\nDo you want to send not full resume now?</string>
+
+    <string name="text_active_resumes_title">Active resumes</string>
+    <string name="text_active_resume_empty">There are not active resumes</string>
+
+
 </resources>
