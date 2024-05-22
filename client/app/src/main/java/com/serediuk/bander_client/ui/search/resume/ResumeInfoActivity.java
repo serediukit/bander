@@ -91,6 +91,7 @@ public class ResumeInfoActivity extends AppCompatActivity {
                 datetime,
                 NotificationStatus.NEW.toString()
         );
+        notificationsDAO.createNotification(notification);
 
         finish();
     }
@@ -111,6 +112,7 @@ public class ResumeInfoActivity extends AppCompatActivity {
                 datetime,
                 NotificationStatus.NEW.toString()
         );
+        notificationsDAO.createNotification(notification);
 
         finish();
     }
