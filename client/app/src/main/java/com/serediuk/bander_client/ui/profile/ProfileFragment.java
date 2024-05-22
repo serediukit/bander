@@ -88,14 +88,12 @@ public class ProfileFragment extends Fragment {
         mEdit.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), ProfileEditActivity.class);
             startActivity(intent);
-            requireActivity().finish();
         });
 
         mBandEdit = binding.bandEditButton;
         mBandEdit.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), BandEditActivity.class);
             startActivity(intent);
-            requireActivity().finish();
         });
     }
 

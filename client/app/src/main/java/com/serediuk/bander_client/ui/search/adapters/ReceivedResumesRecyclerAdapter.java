@@ -15,7 +15,7 @@ import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Resume;
-import com.serediuk.bander_client.ui.search.ResumeInfoActivity;
+import com.serediuk.bander_client.ui.search.resume.ResumeInfoActivity;
 
 import java.util.ArrayList;
 

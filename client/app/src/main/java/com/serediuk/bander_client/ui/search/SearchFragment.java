@@ -1,10 +1,12 @@
 package com.serediuk.bander_client.ui.search;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,8 @@ import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.ui.search.adapters.ReceivedResumesRecyclerAdapter;
 import com.serediuk.bander_client.ui.search.adapters.RecommendedVacanciesRecyclerAdapter;
+import com.serediuk.bander_client.ui.search.vacancy.BandVacanciesActivity;
+import com.serediuk.bander_client.ui.search.vacancy.CreateVacancyActivity;
 
 import java.util.ArrayList;
 
@@ -32,6 +36,7 @@ public class SearchFragment extends Fragment {
     private RecommendedVacanciesRecyclerAdapter recommendedVacanciesAdapter;
     private ReceivedResumesRecyclerAdapter receivedResumesAdapter;
     private TextView mEmptyText, mBandEmptyText;
+    private Button createVacancyButton, openBandVacancyButton;
 
     private ConstraintLayout candidateLayout;
     private ConstraintLayout bandLayout;
@@ -91,6 +96,18 @@ public class SearchFragment extends Fragment {
                 receivedResumesRecyclerView.setAdapter(receivedResumesAdapter);
                 searchViewModel.setReceivedAdapter(receivedResumesAdapter);
             }
+
+            createVacancyButton = binding.searchBandCreateVacancyButton;
+            createVacancyButton.setOnClickListener(v -> {
+                Intent intent = new Intent(requireActivity(), CreateVacancyActivity.class);
+                startActivity(intent);
+            });
+
+            openBandVacancyButton = binding.searchBandVacanciesButton;
+            openBandVacancyButton.setOnClickListener(v -> {
+                Intent intent = new Intent(requireActivity(), BandVacanciesActivity.class);
+                startActivity(intent);
+            });
         }
     }
     private void loadData() {

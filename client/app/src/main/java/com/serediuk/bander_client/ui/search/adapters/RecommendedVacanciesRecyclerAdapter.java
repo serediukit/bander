@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.entity.Band;
-import com.serediuk.bander_client.ui.search.VacancyInfoActivity;
+import com.serediuk.bander_client.ui.search.vacancy.VacancyInfoActivity;
 import com.serediuk.bander_client.model.entity.Vacancy;
 
 import java.util.ArrayList;

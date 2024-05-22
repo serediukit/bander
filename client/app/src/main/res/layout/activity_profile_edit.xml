@@ -87,6 +87,7 @@
             android:layout_marginTop="20dp"
             android:hint="@string/text_experience_title"
             android:textSize="18sp"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileEditTextCity" />

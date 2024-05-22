@@ -13,10 +13,16 @@
         android:theme="@style/Theme.Banderclient"
         tools:targetApi="31">
         <activity
-            android:name=".ui.search.ResumeInfoActivity"
+            android:name=".ui.search.vacancy.BandVacanciesActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.search.VacancyInfoActivity"
+            android:name=".ui.search.vacancy.CreateVacancyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.search.resume.ResumeInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.search.vacancy.VacancyInfoActivity"
             android:exported="false" />
         <activity
             android:name=".ui.profile.BandEditActivity"

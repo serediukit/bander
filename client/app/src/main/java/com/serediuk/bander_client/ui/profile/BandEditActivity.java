@@ -93,8 +93,6 @@ public class BandEditActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
-        Intent intent = new Intent(BandEditActivity.this, MainActivity.class);
-        startActivity(intent);
         finish();
     }
 }

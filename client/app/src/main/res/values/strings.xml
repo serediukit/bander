@@ -32,7 +32,7 @@
     <string name="description_profile_image">Profile image</string>
     <string name="text_to_sign_out_title">Warning</string>
     <string name="text_to_sign_out_message">Are you sure about exiting?</string>
-    <string name="text_experience_title">Experience</string>
+    <string name="text_experience_title">Experience (years)</string>
     <string name="text_experience">Experience: none</string>
     <string name="text_about_title">About</string>
     <string name="text_band_about_title">About</string>
@@ -85,6 +85,14 @@
     <string name="text_search_resume_experience">Resume experience</string>
     <string name="text_search_resume_birthday">Resume birthday</string>
     <string name="text_search_resume_text">Resume text</string>
+    <string name="text_creating_vacancy">Create vacancy</string>
+    <string name="text_vacancy_create_role">Role</string>
+    <string name="text_vacancy_create_text">Description</string>
+    <string name="text_vacancy_create_salary">Salary</string>
+    <string name="text_money">$</string>
+    <string name="dollars">$USD</string>
+    <string name="hryvnya">₴UAH</string>
+    <string name="create_button">Create</string>
 
 
 </resources>
