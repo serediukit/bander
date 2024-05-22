@@ -2,6 +2,8 @@ package com.serediuk.bander_client.model.entity;
 
 import androidx.annotation.NonNull;
 
+import com.serediuk.bander_client.model.enums.ResumeStatus;
+
 import java.io.Serializable;
 
 public class Resume implements Serializable {
@@ -56,6 +58,10 @@ public class Resume implements Serializable {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(ResumeStatus resumeStatus) {
+        this.status = resumeStatus.toString();
     }
 
     private void clear() {

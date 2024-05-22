@@ -5,12 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.serediuk.bander_client.R;
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.BandsDAO;
+import com.serediuk.bander_client.model.dao.ResumesDAO;
+import com.serediuk.bander_client.model.dao.UsersDAO;
+import com.serediuk.bander_client.model.dao.VacanciesDAO;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Vacancy;
+import com.serediuk.bander_client.model.enums.UserType;
 
 import org.w3c.dom.Text;
 
@@ -20,6 +26,8 @@ public class VacancyInfoActivity extends AppCompatActivity {
 
     private TextView mTitle, mBand, mGenres, mSalary, mCity;
     private TextView mText, mAbout, mLinks, mDatetime;
+
+    private Button mSend, mDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,16 @@ public class VacancyInfoActivity extends AppCompatActivity {
         mAbout = findViewById(R.id.vacancyInfoAboutBand);
         mLinks = findViewById(R.id.vacancyInfoBandLinks);
         mDatetime = findViewById(R.id.vacancyInfoDatetime);
+
+        mSend = findViewById(R.id.sendResumeButton);
+        mDelete = findViewById(R.id.deleteVacancyButton);
+        if (UsersDAO.getInstance().readUser(AuthUID.getUID()).getType().equals(String.valueOf(UserType.CANDIDATE))) {
+            mSend.setVisibility(View.VISIBLE);
+            mDelete.setVisibility(View.INVISIBLE);
+        } else {
+            mSend.setVisibility(View.INVISIBLE);
+            mDelete.setVisibility(View.VISIBLE);
+        }
     }
 
     private void loadData() {
@@ -64,5 +82,13 @@ public class VacancyInfoActivity extends AppCompatActivity {
     }
 
     public void sendResume(View view) {
+    }
+
+    public void deleteVacancy(View view) {
+        VacanciesDAO vacanciesDAO = VacanciesDAO.getInstance();
+        vacanciesDAO.deleteVacancy(vacancy.getVacancyUID());
+        ResumesDAO resumesDAO = ResumesDAO.getInstance();
+        resumesDAO.markAllResumesDeclinedForVacancy(vacancy.getVacancyUID());
+        finish();
     }
 }

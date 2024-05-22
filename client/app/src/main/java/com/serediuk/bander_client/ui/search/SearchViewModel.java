@@ -28,7 +28,7 @@ public class SearchViewModel extends ViewModel {
         Log.d("SEARCH", "UID: " + AuthUID.getUID());
     }
 
-    public ArrayList<Vacancy> getRecommendedVacancies() {
+    public ArrayList<Vacancy> getRecommendedVacancies(String candidateUID) {
         return vacanciesDAO.getRecommendedVacancies();
     }
 
@@ -40,8 +40,8 @@ public class SearchViewModel extends ViewModel {
         return usersDAO.readUser(AuthUID.getUID()).getType();
     }
 
-    public ArrayList<Resume> getReceivedResumesList() {
-        return resumesDAO.getReceivedResumes();
+    public ArrayList<Resume> getReceivedResumesList(String bandUID) {
+        return resumesDAO.getReceivedResumes(bandUID);
     }
 
     public void setReceivedAdapter(ReceivedResumesRecyclerAdapter receivedResumesAdapter) {

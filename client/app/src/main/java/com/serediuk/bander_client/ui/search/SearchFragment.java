@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.databinding.FragmentSearchBinding;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.entity.Vacancy;
@@ -69,7 +70,7 @@ public class SearchFragment extends Fragment {
             recommendedVacanciesRecyclerView = binding.searchCandidateRecyclerView;
             recommendedVacanciesRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
-            recommendedVacanciesList = searchViewModel.getRecommendedVacancies();
+            recommendedVacanciesList = searchViewModel.getRecommendedVacancies(AuthUID.getUID());
             if (recommendedVacanciesList.size() == 0) {
                 mEmptyText.setVisibility(View.VISIBLE);
                 recommendedVacanciesRecyclerView.setVisibility(View.INVISIBLE);
@@ -85,7 +86,7 @@ public class SearchFragment extends Fragment {
             receivedResumesRecyclerView = binding.searchBandRecyclerView;
             receivedResumesRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
-            receivedResumesList = searchViewModel.getReceivedResumesList();
+            receivedResumesList = searchViewModel.getReceivedResumesList(AuthUID.getUID());
             if (receivedResumesList.size() == 0) {
                 mBandEmptyText.setVisibility(View.VISIBLE);
                 receivedResumesRecyclerView.setVisibility(View.INVISIBLE);

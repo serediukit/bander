@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Resume;
+import com.serediuk.bander_client.model.enums.ResumeStatus;
 import com.serediuk.bander_client.ui.search.adapters.ReceivedResumesRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class ResumesDAO {
 
     private static ArrayList<Resume> resumesList;
 
-    private static ReceivedResumesRecyclerAdapter receivedResumesRecyclerAdapter;
+    private ReceivedResumesRecyclerAdapter receivedResumesRecyclerAdapter;
 
     private ResumesDAO() {
         resumesList = new ArrayList<>();
@@ -100,11 +101,25 @@ public class ResumesDAO {
         Log.d("RESUME DAO", "Loaded " + resumesList.size() + " resumes");
     }
 
-    public ArrayList<Resume> getReceivedResumes() {
-        return resumesList;
+    public ArrayList<Resume> getReceivedResumes(String bandUID) {
+        ArrayList<Resume> resList = new ArrayList<Resume>;
+        for (Resume resume : resumesList) {
+            if (resume.getBandUID().equals(bandUID)) {
+                resList.add(resume);
+            }
+        }
     }
 
     public void setReceivedResumesRecyclerAdapter(ReceivedResumesRecyclerAdapter adapter) {
         this.receivedResumesRecyclerAdapter = adapter;
+    }
+
+    public void markAllResumesDeclinedForVacancy(String vacancyUID) {
+        for (Resume resume : resumesList) {
+            if (resume.getVacancyUID().equals(vacancyUID)) {
+                resume.setStatus(ResumeStatus.DECLINED);
+                updateResume(resume);
+            }
+        }
     }
 }
