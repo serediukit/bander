@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
@@ -126,5 +127,14 @@ public class ResumesDAO {
                 updateResume(resume);
             }
         }
+    }
+
+    public boolean isSentResume(String vacancyUID) {
+        for (Resume resume : resumesList) {
+            if (resume.getVacancyUID().equals(vacancyUID) && resume.getCandidateUID().equals(AuthUID.getUID())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

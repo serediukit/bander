@@ -11,7 +11,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
-import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.ui.search.adapters.BandVacanciesRecyclerAdapter;
@@ -108,10 +107,13 @@ public class VacanciesDAO {
     }
 
     public ArrayList<Vacancy> getRecommendedVacancies(String candidateUID) {
+        ResumesDAO resumesDAO = ResumesDAO.getInstance();
         ArrayList<Vacancy> recommendedVacancies = new ArrayList<>();
         for (Vacancy vacancy : vacanciesList) {
-            if (isRecommendedVacancy(vacancy, candidateUID)) {
+            if(!resumesDAO.isSentResume(vacancy.getVacancyUID())) {
+//                if (isRecommendedVacancy(vacancy, candidateUID)) {
                 recommendedVacancies.add(vacancy);
+//                }
             }
         }
         return recommendedVacancies;

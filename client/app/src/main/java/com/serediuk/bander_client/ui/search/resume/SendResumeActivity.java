@@ -2,6 +2,7 @@ package com.serediuk.bander_client.ui.search.resume;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import com.serediuk.bander_client.model.dao.ResumesDAO;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
+import com.serediuk.bander_client.ui.MainActivity;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -50,6 +52,8 @@ public class SendResumeActivity extends AppCompatActivity {
         );
         resumesDAO.createResume(resume);
         Toast.makeText(SendResumeActivity.this, "Resume sended", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(SendResumeActivity.this, MainActivity.class);
+        startActivity(intent);
         finish();
     }
 
