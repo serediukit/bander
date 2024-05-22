@@ -107,13 +107,6 @@ public class ProfileFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     private void loadData() {
         User user = profileViewModel.getUser();
-        while (user.getType() == null) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
         Log.d("PROFILE", "User type: " + user.getType());
         if (Objects.equals(user.getType(), UserType.CANDIDATE.toString())) {
             candidateConstraintLayout.setVisibility(View.VISIBLE);

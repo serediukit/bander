@@ -15,11 +15,11 @@ import com.serediuk.bander_client.model.entity.Vacancy;
 import org.w3c.dom.Text;
 
 public class VacancyInfoActivity extends AppCompatActivity {
-    BandsDAO bandsDAO;
-    Vacancy vacancy;
+    private BandsDAO bandsDAO;
+    private Vacancy vacancy;
 
-    TextView mTitle, mBand, mGenres, mSalary, mCity;
-    TextView mText, mAbout, mLinks, mDatetime;
+    private TextView mTitle, mBand, mGenres, mSalary, mCity;
+    private TextView mText, mAbout, mLinks, mDatetime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -26,6 +26,10 @@ public class Resume implements Serializable {
         this.status = status;
     }
 
+    public Resume() {
+        clear();
+    }
+
     public String getResumeUID() {
         return resumeUID;
     }

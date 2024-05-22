@@ -15,17 +15,19 @@ import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Resume;
+import com.serediuk.bander_client.ui.ResumeInfoActivity;
 
 import java.util.ArrayList;
 
 public class ReceivedResumesRecyclerAdapter extends RecyclerView.Adapter<ReceivedResumesRecyclerAdapter.ViewHolder>{
-    Context context;
-    ArrayList<Resume> receivedResumesList;
-    CandidatesDAO candidatesDAO;
+    private Context context;
+    private ArrayList<Resume> receivedResumesList;
+    private CandidatesDAO candidatesDAO;
 
     public ReceivedResumesRecyclerAdapter(Context context, ArrayList<Resume> receivedResumesList) {
         this.context = context;
         this.receivedResumesList = receivedResumesList;
+        candidatesDAO = CandidatesDAO.getInstance();
     }
 
     @NonNull
@@ -48,11 +50,11 @@ public class ReceivedResumesRecyclerAdapter extends RecyclerView.Adapter<Receive
         holder.textExperience.setText(candidate.getExperience());
         holder.textDatetime.setText(resume.getDatetime());
 
-//        holder.itemView.setOnClickListener(v -> {
-//            Intent intent = new Intent(context, ResumeInfoActivity.class);
-//            intent.putExtra("resume", resume);
-//            context.startActivity(intent);
-//        });
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ResumeInfoActivity.class);
+            intent.putExtra("resume", resume);
+            context.startActivity(intent);
+        });
     }
 
     @Override

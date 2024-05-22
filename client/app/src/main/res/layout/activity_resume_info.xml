@@ -4,27 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.VacancyInfoActivity"
+    tools:context=".ui.ResumeInfoActivity"
     android:padding="20dp">
 
     <ScrollView
-        android:id="@+id/vacancyInfoScrollView"
+        android:id="@+id/resumeInfoScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/corner_radius_large"
-        app:layout_constraintBottom_toTopOf="@+id/sendResumeButton"
+        app:layout_constraintBottom_toTopOf="@+id/acceptResumeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/vacancyInfoLayout"
+            android:id="@+id/resumeInfoLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/vacancyInfoMiniLayout"
+                android:id="@+id/resumeInfoMiniLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
-                    android:id="@+id/vacancyInfoMiniLinearLayout"
+                    android:id="@+id/resumeInfoMiniLinearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -40,92 +40,101 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/vacancyInfoTitle"
+                        android:id="@+id/resumeInfoCandidateName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_bold"
-                        android:text="@string/text_search_vacancy_title"
+                        android:text="@string/text_search_resume_name"
                         android:textColor="@color/text_primary"
                         android:textSize="28sp" />
 
                     <TextView
-                        android:id="@+id/vacancyInfoBand"
+                        android:id="@+id/resumeInfoCandidateSurname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_bold"
+                        android:text="@string/text_search_resume_surname"
+                        android:textColor="@color/text_primary"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:id="@+id/resumeInfoRole"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/barlow_bold"
-                        android:text="@string/text_search_vacancy_band"
+                        android:text="@string/text_search_resume_role"
                         android:textColor="@color/text_primary"
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/vacancyInfoGenres"
+                        android:id="@+id/resumeInfoExperience"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="@string/text_search_vacancy_genres"
+                        android:text="@string/text_search_resume_experience"
                         android:textColor="@color/text_secondary"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/vacancyInfoSalary"
+                        android:id="@+id/resumeInfoBirthday"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/barlow_medium"
-                        android:text="@string/text_search_vacancy_salary"
+                        android:text="@string/text_search_resume_birthday"
                         android:textColor="@color/text_secondary"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/vacancyInfoCity"
+                        android:id="@+id/resumeInfoCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_thin"
-                        android:text="@string/text_search_vacancy_city"
+                        android:text="@string/text_search_resume_city"
                         android:textColor="@color/text_secondary"
                         android:textSize="18sp" />
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/bandImageView"
+                    android:id="@+id/candidateImageView"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
                     android:contentDescription="@string/description_profile_image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/blank_profile" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/vacancyInfoText"
+                android:id="@+id/resumeInfoText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/barlow_medium"
-                android:text="@string/text_search_vacancy_text"
+                android:text="@string/text_search_resume_text"
                 android:textColor="@color/text_secondary"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vacancyInfoMiniLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/resumeInfoMiniLayout" />
 
             <TextView
-                android:id="@+id/vacancyInfoBandAboutTitle"
+                android:id="@+id/resumeInfoAboutTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/barlow_semibold"
-                android:text="@string/text_band_about_title"
+                android:text="@string/text_about_title"
                 android:textColor="@color/text_secondary"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vacancyInfoText" />
-
+                app:layout_constraintTop_toBottomOf="@+id/resumeInfoText" />
 
             <TextView
-                android:id="@+id/vacancyInfoAboutBand"
+                android:id="@+id/resumeInfoAbout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -135,10 +144,36 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vacancyInfoBandAboutTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/resumeInfoAboutTitle" />
 
             <TextView
-                android:id="@+id/vacancyInfoBandLinksTitle"
+                android:id="@+id/resumeInfoGenresTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="@string/text_preferred_genres_title"
+                android:textColor="@color/text_secondary"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/resumeInfoAbout" />
+
+            <TextView
+                android:id="@+id/resumeInfoGenres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/barlow_medium"
+                android:text="@string/empty"
+                android:textColor="@color/text_secondary"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/resumeInfoGenresTitle" />
+
+            <TextView
+                android:id="@+id/resumeInfoLinksTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -148,11 +183,11 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vacancyInfoAboutBand" />
+                app:layout_constraintTop_toBottomOf="@+id/resumeInfoGenres" />
 
 
             <TextView
-                android:id="@+id/vacancyInfoBandLinks"
+                android:id="@+id/resumeInfoLinks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -162,51 +197,51 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vacancyInfoBandLinksTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/resumeInfoLinksTitle" />
 
             <TextView
-                android:id="@+id/vacancyInfoDatetime"
+                android:id="@+id/resumeInfoDatetime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/barlow_thin"
-                android:text="@string/text_search_vacancy_datetime"
+                android:text="@string/text_search_resume_datetime"
                 android:textColor="@color/text_secondary"
                 android:textSize="18sp"
                 android:textAlignment="textEnd"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vacancyInfoBandLinks"/>
+                app:layout_constraintTop_toBottomOf="@+id/resumeInfoLinks"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
     <Button
-        android:id="@+id/sendResumeButton"
+        android:id="@+id/acceptResumeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:background="@color/secondary"
+        android:background="@color/primary"
         android:fontFamily="@font/barlow_semibold"
-        android:text="@string/send_resume_button"
+        android:text="@string/accept_resume_button"
         android:textSize="18sp"
-        android:onClick="sendResume"
-        app:layout_constraintBottom_toTopOf="@+id/backButton"
+        android:onClick="acceptResume"
+        app:layout_constraintBottom_toTopOf="@+id/declineResumeButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
 
     <Button
-        android:id="@+id/backButton"
+        android:id="@+id/declineResumeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:background="@color/primary"
+        android:background="@color/light_red_gray"
         android:fontFamily="@font/barlow_semibold"
-        android:text="@string/back_button"
+        android:text="@string/decline_resume_button"
         android:textSize="18sp"
-        android:onClick="back"
+        android:onClick="declineResume"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

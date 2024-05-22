@@ -12,11 +12,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.serediuk.bander_client.R;
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.databinding.ActivityMainBinding;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.DatabaseInitializer;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.dao.UsersDAO;
+import com.serediuk.bander_client.model.entity.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DatabaseInitializer.load();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -42,15 +45,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-
-        DatabaseInitializer.load();
-        Log.d("MENU HEIGHT", String.valueOf(findViewById(R.id.nav_view).getHeight()));
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-
-        DatabaseInitializer.load();
     }
 }

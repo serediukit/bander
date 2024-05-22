@@ -19,9 +19,9 @@ import com.serediuk.bander_client.model.entity.Vacancy;
 import java.util.ArrayList;
 
 public class RecommendedVacanciesRecyclerAdapter extends RecyclerView.Adapter<RecommendedVacanciesRecyclerAdapter.ViewHolder> {
-    Context context;
-    ArrayList<Vacancy> recommendedVacanciesList;
-    BandsDAO bandsDAO;
+    private Context context;
+    private ArrayList<Vacancy> recommendedVacanciesList;
+    private BandsDAO bandsDAO;
 
     public RecommendedVacanciesRecyclerAdapter(Context context, ArrayList<Vacancy> recommendedVacanciesList) {
         this.context = context;

@@ -108,6 +108,14 @@ public class SearchFragment extends Fragment {
         } else if (userType.equals(UserType.BAND.toString())) {
             candidateLayout.setVisibility(View.INVISIBLE);
             bandLayout.setVisibility(View.VISIBLE);
+
+            if (receivedResumesList.size() == 0) {
+                mBandEmptyText.setVisibility(View.VISIBLE);
+                receivedResumesRecyclerView.setVisibility(View.INVISIBLE);
+            } else {
+                mBandEmptyText.setVisibility(View.INVISIBLE);
+                receivedResumesRecyclerView.setVisibility(View.VISIBLE);
+            }
         }
     }
 

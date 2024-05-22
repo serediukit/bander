@@ -76,6 +76,15 @@
     <string name="text_search_resume_genres">Resume genres</string>
     <string name="text_search_resume_datetime">Resume datetime</string>
     <string name="text_search_experience">Resume experience</string>
+    <string name="accept_resume_button">Accept resume</string>
+    <string name="decline_resume_button">Decline resume</string>
+    <string name="text_search_resume_name">Resume name</string>
+    <string name="text_search_resume_surname">Resume surname</string>
+    <string name="text_search_resume_city">Resume city</string>
+    <string name="text_search_resume_role">Resume role</string>
+    <string name="text_search_resume_experience">Resume experience</string>
+    <string name="text_search_resume_birthday">Resume birthday</string>
+    <string name="text_search_resume_text">Resume text</string>
 
 
 </resources>
