@@ -79,6 +79,7 @@ public class SearchFragment extends Fragment {
                 mEmptyText.setVisibility(View.INVISIBLE);
                 recommendedVacanciesRecyclerView.setVisibility(View.VISIBLE);
                 recommendedVacanciesAdapter = new RecommendedVacanciesRecyclerAdapter(requireActivity(), recommendedVacanciesList);
+
                 recommendedVacanciesRecyclerView.setAdapter(recommendedVacanciesAdapter);
                 searchViewModel.setRecommendedAdapter(recommendedVacanciesAdapter);
             }
@@ -106,6 +107,7 @@ public class SearchFragment extends Fragment {
             } else {
                 mBandEmptyText.setVisibility(View.INVISIBLE);
                 receivedResumesRecyclerView.setVisibility(View.VISIBLE);
+
                 receivedResumesAdapter = new ReceivedResumesRecyclerAdapter(requireActivity(), receivedResumesList);
                 receivedResumesRecyclerView.setAdapter(receivedResumesAdapter);
                 searchViewModel.setReceivedAdapter(receivedResumesAdapter);

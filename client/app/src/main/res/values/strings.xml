@@ -125,6 +125,7 @@
     <string name="text_notification_title">Notification title</string>
     <string name="text_notification_text">Notification text</string>
     <string name="text_notification_datetime">Notification datetime</string>
+    <string name="text_notification_empty">There are not notification for you</string>
 
 
 </resources>

@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Notification;
+import com.serediuk.bander_client.ui.notifications.adapters.NotificationRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class NotificationsDAO {
     private final FirebaseDatabase database;
 
     private static ArrayList<Notification> notificationsList;
+    private NotificationRecyclerAdapter notificationRecyclerAdapter;
 
 
     private NotificationsDAO() {
@@ -60,6 +62,7 @@ public class NotificationsDAO {
         return null;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateNotification(Notification notification) {
         database.getReference("notifications").child(notification.getNotificationUID()).setValue(notification);
 
@@ -68,6 +71,11 @@ public class NotificationsDAO {
                 notificationsList.set(i, notification);
                 break;
             }
+        }
+
+        if (notificationRecyclerAdapter != null) {
+            notificationRecyclerAdapter.setArrayList(notificationsList);
+            notificationRecyclerAdapter.notifyDataSetChanged();
         }
 
         Log.d("NOTIFICATION DAO", "Updating notification:\n" + notification);
@@ -98,6 +106,11 @@ public class NotificationsDAO {
                     Notification notification = dataSnapshot.getValue(Notification.class);
                     notificationsList.add(notification);
                 }
+                if (notificationRecyclerAdapter != null) {
+                    notificationRecyclerAdapter.setArrayList(notificationsList);
+                    notificationRecyclerAdapter.notifyDataSetChanged();
+                }
+
                 Log.d("NOTIFICATION DAO", "Read " + notificationsList.size() + " notifications");
             }
 
@@ -108,5 +121,21 @@ public class NotificationsDAO {
         });
 
         Log.d("NOTIFICATION DAO", "Loaded " + notificationsList.size() + " notifications");
+    }
+
+    public ArrayList<Notification> getNotifications(String userUID) {
+        ArrayList<Notification> userNotifications = new ArrayList<>();
+
+        for (Notification notification : notificationsList) {
+            if (notification.getReceiverUID().equals(userUID)) {
+                userNotifications.add(notification);
+            }
+        }
+
+        return userNotifications;
+    }
+
+    public void setNotificationRecyclerAdapter(NotificationRecyclerAdapter notificationRecyclerAdapter) {
+        this.notificationRecyclerAdapter = notificationRecyclerAdapter;
     }
 }
