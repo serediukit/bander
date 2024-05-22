@@ -143,7 +143,7 @@ public class NotificationsDAO {
     @SuppressLint("NotifyDataSetChanged")
     public void setNotificationsRead(String uid) {
         for (Notification notification : notificationsList) {
-            if (notification.getReceiverUID().equals(uid)) {
+            if (notification.getReceiverUID().equals(uid) && notification.getStatus().equals(NotificationStatus.NEW.toString())) {
                 notification.setStatus(NotificationStatus.READ.toString());
                 updateNotification(notification);
             }
