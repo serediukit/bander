@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 
 public class BandVacanciesActivity extends AppCompatActivity {
     private RecyclerView bandVacanciesRecyclerView;
-    private ArrayList<Vacancy> bandsVacanciesList;
+    private ArrayList<Vacancy> bandVacanciesList;
     private BandVacanciesRecyclerAdapter bandVacanciesRecyclerAdapter;
     private TextView mEmptyText;
     private VacanciesDAO vacanciesDAO;
@@ -37,15 +39,15 @@ public class BandVacanciesActivity extends AppCompatActivity {
         bandVacanciesRecyclerView = findViewById(R.id.bandVacanciesRecyclerView);
         bandVacanciesRecyclerView.setLayoutManager(new LinearLayoutManager(BandVacanciesActivity.this));
 
-        bandsVacanciesList = vacanciesDAO.getBandVacancies(AuthUID.getUID());
-        if (bandsVacanciesList.size() == 0) {
+        bandVacanciesList = vacanciesDAO.getBandVacancies(AuthUID.getUID());
+        if (bandVacanciesList.size() == 0) {
             mEmptyText.setVisibility(View.VISIBLE);
             bandVacanciesRecyclerView.setVisibility(View.INVISIBLE);
         } else {
             mEmptyText.setVisibility(View.INVISIBLE);
             bandVacanciesRecyclerView.setVisibility(View.VISIBLE);
 
-            bandVacanciesRecyclerAdapter = new BandVacanciesRecyclerAdapter(BandVacanciesActivity.this, bandsVacanciesList);
+            bandVacanciesRecyclerAdapter = new BandVacanciesRecyclerAdapter(BandVacanciesActivity.this, bandVacanciesList);
             bandVacanciesRecyclerView.setAdapter(bandVacanciesRecyclerAdapter);
             vacanciesDAO.setBandVacanciesRecyclerAdapter(bandVacanciesRecyclerAdapter);
         }

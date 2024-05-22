@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class ResumeHistoryRecyclerAdapter extends RecyclerView.Adapter<ResumeHistoryRecyclerAdapter.ViewHolder> {
     private final Context context;
-    private final ArrayList<Resume> resumeHistoryList;
+    private ArrayList<Resume> resumeHistoryList;
     private final BandsDAO bandsDAO;
     private final VacanciesDAO vacanciesDAO;
 
@@ -68,6 +68,10 @@ public class ResumeHistoryRecyclerAdapter extends RecyclerView.Adapter<ResumeHis
     @Override
     public int getItemCount() {
         return resumeHistoryList.size();
+    }
+
+    public void setArrayList(ArrayList<Resume> resumeHistory) {
+        resumeHistoryList = resumeHistory;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

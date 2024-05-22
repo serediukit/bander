@@ -64,9 +64,9 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="empty" translatable="false"></string>
-    <string name="text_money">$</string>
-    <string name="dollars">$USD</string>
-    <string name="hryvnya">₴UAH</string>
+    <string name="text_money" translatable="false">$</string>
+    <string name="dollars" translatable="false">$USD</string>
+    <string name="hryvnya" translatable="false">₴UAH</string>
 
 
     <string name="text_candidate_vacancies_search_title">Recommended vacancies</string>

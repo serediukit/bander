@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Vacancy;
@@ -90,6 +91,7 @@ public class VacanciesDAO {
         }
 
         Log.d("VACANCY DAO", "Deleting vacancy: " + vacancyUID);
+        Log.d("VACANCY DAO", vacanciesList.toString());
     }
 
     public void loadVacancies() {
@@ -104,10 +106,14 @@ public class VacanciesDAO {
                     Vacancy vacancy = dataSnapshot.getValue(Vacancy.class);
                     vacanciesList.add(vacancy);
                 }
-                if (recommendedVacanciesRecyclerAdapter != null)
+                if (recommendedVacanciesRecyclerAdapter != null) {
+                    recommendedVacanciesRecyclerAdapter.setArrayList(getRecommendedVacancies(AuthUID.getUID()));
                     recommendedVacanciesRecyclerAdapter.notifyDataSetChanged();
-                if (bandVacanciesRecyclerAdapter != null)
+                }
+                if (bandVacanciesRecyclerAdapter != null) {
+                    bandVacanciesRecyclerAdapter.setArrayList(getBandVacancies(AuthUID.getUID()));
                     bandVacanciesRecyclerAdapter.notifyDataSetChanged();
+                }
                 Log.d("VACANCY DAO", "Read " + vacanciesList.size() + " vacancies");
             }
 

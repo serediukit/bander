@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class BandVacanciesRecyclerAdapter extends RecyclerView.Adapter<BandVacanciesRecyclerAdapter.ViewHolder> {
     private final Context context;
-    private final ArrayList<Vacancy> bandVacanciesList;
+    private ArrayList<Vacancy> bandVacanciesList;
     private final BandsDAO bandsDAO;
 
     public BandVacanciesRecyclerAdapter(Context context, ArrayList<Vacancy> bandVacanciesList) {
@@ -54,6 +54,10 @@ public class BandVacanciesRecyclerAdapter extends RecyclerView.Adapter<BandVacan
             intent.putExtra("vacancy", vacancy);
             context.startActivity(intent);
         });
+    }
+
+    public void setArrayList(ArrayList<Vacancy> vacancies) {
+        bandVacanciesList = vacancies;
     }
 
     @Override

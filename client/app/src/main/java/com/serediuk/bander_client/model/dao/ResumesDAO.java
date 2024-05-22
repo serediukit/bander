@@ -107,12 +107,20 @@ public class ResumesDAO {
                     Resume resume = dataSnapshot.getValue(Resume.class);
                     resumesList.add(resume);
                 }
-                if (receivedResumesRecyclerAdapter != null)
+                if (receivedResumesRecyclerAdapter != null) {
+                    receivedResumesRecyclerAdapter.setArrayList(getReceivedResumes(AuthUID.getUID()));
                     receivedResumesRecyclerAdapter.notifyDataSetChanged();
-                if (resumeHistoryRecyclerAdapter != null)
+                }
+
+                if (resumeHistoryRecyclerAdapter != null) {
+                    resumeHistoryRecyclerAdapter.setArrayList(getResumeHistory(AuthUID.getUID()));
                     resumeHistoryRecyclerAdapter.notifyDataSetChanged();
-                if (activeResumeRecyclerAdapter != null)
+                }
+                if (activeResumeRecyclerAdapter != null) {
+                    activeResumeRecyclerAdapter.setArrayList(getActiveResumes(AuthUID.getUID()));
                     activeResumeRecyclerAdapter.notifyDataSetChanged();
+                }
+
                 Log.d("RESUME DAO", "Read " + resumesList.size() + " resumes");
             }
 

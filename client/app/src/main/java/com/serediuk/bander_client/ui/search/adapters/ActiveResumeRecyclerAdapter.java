@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ActiveResumeRecyclerAdapter extends RecyclerView.Adapter<ActiveResumeRecyclerAdapter.ViewHolder> {
     private final Context context;
-    private final ArrayList<Resume> activeResumesList;
+    private ArrayList<Resume> activeResumesList;
     private final BandsDAO bandsDAO;
     private final VacanciesDAO vacanciesDAO;
 
@@ -58,6 +58,10 @@ public class ActiveResumeRecyclerAdapter extends RecyclerView.Adapter<ActiveResu
     @Override
     public int getItemCount() {
         return activeResumesList.size();
+    }
+
+    public void setArrayList(ArrayList<Resume> activeResumes) {
+        activeResumesList = activeResumes;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

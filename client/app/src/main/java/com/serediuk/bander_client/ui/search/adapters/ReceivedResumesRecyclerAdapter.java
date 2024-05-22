@@ -62,6 +62,10 @@ public class ReceivedResumesRecyclerAdapter extends RecyclerView.Adapter<Receive
         return receivedResumesList.size();
     }
 
+    public void setArrayList(ArrayList<Resume> receivedResumes) {
+        receivedResumesList = receivedResumes;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textTitle, textRole, textGenres, textExperience, textDatetime;
 

@@ -61,6 +61,10 @@ public class RecommendedVacanciesRecyclerAdapter extends RecyclerView.Adapter<Re
         return recommendedVacanciesList.size();
     }
 
+    public void setArrayList(ArrayList<Vacancy> recommendedVacancies) {
+        recommendedVacanciesList = recommendedVacancies;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textTitle, textBand, textGenres, textInfo, textSalary, textDatetime;
 
