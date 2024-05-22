@@ -7,7 +7,7 @@
     tools:context=".ui.search.SearchFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="invisible"
+        android:visibility="visible"
         android:id="@+id/candidateSearchLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -102,7 +102,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="visible"
+        android:visibility="invisible"
         android:id="@+id/bandSearchLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.dao.BandsDAO;
-import com.serediuk.bander_client.model.dao.VacanciesDAO;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.ui.search.vacancy.VacancyInfoActivity;
@@ -20,9 +19,9 @@ import com.serediuk.bander_client.ui.search.vacancy.VacancyInfoActivity;
 import java.util.ArrayList;
 
 public class BandVacanciesRecyclerAdapter extends RecyclerView.Adapter<BandVacanciesRecyclerAdapter.ViewHolder> {
-    private Context context;
-    private ArrayList<Vacancy> bandVacanciesList;
-    private BandsDAO bandsDAO;
+    private final Context context;
+    private final ArrayList<Vacancy> bandVacanciesList;
+    private final BandsDAO bandsDAO;
 
     public BandVacanciesRecyclerAdapter(Context context, ArrayList<Vacancy> bandVacanciesList) {
         this.context = context;

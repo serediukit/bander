@@ -53,6 +53,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="empty"></string>
+
     <string name="vacancies_history_button">My history</string>
     <string name="vacancies_send_button">Active vacancies requests</string>
     <string name="text_candidate_vacancies_search_title">Recommended vacancies</string>
@@ -69,7 +70,7 @@
     <string name="vacancies_band_button">My vacancies</string>
     <string name="vacancies_create_button">Create vacancy</string>
     <string name="text_band_resumes_search_title">Received resumes</string>
-    <string name="text_band_resumes_search_empty">There is non resumes for you</string>
+    <string name="text_band_resumes_search_empty">There is not resumes for you</string>
     <string name="text_search_vacancy_city">Vacancy city</string>
     <string name="text_search_resume_title">Resume title</string>
     <string name="text_search_role">Resume role</string>
@@ -100,6 +101,13 @@
     <string name="text_resume_sending_text">Addition information</string>
     <string name="send_button">Send</string>
     <string name="text_delete_vacancy_warning">Are you sure about deleting vacancy?</string>
+    <string name="text_resume_history_title">Resume history</string>
+    <string name="text_resume_history_empty">There is not resumes history</string>
+    <string name="text_resume_history_datetime">Resume datetime</string>
+    <string name="text_search_vacancy_text_title">Vacancy text</string>
+    <string name="text_resume_history_text_title">Your text</string>
+    <string name="text_resume_status">Resume status</string>
+    <string name="text_send_empty_resume_message">Your data is not full. You can fill it in the profile.\nDo you want to send not full resume now?</string>
 
 
 </resources>

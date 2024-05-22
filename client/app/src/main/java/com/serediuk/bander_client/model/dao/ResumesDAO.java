@@ -15,6 +15,7 @@ import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
 import com.serediuk.bander_client.ui.search.adapters.ReceivedResumesRecyclerAdapter;
+import com.serediuk.bander_client.ui.search.adapters.ResumeHistoryRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class ResumesDAO {
     private static ArrayList<Resume> resumesList;
 
     private ReceivedResumesRecyclerAdapter receivedResumesRecyclerAdapter;
+    private ResumeHistoryRecyclerAdapter resumeHistoryRecyclerAdapter;
 
     private ResumesDAO() {
         resumesList = new ArrayList<>();
@@ -90,6 +92,8 @@ public class ResumesDAO {
                 }
                 if (receivedResumesRecyclerAdapter != null)
                     receivedResumesRecyclerAdapter.notifyDataSetChanged();
+                if (resumeHistoryRecyclerAdapter != null)
+                    resumeHistoryRecyclerAdapter.notifyDataSetChanged();
                 Log.d("RESUME DAO", "Read " + resumesList.size() + " resumes");
             }
 
@@ -136,5 +140,19 @@ public class ResumesDAO {
             }
         }
         return false;
+    }
+
+    public ArrayList<Resume> getResumeHistory(String uid) {
+        ArrayList<Resume> resumeHistory = new ArrayList<>();
+        for (Resume resume : resumesList) {
+            if (resume.getCandidateUID().equals(uid) && !resume.getStatus().equals(ResumeStatus.NEW.toString())) {
+                resumeHistory.add(resume);
+            }
+        }
+        return resumeHistory;
+    }
+
+    public void setResumeHistoryRecyclerAdapter(ResumeHistoryRecyclerAdapter adapter) {
+        this.resumeHistoryRecyclerAdapter = adapter;
     }
 }

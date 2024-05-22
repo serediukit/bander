@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Banderclient"
         tools:targetApi="31">
         <activity
+            android:name=".ui.search.resume.ResumeHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.search.resume.SendResumeActivity"
             android:exported="false" />
         <activity
