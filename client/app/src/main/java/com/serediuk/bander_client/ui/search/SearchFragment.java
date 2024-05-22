@@ -23,6 +23,7 @@ import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.ui.search.adapters.ReceivedResumesRecyclerAdapter;
 import com.serediuk.bander_client.ui.search.adapters.RecommendedVacanciesRecyclerAdapter;
+import com.serediuk.bander_client.ui.search.resume.ActiveResumeActivity;
 import com.serediuk.bander_client.ui.search.resume.ResumeHistoryActivity;
 import com.serediuk.bander_client.ui.search.vacancy.BandVacanciesActivity;
 import com.serediuk.bander_client.ui.search.vacancy.CreateVacancyActivity;
@@ -88,11 +89,11 @@ public class SearchFragment extends Fragment {
                 startActivity(intent);
             });
 
-//            Button activeResumesButton = binding.searchCandidateSendButton;
-//            activeResumesButton.setOnClickListener(v -> {
-//                Intent intent = new Intent(requireActivity(), ActiveResumeActivity.class);
-//                startActivity(intent);
-//            });
+            Button activeResumesButton = binding.searchCandidateSendButton;
+            activeResumesButton.setOnClickListener(v -> {
+                Intent intent = new Intent(requireActivity(), ActiveResumeActivity.class);
+                startActivity(intent);
+            });
         } else if (userType.equals(UserType.BAND.toString())) {
             mBandEmptyText = binding.searchBandEmptyText;
             receivedResumesRecyclerView = binding.searchBandRecyclerView;

@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.search.resume.ResumeHistoryActivity"
+    tools:context=".ui.search.resume.ActiveResumeActivity"
     android:paddingTop="20dp"
     android:paddingHorizontal="20dp"
     android:layout_marginBottom="?attr/actionBarSize">
 
     <TextView
-        android:id="@+id/showResumeHistoryTitle"
+        android:id="@+id/showActiveResumeTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/barlow_semibold"
-        android:text="@string/text_resume_history_title"
+        android:text="@string/text_active_resumes_title"
         android:textAlignment="center"
         android:textColor="@color/text_primary"
         android:textSize="28sp"
@@ -24,31 +24,31 @@
 
     <TextView
         android:visibility="invisible"
-        android:id="@+id/resumeHistoryEmptyText"
+        android:id="@+id/activeResumeEmptyText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:paddingVertical="10dp"
         android:fontFamily="@font/barlow_medium"
-        android:text="@string/text_resume_history_empty"
+        android:text="@string/text_active_resume_empty"
         android:textColor="@color/text_secondary"
         android:textSize="18sp"
         android:textAlignment="center"
         android:background="@drawable/corner_radius_small"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showResumeHistoryTitle"/>
+        app:layout_constraintTop_toBottomOf="@+id/showActiveResumeTitle"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:visibility="visible"
-        android:id="@+id/resumeHistoryRecyclerView"
+        android:id="@+id/activeResumesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showResumeHistoryTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/showActiveResumeTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

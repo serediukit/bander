@@ -48,4 +48,6 @@
     <string name="text_band_edit_title">Редагувати гурт</string>
     <string name="edit_button">Редагувати</string>
     <string name="text_band_about_title">Про гурт</string>
+    <string name="text_candidate_vacancies_search_title">Рекомендовані вакансії</string>
+    <string name="text_candidate_vacancies_search_empty">Відсутні рекомендовані вакансії</string>
 </resources>

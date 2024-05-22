@@ -15,6 +15,7 @@ import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
+import com.serediuk.bander_client.ui.search.adapters.ActiveResumeRecyclerAdapter;
 import com.serediuk.bander_client.ui.search.adapters.ReceivedResumesRecyclerAdapter;
 import com.serediuk.bander_client.ui.search.adapters.ResumeHistoryRecyclerAdapter;
 
@@ -28,6 +29,7 @@ public class ResumesDAO {
 
     private ReceivedResumesRecyclerAdapter receivedResumesRecyclerAdapter;
     private ResumeHistoryRecyclerAdapter resumeHistoryRecyclerAdapter;
+    private ActiveResumeRecyclerAdapter activeResumeRecyclerAdapter;
 
     private ResumesDAO() {
         resumesList = new ArrayList<>();
@@ -109,6 +111,8 @@ public class ResumesDAO {
                     receivedResumesRecyclerAdapter.notifyDataSetChanged();
                 if (resumeHistoryRecyclerAdapter != null)
                     resumeHistoryRecyclerAdapter.notifyDataSetChanged();
+                if (activeResumeRecyclerAdapter != null)
+                    activeResumeRecyclerAdapter.notifyDataSetChanged();
                 Log.d("RESUME DAO", "Read " + resumesList.size() + " resumes");
             }
 
@@ -169,5 +173,19 @@ public class ResumesDAO {
 
     public void setResumeHistoryRecyclerAdapter(ResumeHistoryRecyclerAdapter adapter) {
         this.resumeHistoryRecyclerAdapter = adapter;
+    }
+
+    public ArrayList<Resume> getActiveResumes(String uid) {
+        ArrayList<Resume> activeResumes = new ArrayList<>();
+        for (Resume resume : resumesList) {
+            if (resume.getCandidateUID().equals(uid) && resume.getStatus().equals(ResumeStatus.NEW.toString())) {
+                activeResumes.add(resume);
+            }
+        }
+        return activeResumes;
+    }
+
+    public void setActiveResumesRecyclerAdapter(ActiveResumeRecyclerAdapter adapter) {
+        this.activeResumeRecyclerAdapter = adapter;
     }
 }

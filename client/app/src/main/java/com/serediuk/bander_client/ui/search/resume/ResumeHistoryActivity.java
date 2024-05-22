@@ -42,8 +42,6 @@ public class ResumeHistoryActivity extends AppCompatActivity {
         resumeHistoryRecyclerView.setLayoutManager(new LinearLayoutManager(ResumeHistoryActivity.this));
 
         resumeHistoryList = resumesDAO.getResumeHistory(AuthUID.getUID());
-        Log.d("TEST", "Resume history size: " + resumeHistoryList.size());
-        Log.d("TEST", "UID: " + AuthUID.getUID());
         if (resumeHistoryList.size() == 0) {
             mEmptyText.setVisibility(View.VISIBLE);
             resumeHistoryRecyclerView.setVisibility(View.INVISIBLE);
