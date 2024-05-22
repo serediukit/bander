@@ -12,7 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Vacancy;
-import com.serediuk.bander_client.ui.search.RecommendedVacanciesRecyclerAdapter;
+import com.serediuk.bander_client.ui.search.adapters.RecommendedVacanciesRecyclerAdapter;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.serediuk.bander_client.ui.search;
+package com.serediuk.bander_client.ui.search.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,7 @@ import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Resume;
-import com.serediuk.bander_client.ui.ResumeInfoActivity;
+import com.serediuk.bander_client.ui.search.ResumeInfoActivity;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.serediuk.bander_client.ui;
+package com.serediuk.bander_client.ui.search;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,11 +61,9 @@ public class ResumeInfoActivity extends AppCompatActivity {
         mDatetime.setText(resume.getDatetime());
     }
 
-    private void acceptResume(View view) {
-
+    public void acceptResume(View view) {
     }
 
-    private void declineResume(View view) {
-
+    public void declineResume(View view) {
     }
 }

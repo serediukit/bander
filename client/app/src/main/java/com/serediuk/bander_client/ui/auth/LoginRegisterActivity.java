@@ -1,4 +1,4 @@
-package com.serediuk.bander_client.ui;
+package com.serediuk.bander_client.ui.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.model.DatabaseInitializer;
+import com.serediuk.bander_client.ui.MainActivity;
 
 public class LoginRegisterActivity extends AppCompatActivity {
     private EditText mEmail, mPassword;
@@ -28,6 +29,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
 
+        DatabaseInitializer.init();
         authProvider = AuthProvider.getInstance();
         firebaseAuthStateListener = firebaseAuth -> {
             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

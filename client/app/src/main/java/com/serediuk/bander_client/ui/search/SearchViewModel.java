@@ -10,6 +10,8 @@ import com.serediuk.bander_client.model.dao.UsersDAO;
 import com.serediuk.bander_client.model.dao.VacanciesDAO;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.entity.Vacancy;
+import com.serediuk.bander_client.ui.search.adapters.ReceivedResumesRecyclerAdapter;
+import com.serediuk.bander_client.ui.search.adapters.RecommendedVacanciesRecyclerAdapter;
 
 import java.util.ArrayList;
 

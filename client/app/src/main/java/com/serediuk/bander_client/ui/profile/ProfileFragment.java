@@ -9,24 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.serediuk.bander_client.databinding.FragmentProfileBinding;
-import com.serediuk.bander_client.model.dao.CandidatesDAO;
-import com.serediuk.bander_client.ui.BandEditActivity;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.User;
 import com.serediuk.bander_client.model.enums.UserType;
-import com.serediuk.bander_client.ui.LoginRegisterActivity;
-import com.serediuk.bander_client.ui.ProfileEditActivity;
+import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.util.ArrayListStringCreator;

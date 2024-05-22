@@ -12,7 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Resume;
-import com.serediuk.bander_client.ui.search.ReceivedResumesRecyclerAdapter;
+import com.serediuk.bander_client.ui.search.adapters.ReceivedResumesRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -28,14 +28,6 @@ public class ResumesDAO {
         resumesList = new ArrayList<>();
 
         database = DatabaseConnectionProvider.getInstance().getDatabase();
-        createResume(new Resume(
-                "",
-                "7h0Rs0TuFmP2yDS583wMs5dU4zb2",
-                "NyPzoqUp5uOGtvOI5y1",
-                "Hey i want to plat with you",
-                "2024-05-12",
-                "new"
-        ));
         loadResumes();
     }
 

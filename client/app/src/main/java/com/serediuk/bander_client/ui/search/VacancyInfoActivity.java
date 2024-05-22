@@ -1,4 +1,4 @@
-package com.serediuk.bander_client.ui;
+package com.serediuk.bander_client.ui.search;
 
 import androidx.appcompat.app.AppCompatActivity;
 
