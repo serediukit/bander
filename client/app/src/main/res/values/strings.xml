@@ -93,6 +93,8 @@
     <string name="dollars">$USD</string>
     <string name="hryvnya">₴UAH</string>
     <string name="create_button">Create</string>
+    <string name="text_band_vacancies_title">Your band vacancies</string>
+    <string name="text_band_vacancies_empty">You have not any vacancies</string>
 
 
 </resources>

@@ -52,7 +52,8 @@
             android:autofillHints=""
             android:fontFamily="@font/barlow_medium"
             android:hint="@string/text_vacancy_create_text"
-            android:inputType="text"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,6 +110,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/salaryLayout"/>
+
+        <Button
+            android:id="@+id/cancelCreateVacancyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:background="@color/primary"
+            android:fontFamily="@font/barlow_semibold"
+            android:text="@string/cancel_button"
+            android:textSize="18sp"
+            android:importantForAccessibility="no"
+            android:onClick="cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createVacancyButton"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

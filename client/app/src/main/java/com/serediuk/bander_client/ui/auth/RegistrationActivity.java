@@ -136,7 +136,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     myCalendar.set(Calendar.YEAR, year);
                     myCalendar.set(Calendar.MONTH, monthOfYear);
                     myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd:MM:yyyy", Locale.UK);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.UK);
                     editText.setText(sdf.format(myCalendar.getTime()));
                     Log.d("Auth", "Date picked: " + sdf.format(myCalendar.getTime()));
                 };

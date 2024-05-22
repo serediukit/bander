@@ -59,11 +59,11 @@ public class CreateVacancyActivity extends AppCompatActivity {
         if (role.isEmpty() || text.isEmpty()) {
             Toast.makeText(CreateVacancyActivity.this, "Please, fill role and vacancy description", Toast.LENGTH_SHORT).show();
         } else {
-            String salaryText = "\uD83D\uDCB0";
+            String salaryText = "\uD83D\uDCB0 -";
             if (!salary.isEmpty())
-                salaryText += salary + " " + money;
+                salaryText = "\uD83D\uDCB0 " + salary + " " + money;
             LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd:MM:yyyy HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
             String datetime = now.format(formatter);
 
             Vacancy vacancy = new Vacancy(
@@ -78,5 +78,9 @@ public class CreateVacancyActivity extends AppCompatActivity {
             Toast.makeText(CreateVacancyActivity.this, "Vacancy created", Toast.LENGTH_SHORT).show();
             finish();
         }
+    }
+
+    public void cancel(View view) {
+        finish();
     }
 }

@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Vacancy;
+import com.serediuk.bander_client.ui.search.adapters.BandVacanciesRecyclerAdapter;
 import com.serediuk.bander_client.ui.search.adapters.RecommendedVacanciesRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -22,7 +23,8 @@ public class VacanciesDAO {
 
     private static ArrayList<Vacancy> vacanciesList;
 
-    private static RecommendedVacanciesRecyclerAdapter recommendedVacanciesRecyclerAdapter;
+    private RecommendedVacanciesRecyclerAdapter recommendedVacanciesRecyclerAdapter;
+    private BandVacanciesRecyclerAdapter bandVacanciesRecyclerAdapter;
 
     private VacanciesDAO() {
         vacanciesList = new ArrayList<>();
@@ -88,6 +90,8 @@ public class VacanciesDAO {
                 }
                 if (recommendedVacanciesRecyclerAdapter != null)
                     recommendedVacanciesRecyclerAdapter.notifyDataSetChanged();
+                if (bandVacanciesRecyclerAdapter != null)
+                    bandVacanciesRecyclerAdapter.notifyDataSetChanged();
                 Log.d("VACANCY DAO", "Read " + vacanciesList.size() + " vacancies");
             }
 
@@ -106,5 +110,19 @@ public class VacanciesDAO {
 
     public void setRecommendedVacanciesRecyclerAdapter(RecommendedVacanciesRecyclerAdapter adapter) {
         this.recommendedVacanciesRecyclerAdapter = adapter;
+    }
+
+    public ArrayList<Vacancy> getBandVacancies(String bandUID) {
+        ArrayList<Vacancy> bandVacancies = new ArrayList<>();
+        for (Vacancy vacancy : vacanciesList) {
+            if (vacancy.getBandUID().equals(bandUID)) {
+                bandVacancies.add(vacancy);
+            }
+        }
+        return bandVacancies;
+    }
+
+    public void setBandVacanciesRecyclerAdapter(BandVacanciesRecyclerAdapter adapter) {
+        this.bandVacanciesRecyclerAdapter = adapter;
     }
 }
