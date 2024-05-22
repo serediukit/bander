@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
 import com.serediuk.bander_client.ui.search.adapters.ReceivedResumesRecyclerAdapter;
@@ -69,11 +70,25 @@ public class ResumesDAO {
     public void updateResume(Resume resume) {
         database.getReference("resumes").child(resume.getResumeUID()).setValue(resume);
 
+        for (int i = 0; i < resumesList.size(); i++) {
+            if (resumesList.get(i).getResumeUID().equals(resume.getResumeUID())) {
+                resumesList.set(i, resume);
+                break;
+            }
+        }
+
         Log.d("RESUME DAO", "Updating resume:\n" + resume);
     }
 
     public void deleteResume(String resumeUID) {
         database.getReference("resumes").child(resumeUID).removeValue();
+
+        for (Resume resume : resumesList) {
+            if (resume.getResumeUID().equals(resumeUID)) {
+                resumesList.remove(resume);
+                break;
+            }
+        }
 
         Log.d("RESUME DAO", "Deleting resume: " + resumeUID);
     }

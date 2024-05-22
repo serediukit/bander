@@ -69,11 +69,25 @@ public class VacanciesDAO {
     public void updateVacancy(Vacancy vacancy) {
         database.getReference("vacancies").child(vacancy.getVacancyUID()).setValue(vacancy);
 
+        for (int i = 0; i < vacanciesList.size(); i++) {
+            if (vacanciesList.get(i).getVacancyUID().equals(vacancy.getVacancyUID())) {
+                vacanciesList.set(i, vacancy);
+                break;
+            }
+        }
+
         Log.d("VACANCY DAO", "Updating vacancy:\n" + vacancy);
     }
 
     public void deleteVacancy(String vacancyUID) {
         database.getReference("vacancies").child(vacancyUID).removeValue();
+
+        for (Vacancy vacancy : vacanciesList) {
+            if (vacancy.getVacancyUID().equals(vacancyUID)) {
+                vacanciesList.remove(vacancy);
+                break;
+            }
+        }
 
         Log.d("VACANCY DAO", "Deleting vacancy: " + vacancyUID);
     }
@@ -111,18 +125,19 @@ public class VacanciesDAO {
         ArrayList<Vacancy> recommendedVacancies = new ArrayList<>();
         for (Vacancy vacancy : vacanciesList) {
             if(!resumesDAO.isSentResume(vacancy.getVacancyUID())) {
-//                if (isRecommendedVacancy(vacancy, candidateUID)) {
+                if (isRecommendedVacancy(vacancy, candidateUID)) {
                 recommendedVacancies.add(vacancy);
-//                }
+                }
             }
         }
         return recommendedVacancies;
     }
 
     private boolean isRecommendedVacancy(Vacancy vacancy, String candidateUID) {
-        Candidate candidate = CandidatesDAO.getInstance().readCandidate(candidateUID);
-        String bandCity = BandsDAO.getInstance().readBand(vacancy.getBandUID()).getCity();
-        return candidate.getCity().equals(bandCity) && StringHelper.inString(vacancy.getRole(), candidate.getRole());
+        return true;
+//        Candidate candidate = CandidatesDAO.getInstance().readCandidate(candidateUID);
+//        String bandCity = BandsDAO.getInstance().readBand(vacancy.getBandUID()).getCity();
+//        return candidate.getCity().equals(bandCity) && StringHelper.inString(vacancy.getRole(), candidate.getRole());
     }
 
     public void setRecommendedVacanciesRecyclerAdapter(RecommendedVacanciesRecyclerAdapter adapter) {

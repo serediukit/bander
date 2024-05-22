@@ -62,14 +62,14 @@ public class BandsDAO {
         database.getReference("bands").child(band.getBandUID()).setValue(band);
         database.getReference("users").child(band.getBandUID()).setValue(band.getUser());
 
+        for (int i = 0; i < bandsList.size(); i++) {
+            if (bandsList.get(i).getBandUID().equals(band.getBandUID())) {
+                bandsList.set(i, band);
+                break;
+            }
+        }
+
         Log.d("BAND DAO", "Updating band:\n" + band);
-    }
-
-    public void deleteBand(String bandUID) {
-        database.getReference("bands").child(bandUID).removeValue();
-        database.getReference("users").child(bandUID).removeValue();
-
-        Log.d("BAND DAO", "Deleting band: " + bandUID);
     }
 
     public void loadBands() {
