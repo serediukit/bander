@@ -29,7 +29,7 @@ public class SearchViewModel extends ViewModel {
     }
 
     public ArrayList<Vacancy> getRecommendedVacancies(String candidateUID) {
-        return vacanciesDAO.getRecommendedVacancies();
+        return vacanciesDAO.getRecommendedVacancies(candidateUID);
     }
 
     public void setRecommendedAdapter(RecommendedVacanciesRecyclerAdapter adapter) {

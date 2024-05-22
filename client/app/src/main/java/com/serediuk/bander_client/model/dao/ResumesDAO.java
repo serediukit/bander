@@ -102,12 +102,17 @@ public class ResumesDAO {
     }
 
     public ArrayList<Resume> getReceivedResumes(String bandUID) {
-        ArrayList<Resume> resList = new ArrayList<Resume>;
+        ArrayList<Resume> receivedResumes = new ArrayList<>();
+        VacanciesDAO vacanciesDAO = VacanciesDAO.getInstance();
         for (Resume resume : resumesList) {
-            if (resume.getBandUID().equals(bandUID)) {
-                resList.add(resume);
+            if (resume.getStatus().equals(ResumeStatus.NEW.toString())) {
+                String vacancyBandUID = vacanciesDAO.readVacancy(resume.getVacancyUID()).getBandUID();
+                if (vacancyBandUID.equals(bandUID)) {
+                    receivedResumes.add(resume);
+                }
             }
         }
+        return receivedResumes;
     }
 
     public void setReceivedResumesRecyclerAdapter(ReceivedResumesRecyclerAdapter adapter) {
@@ -117,7 +122,7 @@ public class ResumesDAO {
     public void markAllResumesDeclinedForVacancy(String vacancyUID) {
         for (Resume resume : resumesList) {
             if (resume.getVacancyUID().equals(vacancyUID)) {
-                resume.setStatus(ResumeStatus.DECLINED);
+                resume.setStatus(ResumeStatus.DECLINED.toString());
                 updateResume(resume);
             }
         }

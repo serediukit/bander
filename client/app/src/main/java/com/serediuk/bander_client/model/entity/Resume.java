@@ -60,7 +60,8 @@ public class Resume implements Serializable {
         return status;
     }
 
-    public void setStatus(ResumeStatus resumeStatus) {
+
+    public void setStatus(String resumeStatus) {
         this.status = resumeStatus.toString();
     }
 

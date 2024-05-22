@@ -2,8 +2,10 @@ package com.serediuk.bander_client.ui.search.vacancy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,6 +19,8 @@ import com.serediuk.bander_client.model.dao.VacanciesDAO;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.model.enums.UserType;
+import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
+import com.serediuk.bander_client.ui.search.resume.SendResumeActivity;
 
 import org.w3c.dom.Text;
 
@@ -26,8 +30,6 @@ public class VacancyInfoActivity extends AppCompatActivity {
 
     private TextView mTitle, mBand, mGenres, mSalary, mCity;
     private TextView mText, mAbout, mLinks, mDatetime;
-
-    private Button mSend, mDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,8 @@ public class VacancyInfoActivity extends AppCompatActivity {
         mLinks = findViewById(R.id.vacancyInfoBandLinks);
         mDatetime = findViewById(R.id.vacancyInfoDatetime);
 
-        mSend = findViewById(R.id.sendResumeButton);
-        mDelete = findViewById(R.id.deleteVacancyButton);
+        Button mSend = findViewById(R.id.sendResumeButton);
+        Button mDelete = findViewById(R.id.deleteVacancyButton);
         if (UsersDAO.getInstance().readUser(AuthUID.getUID()).getType().equals(String.valueOf(UserType.CANDIDATE))) {
             mSend.setVisibility(View.VISIBLE);
             mDelete.setVisibility(View.INVISIBLE);
@@ -82,13 +84,24 @@ public class VacancyInfoActivity extends AppCompatActivity {
     }
 
     public void sendResume(View view) {
+        Intent intent = new Intent(VacancyInfoActivity.this, SendResumeActivity.class);
+        intent.putExtra("vacancy", vacancy);
+        startActivity(intent);
     }
 
     public void deleteVacancy(View view) {
-        VacanciesDAO vacanciesDAO = VacanciesDAO.getInstance();
-        vacanciesDAO.deleteVacancy(vacancy.getVacancyUID());
-        ResumesDAO resumesDAO = ResumesDAO.getInstance();
-        resumesDAO.markAllResumesDeclinedForVacancy(vacancy.getVacancyUID());
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(VacancyInfoActivity.this);
+        builder
+                .setTitle(R.string.text_to_sign_out_title)
+                .setMessage(R.string.text_delete_vacancy_warning)
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                    VacanciesDAO vacanciesDAO = VacanciesDAO.getInstance();
+                    vacanciesDAO.deleteVacancy(vacancy.getVacancyUID());
+                    ResumesDAO resumesDAO = ResumesDAO.getInstance();
+                    resumesDAO.markAllResumesDeclinedForVacancy(vacancy.getVacancyUID());
+                    finish();
+                })
+                .setNegativeButton(R.string.no, (dialog, which) -> {})
+                .show();
     }
 }

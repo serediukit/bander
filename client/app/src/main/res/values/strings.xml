@@ -96,6 +96,10 @@
     <string name="text_band_vacancies_title">Your band vacancies</string>
     <string name="text_band_vacancies_empty">You have not any vacancies</string>
     <string name="delete_vacancy_button">Delete vacancy</string>
+    <string name="text_sending_resume">Send resume</string>
+    <string name="text_resume_sending_text">Addition information</string>
+    <string name="send_button">Send</string>
+    <string name="text_delete_vacancy_warning">Are you sure about deleting vacancy?</string>
 
 
 </resources>

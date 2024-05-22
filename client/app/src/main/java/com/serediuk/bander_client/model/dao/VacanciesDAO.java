@@ -11,9 +11,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.entity.Band;
+import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.ui.search.adapters.BandVacanciesRecyclerAdapter;
 import com.serediuk.bander_client.ui.search.adapters.RecommendedVacanciesRecyclerAdapter;
+import com.serediuk.bander_client.util.StringHelper;
 
 import java.util.ArrayList;
 
@@ -104,8 +107,20 @@ public class VacanciesDAO {
         Log.d("VACANCY DAO", "Loaded " + vacanciesList.size() + " vacancies");
     }
 
-    public ArrayList<Vacancy> getRecommendedVacancies() {
-        return vacanciesList;
+    public ArrayList<Vacancy> getRecommendedVacancies(String candidateUID) {
+        ArrayList<Vacancy> recommendedVacancies = new ArrayList<>();
+        for (Vacancy vacancy : vacanciesList) {
+            if (isRecommendedVacancy(vacancy, candidateUID)) {
+                recommendedVacancies.add(vacancy);
+            }
+        }
+        return recommendedVacancies;
+    }
+
+    private boolean isRecommendedVacancy(Vacancy vacancy, String candidateUID) {
+        Candidate candidate = CandidatesDAO.getInstance().readCandidate(candidateUID);
+        String bandCity = BandsDAO.getInstance().readBand(vacancy.getBandUID()).getCity();
+        return candidate.getCity().equals(bandCity) && StringHelper.inString(vacancy.getRole(), candidate.getRole());
     }
 
     public void setRecommendedVacanciesRecyclerAdapter(RecommendedVacanciesRecyclerAdapter adapter) {
