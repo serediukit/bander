@@ -2,12 +2,14 @@ package com.serediuk.bander_client.ui.search.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.serediuk.bander_client.R;
@@ -60,8 +62,10 @@ public class ResumeHistoryRecyclerAdapter extends RecyclerView.Adapter<ResumeHis
 
         if (resume.getStatus().equals(ResumeStatus.ACCEPTED.toString())) {
             holder.textResumeStatus.setBackground(context.getDrawable(R.drawable.corner_radius_status_accepted));
+            holder.constraintLayout.setBackground(context.getDrawable(R.drawable.corner_radius_small_accepted));
         } else if (resume.getStatus().equals(ResumeStatus.DECLINED.toString())) {
             holder.textResumeStatus.setBackground(context.getDrawable(R.drawable.corner_radius_status_declined));
+            holder.constraintLayout.setBackground(context.getDrawable(R.drawable.corner_radius_small_declined));
         }
     }
 
@@ -78,6 +82,8 @@ public class ResumeHistoryRecyclerAdapter extends RecyclerView.Adapter<ResumeHis
         TextView textVacancyTitle, textVacancyBand, textVacancyGenres, textVacancySalary;
         TextView textVacancyText, textResumeText, textResumeDatetime, textResumeStatus;
 
+        ConstraintLayout constraintLayout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -89,6 +95,8 @@ public class ResumeHistoryRecyclerAdapter extends RecyclerView.Adapter<ResumeHis
             textResumeText = itemView.findViewById(R.id.resumeText);
             textResumeDatetime = itemView.findViewById(R.id.resumeDatetime);
             textResumeStatus = itemView.findViewById(R.id.resumeStatus);
+
+            constraintLayout = itemView.findViewById(R.id.resumeLayout);
         }
     }
 }

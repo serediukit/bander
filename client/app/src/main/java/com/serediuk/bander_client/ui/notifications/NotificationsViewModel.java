@@ -4,16 +4,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+import com.serediuk.bander_client.model.dao.NotificationsDAO;
+import com.serediuk.bander_client.model.entity.Notification;
+import com.serediuk.bander_client.ui.notifications.adapters.NotificationRecyclerAdapter;
 
-    private final MutableLiveData<String> mText;
+import java.util.ArrayList;
+
+public class NotificationsViewModel extends ViewModel {
+    NotificationsDAO notificationsDAO;
 
     public NotificationsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        notificationsDAO = NotificationsDAO.getInstance();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public ArrayList<Notification> getNotificationList(String userUID) {
+        return notificationsDAO.getNotifications(userUID);
+    }
+
+    public void setNotificationAdapter(NotificationRecyclerAdapter notificationRecyclerAdapter) {
+        notificationsDAO.setNotificationRecyclerAdapter(notificationRecyclerAdapter);
+    }
+
+    public void setNotificationsRead(String uid) {
+        notificationsDAO.setNotificationsRead(uid);
     }
 }

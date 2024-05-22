@@ -12,10 +12,13 @@ import android.widget.Toast;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
+import com.serediuk.bander_client.model.dao.NotificationsDAO;
 import com.serediuk.bander_client.model.dao.ResumesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.model.entity.Notification;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.entity.Vacancy;
+import com.serediuk.bander_client.model.enums.NotificationStatus;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
 import com.serediuk.bander_client.ui.MainActivity;
 
@@ -25,6 +28,7 @@ import java.time.format.DateTimeFormatter;
 public class SendResumeActivity extends AppCompatActivity {
     private ResumesDAO resumesDAO;
     private CandidatesDAO candidatesDAO;
+    private NotificationsDAO notificationsDAO;
     private Vacancy vacancy;
     private TextView mText;
 
@@ -35,6 +39,7 @@ public class SendResumeActivity extends AppCompatActivity {
 
         resumesDAO = ResumesDAO.getInstance();
         candidatesDAO = CandidatesDAO.getInstance();
+        notificationsDAO = NotificationsDAO.getInstance();
         vacancy = (Vacancy) getIntent().getSerializableExtra("vacancy");
 
         mText = findViewById(R.id.resumeTextEditText);
@@ -52,17 +57,17 @@ public class SendResumeActivity extends AppCompatActivity {
                     .setTitle(R.string.text_to_sign_out_title)
                     .setMessage(R.string.text_send_empty_resume_message)
                     .setPositiveButton(R.string.yes, (dialog, which) -> {
-                        send(resumeText);
+                        send(resumeText, candidate.getName() + " " + candidate.getSurname());
                     })
                     .setNegativeButton(R.string.no, (dialog, which) -> {})
                     .show();
         } else {
-            send(resumeText);
+            send(resumeText, candidate.getName() + " " + candidate.getSurname());
         }
 
     }
 
-    private void send(String resumeText) {
+    private void send(String resumeText, String candidateName) {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         String datetime = now.format(formatter);
@@ -76,6 +81,17 @@ public class SendResumeActivity extends AppCompatActivity {
                 ResumeStatus.NEW.toString()
         );
         resumesDAO.createResume(resume);
+
+        Notification notification = new Notification(
+                "",
+                vacancy.getBandUID(),
+                getResources().getString(R.string.text_notification_new_resume_title),
+                getResources().getString(R.string.text_notification_new_resume) + " " + candidateName,
+                datetime,
+                NotificationStatus.NEW.toString()
+        );
+        notificationsDAO.createNotification(notification);
+
         Toast.makeText(SendResumeActivity.this, "Resume sent", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SendResumeActivity.this, MainActivity.class);
         startActivity(intent);

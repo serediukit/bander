@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthUID;
@@ -97,6 +98,7 @@ public class VacancyInfoActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.yes, (dialog, which) -> {
                     VacanciesDAO vacanciesDAO = VacanciesDAO.getInstance();
                     vacanciesDAO.deleteVacancy(vacancy.getVacancyUID());
+                    Toast.makeText(VacancyInfoActivity.this, "Vacancy deleted", Toast.LENGTH_SHORT).show();
                     ResumesDAO resumesDAO = ResumesDAO.getInstance();
                     resumesDAO.markAllResumesDeclinedForVacancy(vacancy.getVacancyUID());
                     finish();

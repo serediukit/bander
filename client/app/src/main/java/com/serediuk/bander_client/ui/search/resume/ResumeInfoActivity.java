@@ -5,14 +5,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.serediuk.bander_client.R;
+import com.serediuk.bander_client.auth.AuthUID;
+import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
+import com.serediuk.bander_client.model.dao.NotificationsDAO;
+import com.serediuk.bander_client.model.dao.ResumesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.model.entity.Notification;
 import com.serediuk.bander_client.model.entity.Resume;
+import com.serediuk.bander_client.model.enums.NotificationStatus;
+import com.serediuk.bander_client.model.enums.ResumeStatus;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ResumeInfoActivity extends AppCompatActivity {
     private CandidatesDAO candidatesDAO;
+    private ResumesDAO resumesDAO;
+    private NotificationsDAO notificationsDAO;
     private Resume resume;
 
     private TextView mName, mSurname, mRole, mExperience;
@@ -25,6 +38,8 @@ public class ResumeInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_resume_info);
 
         candidatesDAO = CandidatesDAO.getInstance();
+        resumesDAO = ResumesDAO.getInstance();
+        notificationsDAO = NotificationsDAO.getInstance();
         resume = (Resume) getIntent().getSerializableExtra("resume");
 
         init();
@@ -62,8 +77,48 @@ public class ResumeInfoActivity extends AppCompatActivity {
     }
 
     public void acceptResume(View view) {
+        resume.setStatus(ResumeStatus.ACCEPTED.toString());
+        resumesDAO.updateResume(resume);
+
+        Toast.makeText(ResumeInfoActivity.this, "Resume accepted", Toast.LENGTH_SHORT).show();
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        String datetime = now.format(formatter);
+
+        Notification notification = new Notification(
+                "",
+                resume.getCandidateUID(),
+                getResources().getString(R.string.text_notification_accept_resume_title),
+                BandsDAO.getInstance().readBand(AuthUID.getUID()).getName() + " " + getResources().getString(R.string.text_notification_accept_resume),
+                datetime,
+                NotificationStatus.NEW.toString()
+        );
+        notificationsDAO.createNotification(notification);
+
+        finish();
     }
 
     public void declineResume(View view) {
+        resume.setStatus(ResumeStatus.DECLINED.toString());
+        resumesDAO.updateResume(resume);
+
+        Toast.makeText(ResumeInfoActivity.this, "Resume declined", Toast.LENGTH_SHORT).show();
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        String datetime = now.format(formatter);
+
+        Notification notification = new Notification(
+                "",
+                resume.getCandidateUID(),
+                getResources().getString(R.string.text_notification_decline_resume_title),
+                BandsDAO.getInstance().readBand(AuthUID.getUID()).getName() + " " + getResources().getString(R.string.text_notification_decline_resume),
+                datetime,
+                NotificationStatus.NEW.toString()
+        );
+        notificationsDAO.createNotification(notification);
+
+        finish();
     }
 }
