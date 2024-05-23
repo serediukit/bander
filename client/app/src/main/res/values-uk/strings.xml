@@ -101,4 +101,14 @@
     <string name="text_send_empty_resume_message">Дані про Вас є неповними. Ви можете внести їх на сторінці профілю.\nВи все одно бажаєте надіслати неповне резюме?</string>
     <string name="text_active_resumes_title">Активні резюме</string>
     <string name="text_active_resume_empty">Відсутні активні резюме</string>
+    <string name="text_notification_new_resume_title">Нове резюме</string>
+    <string name="text_notification_new_resume">Ви отримали нове резюме від</string>
+    <string name="text_notification_accept_resume_title">Резюме прийнято</string>
+    <string name="text_notification_accept_resume">вибрав Вас для запрошення до чату!</string>
+    <string name="text_notification_decline_resume_title">Резюме відхилено</string>
+    <string name="text_notification_decline_resume">відхилив Ваше резюме</string>
+    <string name="text_notification_title">Заголовок сповіщення</string>
+    <string name="text_notification_text">Текст сповіщення</string>
+    <string name="text_notification_datetime">Дата надсилання сповіщення</string>
+    <string name="text_notification_empty">Відсутні сповіщення для Вас</string>
 </resources>
