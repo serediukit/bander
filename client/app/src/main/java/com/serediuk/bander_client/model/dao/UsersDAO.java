@@ -21,7 +21,7 @@ public class UsersDAO {
     private ArrayList<User> usersList;
 
     private UsersDAO() {
-        usersList = new ArrayList<User>();
+        usersList = new ArrayList<>();
 
         database = DatabaseConnectionProvider.getInstance().getDatabase();
         loadUsers();
@@ -58,6 +58,7 @@ public class UsersDAO {
                     User user = dataSnapshot.getValue(User.class);
                     usersList.add(user);
                 }
+                notifyAll();
                 Log.d("USER DAO", "Read " + usersList.size() + " users");
             }
 

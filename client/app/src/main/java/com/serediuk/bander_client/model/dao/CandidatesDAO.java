@@ -89,7 +89,7 @@ public class CandidatesDAO {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d("CANDIDATE DAO", "Cancelled: " + error.getMessage());
             }
         });
 
