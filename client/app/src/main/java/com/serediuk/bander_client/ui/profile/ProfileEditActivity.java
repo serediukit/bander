@@ -1,15 +1,19 @@
 package com.serediuk.bander_client.ui.profile;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.serediuk.bander_client.R;
@@ -24,10 +28,12 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ProfileEditActivity extends AppCompatActivity {
-    EditText mName, mSurname, mBirthday, mCity;
-    EditText mExperience, mAbout, mRoles, mPreferredGenres, mVideoLinks;
+    private EditText mName, mSurname, mBirthday, mCity;
+    private EditText mExperience, mAbout, mRoles, mPreferredGenres, mVideoLinks;
+    private ImageView mProfileImage;
+    private Uri newImageUri;
 
-    CandidatesDAO candidatesDAO;
+    private CandidatesDAO candidatesDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,13 @@ public class ProfileEditActivity extends AppCompatActivity {
         mRoles = findViewById(R.id.profileEditTextRoles);
         mPreferredGenres = findViewById(R.id.profileEditTextGenres);
         mVideoLinks = findViewById(R.id.profileEditTextLinks);
+
+        mProfileImage = findViewById(R.id.profileImageButton);
+        mProfileImage.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setType("image/jpg");
+            startActivityForResult(intent, 1);
+        });
 
         Candidate candidate = candidatesDAO.readCandidate(AuthProvider.getInstance().getUid());
 
@@ -155,5 +168,15 @@ public class ProfileEditActivity extends AppCompatActivity {
 
     public void cancel(View view) {
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
+            final Uri imageUri = data.getData();
+            newImageUri = imageUri;
+            mProfileImage.setImageURI(newImageUri);
+        }
     }
 }
