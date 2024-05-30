@@ -161,7 +161,7 @@
         android:id="@+id/coverImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@color/white"
+        android:src="@drawable/bander_cover"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

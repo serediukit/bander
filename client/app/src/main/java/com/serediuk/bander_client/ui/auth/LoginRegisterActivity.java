@@ -13,16 +13,22 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.rpc.context.AttributeContext;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
 import com.serediuk.bander_client.model.DatabaseInitializer;
+import com.serediuk.bander_client.model.dao.UsersDAO;
 import com.serediuk.bander_client.ui.MainActivity;
 
 public class LoginRegisterActivity extends AppCompatActivity {
     private EditText mEmail, mPassword;
 
     private AuthProvider authProvider;
-    private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+    private static FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+
+    public static void setListener() {
+        AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +77,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        authProvider.addAuthStateListener(firebaseAuthStateListener);
+        //authProvider.addAuthStateListener(firebaseAuthStateListener);
     }
 
     @Override

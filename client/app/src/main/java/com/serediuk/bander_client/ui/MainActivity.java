@@ -1,24 +1,21 @@
 package com.serediuk.bander_client.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.serediuk.bander_client.R;
-import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.databinding.ActivityMainBinding;
-import com.serediuk.bander_client.model.DatabaseConnectionProvider;
-import com.serediuk.bander_client.model.DatabaseInitializer;
-import com.serediuk.bander_client.model.dao.CandidatesDAO;
-import com.serediuk.bander_client.model.dao.UsersDAO;
-import com.serediuk.bander_client.model.entity.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,11 +38,17 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        NavigationUI.setupWithNavController(navView, navController);
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        return navController.navigateUp() || super.onSupportNavigateUp();
     }
 }

@@ -9,13 +9,13 @@
         android:id="@+id/navigation_home"
         android:name="com.serediuk.bander_client.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home"/>
 
     <fragment
         android:id="@+id/navigation_chats"
         android:name="com.serediuk.bander_client.ui.chats.ChatsFragment"
         android:label="@string/title_chats"
-        tools:layout="@layout/fragment_chats" />
+        tools:layout="@layout/fragment_chats"/>
 
     <fragment
         android:id="@+id/navigation_search"
@@ -33,5 +33,5 @@
         android:id="@+id/navigation_profile"
         android:name="com.serediuk.bander_client.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile"/>
 </navigation>

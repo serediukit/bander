@@ -1,5 +1,7 @@
 package com.serediuk.bander_client.ui.home;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,24 +13,29 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.R;
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.databinding.FragmentHomeBinding;
-import com.serediuk.bander_client.model.dao.*;
+import com.serediuk.bander_client.model.entity.Band;
+import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.User;
-import com.serediuk.bander_client.ui.profile.ProfileFragment;
+import com.serediuk.bander_client.model.enums.UserType;
+import com.serediuk.bander_client.ui.MainActivity;
 
-import java.util.ArrayList;
+import java.util.Objects;
+
 
 public class HomeFragment extends Fragment {
-    HomeViewModel homeViewModel;
-    ConstraintLayout profileLayout, chatsLayout, notificationsLayout, searchLayout;
+    private HomeViewModel homeViewModel;
+    private TextView homeProfileName, homeProfileGenres, homeProfileRoles;
 
     private FragmentHomeBinding binding;
 
@@ -39,23 +46,38 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-//        init();
+        init();
+        loadData();
 
         return root;
     }
 
-//    private void init() {
-//        profileLayout = binding.homeProfileLayout;
-//        profileLayout.setOnClickListener(v -> {
-//            Navigation.findNavController(v).navigate(R.id.navigation_profile);
-//        });
-//
-//        chatsLayout = binding.homeChatsLayout;
-//
-//        notificationsLayout = binding.homeNotificationsLayout;
-//
-//        searchLayout = binding.homeSearchLayout;
-//    }
+    private void init() {
+        homeProfileName = binding.homeProfileName;
+        homeProfileGenres = binding.homeProfileGenres;
+        homeProfileRoles = binding.homeProfileRole;
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void loadData() {
+        User user = homeViewModel.getUser();
+        if (user != null) {
+            if (Objects.equals(user.getType(), UserType.BAND.toString())) {
+                homeProfileRoles.setVisibility(View.INVISIBLE);
+
+                Band band = homeViewModel.getBand();
+                homeProfileName.setText(band.getName());
+                homeProfileGenres.setText(band.getGenres());
+            } else {
+                homeProfileRoles.setVisibility(View.VISIBLE);
+
+                Candidate candidate = homeViewModel.getCandidate();
+                homeProfileName.setText(candidate.getName() + " " + candidate.getSurname());
+                homeProfileGenres.setText(candidate.getPreferredGenres());
+                homeProfileRoles.setText(candidate.getRole());
+            }
+        }
+    }
 
     @Override
     public void onDestroyView() {
