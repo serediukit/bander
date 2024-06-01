@@ -69,7 +69,7 @@ public class UsersDAO {
                 }
                 Log.d("USER DAO", "Read " + usersList.size() + " users");
 
-                LoginRegisterActivity.setListener();
+                LoginRegisterActivity.incrementCount();
             }
 
             @Override

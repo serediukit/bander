@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 
 import org.checkerframework.checker.units.qual.C;
 
@@ -85,6 +86,8 @@ public class CandidatesDAO {
                     candidatesList.add(candidate);
                 }
                 Log.d("CANDIDATE DAO", "Read " + candidatesList.size() + " candidates");
+
+                LoginRegisterActivity.incrementCount();
             }
 
             @Override

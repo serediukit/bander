@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -29,6 +30,9 @@ import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.User;
 import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.ui.MainActivity;
+import com.serediuk.bander_client.ui.chats.ChatsFragment;
+import com.serediuk.bander_client.ui.notifications.NotificationsFragment;
+import com.serediuk.bander_client.ui.profile.ProfileFragment;
 
 import java.util.Objects;
 
@@ -36,6 +40,7 @@ import java.util.Objects;
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private TextView homeProfileName, homeProfileGenres, homeProfileRoles;
+    private ConstraintLayout profileLayout, chatsLayout, notificationsLayout, searchLayout;
 
     private FragmentHomeBinding binding;
 
@@ -56,6 +61,42 @@ public class HomeFragment extends Fragment {
         homeProfileName = binding.homeProfileName;
         homeProfileGenres = binding.homeProfileGenres;
         homeProfileRoles = binding.homeProfileRole;
+
+        profileLayout = binding.homeProfileLayout;
+        profileLayout.setOnClickListener(v -> {
+            Fragment profileFragment = new ProfileFragment();
+            FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment_activity_main, profileFragment).commit();
+            BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
+            navView.setSelectedItemId(R.id.navigation_profile);
+        });
+
+        chatsLayout = binding.homeChatsLayout;
+        chatsLayout.setOnClickListener(v -> {
+            Fragment chatsFragment = new ChatsFragment();
+            FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment_activity_main, chatsFragment).commit();
+            BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
+            navView.setSelectedItemId(R.id.navigation_chats);
+        });
+
+        notificationsLayout = binding.homeNotificationsLayout;
+        notificationsLayout.setOnClickListener(v -> {
+            Fragment notificationFragment = new NotificationsFragment();
+            FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment_activity_main, notificationFragment).commit();
+            BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
+            navView.setSelectedItemId(R.id.navigation_notifications);
+        });
+
+        searchLayout = binding.homeSearchLayout;
+        searchLayout.setOnClickListener(v -> {
+            Fragment searchFragment = new ChatsFragment();
+            FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment_activity_main, searchFragment).commit();
+            BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
+            navView.setSelectedItemId(R.id.navigation_search);
+        });
     }
 
     @SuppressLint("SetTextI18n")
