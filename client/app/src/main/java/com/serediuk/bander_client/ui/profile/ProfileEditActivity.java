@@ -1,15 +1,22 @@
 package com.serediuk.bander_client.ui.profile;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -22,16 +29,18 @@ import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.ui.MainActivity;
 
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ProfileEditActivity extends AppCompatActivity {
     private EditText mName, mSurname, mBirthday, mCity;
     private EditText mExperience, mAbout, mRoles, mPreferredGenres, mVideoLinks;
     private ImageView mProfileImage;
-    private Uri newImageUri;
+    private ActivityResultLauncher<Intent> resultLauncher;
 
     private CandidatesDAO candidatesDAO;
 
@@ -42,6 +51,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
         candidatesDAO = CandidatesDAO.getInstance();
         init();
+        loadData();
     }
 
     private void init() {
@@ -57,11 +67,27 @@ public class ProfileEditActivity extends AppCompatActivity {
 
         mProfileImage = findViewById(R.id.profileImageButton);
         mProfileImage.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setType("image/jpg");
-            startActivityForResult(intent, 1);
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            resultLauncher.launch(intent);
         });
 
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                activityResult -> {
+                    try {
+                        Uri imageUri = Objects.requireNonNull(activityResult.getData()).getData();
+                        
+                        mProfileImage.setImageURI(imageUri);
+                    } catch (Exception e) {
+                        Log.e("PROFILE EDIT", "Can't to pick the image");
+                    }
+                }
+        );
+    }
+
+    private void loadData() {
         Candidate candidate = candidatesDAO.readCandidate(AuthProvider.getInstance().getUid());
 
         if (candidate != null) {
@@ -168,15 +194,5 @@ public class ProfileEditActivity extends AppCompatActivity {
 
     public void cancel(View view) {
         finish();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
-            final Uri imageUri = data.getData();
-            newImageUri = imageUri;
-            mProfileImage.setImageURI(newImageUri);
-        }
     }
 }
