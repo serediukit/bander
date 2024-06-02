@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.BandsDAO;
@@ -20,8 +23,10 @@ import com.serediuk.bander_client.model.dao.VacanciesDAO;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.model.enums.UserType;
+import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 import com.serediuk.bander_client.ui.search.resume.SendResumeActivity;
+import com.serediuk.bander_client.util.image.ImageOptions;
 
 import org.w3c.dom.Text;
 
@@ -31,6 +36,9 @@ public class VacancyInfoActivity extends AppCompatActivity {
 
     private TextView mTitle, mBand, mGenres, mSalary, mCity;
     private TextView mText, mAbout, mLinks, mDatetime;
+    private ImageView mBandImage;
+
+    private ImageStorageProvider imageStorageProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,8 @@ public class VacancyInfoActivity extends AppCompatActivity {
 
         bandsDAO = BandsDAO.getInstance();
         vacancy = (Vacancy) getIntent().getSerializableExtra("vacancy");
+
+        imageStorageProvider = ImageStorageProvider.getInstance();
 
         init();
         loadData();
@@ -54,6 +64,8 @@ public class VacancyInfoActivity extends AppCompatActivity {
         mAbout = findViewById(R.id.vacancyInfoAboutBand);
         mLinks = findViewById(R.id.vacancyInfoBandLinks);
         mDatetime = findViewById(R.id.vacancyInfoDatetime);
+
+        mBandImage = findViewById(R.id.bandImageView);
 
         Button mSend = findViewById(R.id.sendResumeButton);
         Button mDelete = findViewById(R.id.deleteVacancyButton);
@@ -78,6 +90,13 @@ public class VacancyInfoActivity extends AppCompatActivity {
         mAbout.setText(band.getAbout());
         mLinks.setText(band.getVideoLinks());
         mDatetime.setText(vacancy.getDatetime());
+
+        Uri imageUri = imageStorageProvider.downloadImageUri(vacancy.getBandUID());
+        Glide
+                .with(this)
+                .load(imageUri)
+                .apply(ImageOptions.imageOptions())
+                .into(mBandImage);
     }
 
     public void back(View view) {

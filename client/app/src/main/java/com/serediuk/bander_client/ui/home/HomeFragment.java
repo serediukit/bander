@@ -2,11 +2,13 @@ package com.serediuk.bander_client.ui.home;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,10 +32,12 @@ import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.User;
 import com.serediuk.bander_client.model.enums.UserType;
+import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.ui.MainActivity;
 import com.serediuk.bander_client.ui.chats.ChatsFragment;
 import com.serediuk.bander_client.ui.notifications.NotificationsFragment;
 import com.serediuk.bander_client.ui.profile.ProfileFragment;
+import com.serediuk.bander_client.util.image.ImageOptions;
 
 import java.util.Objects;
 
@@ -41,6 +46,9 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private TextView homeProfileName, homeProfileGenres, homeProfileRoles;
     private ConstraintLayout profileLayout, chatsLayout, notificationsLayout, searchLayout;
+    private ImageView homeProfileImage;
+
+    private ImageStorageProvider imageStorageProvider;
 
     private FragmentHomeBinding binding;
 
@@ -50,6 +58,8 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        imageStorageProvider = ImageStorageProvider.getInstance();
 
         init();
         loadData();
@@ -61,6 +71,7 @@ public class HomeFragment extends Fragment {
         homeProfileName = binding.homeProfileName;
         homeProfileGenres = binding.homeProfileGenres;
         homeProfileRoles = binding.homeProfileRole;
+        homeProfileImage = binding.homeProfileImage;
 
         profileLayout = binding.homeProfileLayout;
         profileLayout.setOnClickListener(v -> {
@@ -103,6 +114,13 @@ public class HomeFragment extends Fragment {
     private void loadData() {
         User user = homeViewModel.getUser();
         if (user != null) {
+            Uri imageUri = imageStorageProvider.downloadImageUri(user.getUid());
+            Glide
+                    .with(requireActivity())
+                    .load(imageUri)
+                    .apply(ImageOptions.imageOptions())
+                    .into(homeProfileImage);
+
             if (Objects.equals(user.getType(), UserType.BAND.toString())) {
                 homeProfileRoles.setVisibility(View.INVISIBLE);
 

@@ -2,11 +2,14 @@ package com.serediuk.bander_client.ui.search.resume;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.BandsDAO;
@@ -18,6 +21,8 @@ import com.serediuk.bander_client.model.entity.Notification;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.enums.NotificationStatus;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
+import com.serediuk.bander_client.model.storage.ImageStorageProvider;
+import com.serediuk.bander_client.util.image.ImageOptions;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -31,6 +36,9 @@ public class ResumeInfoActivity extends AppCompatActivity {
     private TextView mName, mSurname, mRole, mExperience;
     private TextView mBirthday, mCity, mText;
     private TextView mAbout, mGenres, mLinks, mDatetime;
+    private ImageView mResumeImage;
+
+    private ImageStorageProvider imageStorageProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,8 @@ public class ResumeInfoActivity extends AppCompatActivity {
         resumesDAO = ResumesDAO.getInstance();
         notificationsDAO = NotificationsDAO.getInstance();
         resume = (Resume) getIntent().getSerializableExtra("resume");
+
+        imageStorageProvider = ImageStorageProvider.getInstance();
 
         init();
         loadData();
@@ -58,6 +68,8 @@ public class ResumeInfoActivity extends AppCompatActivity {
         mGenres = findViewById(R.id.resumeInfoGenres);
         mLinks = findViewById(R.id.resumeInfoLinks);
         mDatetime = findViewById(R.id.resumeInfoDatetime);
+
+        mResumeImage = findViewById(R.id.candidateImageView);
     }
 
     private void loadData() {
@@ -74,6 +86,13 @@ public class ResumeInfoActivity extends AppCompatActivity {
         mGenres.setText(candidate.getPreferredGenres());
         mLinks.setText(candidate.getVideoLinks());
         mDatetime.setText(resume.getDatetime());
+
+        Uri imageUti = imageStorageProvider.downloadImageUri(resume.getCandidateUID());
+        Glide
+                .with(this)
+                .load(imageUti)
+                .apply(ImageOptions.imageOptions())
+                .into(mResumeImage);
     }
 
     public void acceptResume(View view) {
