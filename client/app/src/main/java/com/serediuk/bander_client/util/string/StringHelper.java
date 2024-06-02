@@ -1,4 +1,4 @@
-package com.serediuk.bander_client.util;
+package com.serediuk.bander_client.util.string;
 
 public class StringHelper {
     private static final int ALLOWED_DISTANCE = 3;

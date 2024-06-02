@@ -2,7 +2,7 @@ package com.serediuk.bander_client.model.entity;
 
 import androidx.annotation.NonNull;
 
-import com.serediuk.bander_client.util.ArrayListStringCreator;
+import com.serediuk.bander_client.util.string.ArrayListStringCreator;
 
 import java.util.ArrayList;
 

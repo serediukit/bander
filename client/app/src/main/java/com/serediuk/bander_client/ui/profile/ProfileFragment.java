@@ -13,26 +13,18 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.serediuk.bander_client.databinding.FragmentProfileBinding;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.User;
 import com.serediuk.bander_client.model.enums.UserType;
-import com.serediuk.bander_client.ui.MainActivity;
 import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.entity.Candidate;
-import com.serediuk.bander_client.util.ArrayListStringCreator;
+import com.serediuk.bander_client.util.string.ArrayListStringCreator;
 
 import java.util.Objects;
 
@@ -86,6 +78,7 @@ public class ProfileFragment extends Fragment {
                         profileViewModel.signOut();
                         Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
                         startActivity(intent);
+                        LoginRegisterActivity.incrementCount();
                         requireActivity().finish();
                     })
                     .setNegativeButton(R.string.no, (dialog, which) -> {})

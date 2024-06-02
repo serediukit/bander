@@ -1,22 +1,15 @@
 package com.serediuk.bander_client.ui.profile;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -31,8 +24,8 @@ import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.ui.MainActivity;
+import com.serediuk.bander_client.util.image.ImageOptions;
 
-import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -72,8 +65,6 @@ public class ProfileEditActivity extends AppCompatActivity {
         mVideoLinks = findViewById(R.id.profileEditTextLinks);
 
         mProfileImage = findViewById(R.id.profileImageButton);
-        Uri profileImage = imageStorageProvider.downloadImageUri(AuthUID.getUID());
-        Glide.with(getApplication()).load(profileImage).into(mProfileImage);
 
         mProfileImage.setOnClickListener(v -> {
             Intent intent = new Intent();
@@ -119,6 +110,13 @@ public class ProfileEditActivity extends AppCompatActivity {
             if (!candidate.getVideoLinks().isEmpty())
                 mVideoLinks.setText(candidate.getVideoLinks());
         }
+
+        Uri profileImage = imageStorageProvider.downloadImageUri(AuthUID.getUID());
+        Glide
+                .with(this)
+                .load(profileImage)
+                .apply(ImageOptions.imageOptions())
+                .into(mProfileImage);
 
         Date currentDate = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -206,5 +204,11 @@ public class ProfileEditActivity extends AppCompatActivity {
     public void cancel(View view) {
         profileImageUri = null;
         finish();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loadData();
     }
 }

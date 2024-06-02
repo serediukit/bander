@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +29,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
     public static void incrementCount() {
         count++;
-        if (count == 3)
+        if (count >= 3)
             AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
     }
 
@@ -47,7 +48,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                 finish();
             } else {
                 ImageView mCoverImage = findViewById(R.id.coverImage);
-                mCoverImage.setVisibility(View.GONE);
+                mCoverImage.setVisibility(View.INVISIBLE);
                 Button mLoginButton = findViewById(R.id.login_button);
                 mLoginButton.setVisibility(View.VISIBLE);
             }
@@ -55,6 +56,12 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
         mEmail = findViewById(R.id.emailEditText);
         mPassword = findViewById(R.id.passwordEditText);
+
+        try {
+            new Handler().postDelayed(() -> {
+                AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
+            }, 5000);
+        } catch (Exception ignored) {}
     }
 
     public void login(View view) {

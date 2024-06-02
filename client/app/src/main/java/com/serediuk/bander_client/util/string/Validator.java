@@ -1,4 +1,4 @@
-package com.serediuk.bander_client.util;
+package com.serediuk.bander_client.util.string;
 
 import android.util.Log;
 
