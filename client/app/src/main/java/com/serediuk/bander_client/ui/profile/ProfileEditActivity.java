@@ -191,7 +191,8 @@ public class ProfileEditActivity extends AppCompatActivity {
                             videoLinks);
                     candidatesDAO.updateCandidate(newCandidate);
 
-                    imageStorageProvider.uploadImage(this, AuthUID.getUID(), profileImageUri);
+                    if (profileImageUri != null)
+                        imageStorageProvider.uploadImage(this, AuthUID.getUID(), profileImageUri);
 
                     Intent intent = new Intent(ProfileEditActivity.this, MainActivity.class);
                     startActivity(intent);
