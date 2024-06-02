@@ -29,8 +29,8 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
     public static void incrementCount() {
         count++;
-        if (count >= 3)
-            AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
+//        if (count >= 3)
+//            AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                 finish();
             } else {
                 ImageView mCoverImage = findViewById(R.id.coverImage);
-                mCoverImage.setVisibility(View.INVISIBLE);
+                mCoverImage.setVisibility(View.GONE);
                 Button mLoginButton = findViewById(R.id.login_button);
                 mLoginButton.setVisibility(View.VISIBLE);
             }
@@ -60,7 +60,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         try {
             new Handler().postDelayed(() -> {
                 AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
-            }, 5000);
+            }, 2500);
         } catch (Exception ignored) {}
     }
 
@@ -86,7 +86,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //authProvider.addAuthStateListener(firebaseAuthStateListener);
     }
 
     @Override

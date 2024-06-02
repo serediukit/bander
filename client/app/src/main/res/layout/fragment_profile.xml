@@ -40,6 +40,7 @@
                     android:layout_height="160dp"
                     android:contentDescription="@string/description_profile_image"
                     android:scaleType="centerCrop"
+                    android:background="@drawable/blank_profile"
                     app:srcCompat="@drawable/blank_profile" />
 
                 <LinearLayout
@@ -233,6 +234,7 @@
                     android:layout_height="160dp"
                     android:contentDescription="@string/description_profile_image"
                     android:scaleType="centerCrop"
+                    android:background="@drawable/blank_profile"
                     app:srcCompat="@drawable/blank_profile" />
 
                 <LinearLayout
