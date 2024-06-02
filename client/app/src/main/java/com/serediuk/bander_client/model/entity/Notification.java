@@ -2,8 +2,6 @@ package com.serediuk.bander_client.model.entity;
 
 import androidx.annotation.NonNull;
 
-import org.checkerframework.checker.units.qual.N;
-
 public class Notification {
     private String notificationUID;
     private String receiverUID;

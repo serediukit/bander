@@ -23,10 +23,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.ui.MainActivity;
 
 import java.net.URISyntaxException;
@@ -41,7 +44,9 @@ public class ProfileEditActivity extends AppCompatActivity {
     private EditText mExperience, mAbout, mRoles, mPreferredGenres, mVideoLinks;
     private ImageView mProfileImage;
     private ActivityResultLauncher<Intent> resultLauncher;
+    private Uri profileImageUri;
 
+    private ImageStorageProvider imageStorageProvider;
     private CandidatesDAO candidatesDAO;
 
     @Override
@@ -49,6 +54,7 @@ public class ProfileEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
 
+        imageStorageProvider = ImageStorageProvider.getInstance();
         candidatesDAO = CandidatesDAO.getInstance();
         init();
         loadData();
@@ -66,6 +72,9 @@ public class ProfileEditActivity extends AppCompatActivity {
         mVideoLinks = findViewById(R.id.profileEditTextLinks);
 
         mProfileImage = findViewById(R.id.profileImageButton);
+        Uri profileImage = imageStorageProvider.downloadImageUri(AuthUID.getUID());
+        Glide.with(getApplication()).load(profileImage).into(mProfileImage);
+
         mProfileImage.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.setType("image/*");
@@ -78,8 +87,8 @@ public class ProfileEditActivity extends AppCompatActivity {
                 activityResult -> {
                     try {
                         Uri imageUri = Objects.requireNonNull(activityResult.getData()).getData();
-                        
                         mProfileImage.setImageURI(imageUri);
+                        profileImageUri = imageUri;
                     } catch (Exception e) {
                         Log.e("PROFILE EDIT", "Can't to pick the image");
                     }
@@ -184,6 +193,8 @@ public class ProfileEditActivity extends AppCompatActivity {
                             videoLinks);
                     candidatesDAO.updateCandidate(newCandidate);
 
+                    imageStorageProvider.uploadImage(this, AuthUID.getUID(), profileImageUri);
+
                     Intent intent = new Intent(ProfileEditActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -193,6 +204,7 @@ public class ProfileEditActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
+        profileImageUri = null;
         finish();
     }
 }

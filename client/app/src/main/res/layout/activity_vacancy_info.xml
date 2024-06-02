@@ -93,6 +93,7 @@
                     android:layout_width="160dp"
                     android:layout_height="160dp"
                     android:contentDescription="@string/description_profile_image"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/blank_profile" />
