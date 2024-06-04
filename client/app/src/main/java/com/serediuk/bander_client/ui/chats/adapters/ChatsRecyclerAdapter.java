@@ -94,7 +94,7 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
         this.chatsList = chatsList;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView chatImage;
         TextView chatTitle, chatMessage, chatNewMessagesCount, chatDatetime;
         ConstraintLayout constraintLayout;

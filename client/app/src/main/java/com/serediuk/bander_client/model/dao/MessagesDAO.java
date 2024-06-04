@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Message;
+import com.serediuk.bander_client.model.enums.MessageStatus;
 
 import java.util.ArrayList;
 
@@ -35,9 +36,11 @@ public class MessagesDAO {
     }
 
     public void createMessage(Message message) {
-        if (message.getMessageUID() != null) {
-            database.getReference("messages").child(message.getMessageUID()).setValue(message);
+        String key = database.getReference("messages").push().getKey();
 
+        if (key != null) {
+            message.setMessageUID(key);
+            database.getReference("messages").child(key).setValue(message);
             Log.d("MESSAGE DAO", "Adding message:\n" + message);
         } else {
             Log.d("MESSAGE DAO", "Key is null");
@@ -90,5 +93,27 @@ public class MessagesDAO {
         });
 
         Log.d("MESSAGE DAO", "Loaded " + messagesList.size() + " messages");
+    }
+
+    public Message getLastMessage(String chatUID) {
+        Message res = null;
+        for (Message message : messagesList) {
+            if (res == null)
+                res = message;
+            else if (message.getChatUID().equals(chatUID) && res.getDatetime().compareTo(message.getDatetime()) <= 0) {
+                res = message;
+            }
+        }
+        return res;
+    }
+
+    public int getNewMessagesCount(String chatUID) {
+        int count = 0;
+        for (Message message : messagesList) {
+            if (message.getChatUID().equals(chatUID) && message.getStatus().equals(MessageStatus.SENT.toString())) {
+                count++;
+            }
+        }
+        return count;
     }
 }

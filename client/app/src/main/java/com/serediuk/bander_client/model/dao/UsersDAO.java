@@ -68,8 +68,6 @@ public class UsersDAO {
                     usersList.add(user);
                 }
                 Log.d("USER DAO", "Read " + usersList.size() + " users");
-
-                LoginRegisterActivity.incrementCount();
             }
 
             @Override
