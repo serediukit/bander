@@ -71,7 +71,7 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
         int newMessagesCount = chat.getNewMessagesCount();
         if (newMessagesCount > 0) {
             holder.chatNewMessagesCount.setVisibility(View.VISIBLE);
-            holder.chatNewMessagesCount.setText(newMessagesCount);
+            holder.chatNewMessagesCount.setText(String.valueOf(newMessagesCount));
         }
 
         holder.constraintLayout.setOnClickListener(v -> {

@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import com.serediuk.bander_client.model.enums.MessageStatus;
 import com.serediuk.bander_client.util.string.ArrayListStringCreator;
 
+import org.checkerframework.framework.qual.IgnoreInWholeProgramInference;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
