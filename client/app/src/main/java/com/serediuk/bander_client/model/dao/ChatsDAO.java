@@ -149,4 +149,13 @@ public class ChatsDAO {
 
         return chatList;
     }
+
+    public Chat find(String candidateUID, String bandUID) {
+        for (Chat chat : chatsList) {
+            if (chat.getCandidateMemberUID().equals(candidateUID) && chat.getBandMemberUID().equals(bandUID)) {
+                return chat;
+            }
+        }
+        return null;
+    }
 }

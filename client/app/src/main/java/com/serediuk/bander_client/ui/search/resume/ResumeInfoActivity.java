@@ -125,22 +125,35 @@ public class ResumeInfoActivity extends AppCompatActivity {
         );
         notificationsDAO.createNotification(notification);
 
-        Chat chat = new Chat(
-                "",
-                resume.getCandidateUID(),
-                AuthUID.getUID()
-        );
-        chatsDAO.createChat(chat);
+        Chat chatFind = chatsDAO.find(resume.getCandidateUID(), AuthUID.getUID());
+        if (chatFind != null) {
+            Message message = new Message(
+                    "",
+                    chatFind.getChatUID(),
+                    SenderType.BAND.toString(),
+                    getResources().getString(R.string.text_hello_message),
+                    datetime,
+                    MessageStatus.SENT.toString()
+            );
+            messagesDAO.createMessage(message);
+        } else {
+            Chat chat = new Chat(
+                    "",
+                    resume.getCandidateUID(),
+                    AuthUID.getUID()
+            );
+            chatsDAO.createChat(chat);
 
-        Message message = new Message(
-                "",
-                chat.getChatUID(),
-                SenderType.BAND.toString(),
-                getResources().getString(R.string.text_hello_message),
-                datetime,
-                MessageStatus.SENT.toString()
-        );
-        messagesDAO.createMessage(message);
+            Message message = new Message(
+                    "",
+                    chat.getChatUID(),
+                    SenderType.BAND.toString(),
+                    getResources().getString(R.string.text_hello_message),
+                    datetime,
+                    MessageStatus.SENT.toString()
+            );
+            messagesDAO.createMessage(message);
+        }
 
         finish();
     }

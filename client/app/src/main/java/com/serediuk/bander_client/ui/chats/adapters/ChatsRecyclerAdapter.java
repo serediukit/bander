@@ -2,6 +2,7 @@ package com.serediuk.bander_client.ui.chats.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.serediuk.bander_client.model.dao.MessagesDAO;
 import com.serediuk.bander_client.model.dao.UsersDAO;
 import com.serediuk.bander_client.model.entity.Chat;
 import com.serediuk.bander_client.model.entity.Message;
+import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.ui.chats.ChatActivity;
 import com.serediuk.bander_client.util.image.ImageOptions;
 
@@ -32,6 +34,7 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
     private ArrayList<Chat> chatsList;
     private UsersDAO usersDAO;
     private MessagesDAO messagesDAO;
+    private ImageStorageProvider imageStorageProvider;
 
     public ChatsRecyclerAdapter(Context context, ArrayList<Chat> chatsList) {
         this.context = context;
@@ -39,6 +42,8 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
 
         usersDAO = UsersDAO.getInstance();
         messagesDAO = MessagesDAO.getInstance();
+
+        imageStorageProvider = ImageStorageProvider.getInstance();
     }
 
     @NonNull
@@ -56,9 +61,10 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
 
         String userUID = chat.getCandidateMemberUID().equals(AuthUID.getUID()) ? chat.getBandMemberUID() : chat.getCandidateMemberUID();
 
+        Uri imageUri = imageStorageProvider.downloadImageUri(userUID);
         Glide
                 .with(context)
-                .load(userUID)
+                .load(imageUri)
                 .apply(ImageOptions.imageOptions())
                 .into(holder.chatImage);
 
