@@ -37,6 +37,10 @@ public class Chat {
         return chatUID;
     }
 
+    public void setChatUID(String chatUID) {
+        this.chatUID = chatUID;
+    }
+
     public String getCandidateMemberUID() {
         return candidateMemberUID;
     }

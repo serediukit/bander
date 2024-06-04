@@ -4,16 +4,26 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ChatsViewModel extends ViewModel {
+import com.serediuk.bander_client.model.dao.ChatsDAO;
+import com.serediuk.bander_client.model.dao.UsersDAO;
+import com.serediuk.bander_client.model.entity.Chat;
+import com.serediuk.bander_client.model.entity.User;
 
-    private final MutableLiveData<String> mText;
+import java.util.ArrayList;
+
+public class ChatsViewModel extends ViewModel {
+    private ChatsDAO chatsDAO;
 
     public ChatsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is chats fragment");
+        chatsDAO = ChatsDAO.getInstance();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public ArrayList<Chat> getChatsList(String userUID) {
+        User user = UsersDAO.getInstance().readUser(userUID);
+        return chatsDAO.getChats(userUID, user.getType());
+    }
+
+    public void setChatsAdapter(ChatsRecyclerAdapter chatsRecyclerAdapter) {
+        chatsDAO.setChatsRecyclerAdapter(chatsRecyclerAdapter);
     }
 }

@@ -127,6 +127,12 @@
     <string name="text_notification_text">Notification text</string>
     <string name="text_notification_datetime">Notification datetime</string>
     <string name="text_notification_empty">There are not notification for you</string>
+    <string name="text_chats_empty">There are not chats for you</string>
+    <string name="description_chat_image">Chat image</string>
+    <string name="text_chat_title">Chat title</string>
+    <string name="text_chat_datetime">Chat datetime</string>
+    <string name="text_chat_message">Chat message</string>
+    <string name="count">0</string>
 
 
 </resources>

@@ -82,6 +82,7 @@ public class NotificationsDAO {
         Log.d("NOTIFICATION DAO", "Updating notification:\n" + notification);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void deleteNotification(String notificationUID) {
         database.getReference("notifications").child(notificationUID).removeValue();
 
@@ -90,6 +91,11 @@ public class NotificationsDAO {
                 notificationsList.remove(notification);
                 break;
             }
+        }
+
+        if (notificationRecyclerAdapter!= null) {
+            notificationRecyclerAdapter.setArrayList(notificationsList);
+            notificationRecyclerAdapter.notifyDataSetChanged();
         }
 
         Log.d("NOTIFICATION DAO", "Deleting notification: " + notificationUID);

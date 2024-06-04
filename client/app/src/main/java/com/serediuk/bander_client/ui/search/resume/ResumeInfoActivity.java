@@ -14,9 +14,11 @@ import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
+import com.serediuk.bander_client.model.dao.ChatsDAO;
 import com.serediuk.bander_client.model.dao.NotificationsDAO;
 import com.serediuk.bander_client.model.dao.ResumesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.model.entity.Chat;
 import com.serediuk.bander_client.model.entity.Notification;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.enums.NotificationStatus;
@@ -26,11 +28,13 @@ import com.serediuk.bander_client.util.image.ImageOptions;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class ResumeInfoActivity extends AppCompatActivity {
     private CandidatesDAO candidatesDAO;
     private ResumesDAO resumesDAO;
     private NotificationsDAO notificationsDAO;
+    private ChatsDAO chatsDAO;
     private Resume resume;
 
     private TextView mName, mSurname, mRole, mExperience;
@@ -48,6 +52,7 @@ public class ResumeInfoActivity extends AppCompatActivity {
         candidatesDAO = CandidatesDAO.getInstance();
         resumesDAO = ResumesDAO.getInstance();
         notificationsDAO = NotificationsDAO.getInstance();
+        chatsDAO = ChatsDAO.getInstance();
         resume = (Resume) getIntent().getSerializableExtra("resume");
 
         imageStorageProvider = ImageStorageProvider.getInstance();
@@ -114,6 +119,14 @@ public class ResumeInfoActivity extends AppCompatActivity {
                 NotificationStatus.NEW.toString()
         );
         notificationsDAO.createNotification(notification);
+
+        Chat chat = new Chat(
+                "",
+                resume.getCandidateUID(),
+                AuthUID.getUID(),
+                new ArrayList<>()
+        );
+        chatsDAO.createChat(chat);
 
         finish();
     }
