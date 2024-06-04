@@ -86,8 +86,6 @@ public class CandidatesDAO {
                     candidatesList.add(candidate);
                 }
                 Log.d("CANDIDATE DAO", "Read " + candidatesList.size() + " candidates");
-
-                LoginRegisterActivity.incrementCount();
             }
 
             @Override

@@ -44,7 +44,6 @@ public class ChatsDAO {
         if (key != null) {
             chat.setChatUID(key);
             database.getReference("chats").child(key).setValue(chat);
-            database.getReference("chats").child(key).child("newMessagesCount").removeValue();
             Log.d("CHAT DAO", "Adding chat:\n" + chat);
         } else {
             Log.d("CHAT DAO", "Key is null");
@@ -107,35 +106,7 @@ public class ChatsDAO {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chatsList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String bandUID = dataSnapshot.child("bandMemberUID").getValue(String.class);
-                    String candidateUID = dataSnapshot.child("candidateMemberUID").getValue(String.class);
-                    String chatUID = dataSnapshot.child("chatUID").getValue(String.class);
-
-                    ArrayList<Message> messages = new ArrayList<>();
-                    for (DataSnapshot ds : dataSnapshot.child("messages").getChildren()) {
-                        String messageUID = ds.child("messageUID").getValue(String.class);
-                        String senderType = ds.child("senderType").getValue(String.class);
-                        String message = ds.child("message").getValue(String.class);
-                        String status = ds.child("status").getValue(String.class);
-                        String datetime = ds.child("datetime").getValue(String.class);
-
-                        Message msg = new Message(
-                                messageUID,
-                                chatUID,
-                                senderType,
-                                message,
-                                datetime,
-                                status
-                        );
-                        messages.add(msg);
-                    }
-
-                    Chat chat = new Chat(
-                            chatUID,
-                            candidateUID,
-                            bandUID,
-                            messages
-                    );
+                    Chat chat = dataSnapshot.getValue(Chat.class);
                     chatsList.add(chat);
                 }
                 if (chatsRecyclerAdapter != null) {
@@ -177,17 +148,5 @@ public class ChatsDAO {
         }
 
         return chatList;
-    }
-
-    public void sendMessage(Chat chat, Message message) {
-        String key = database.getReference("chats").child(chat.getChatUID()).child("messages").push().getKey();
-
-        if (key != null) {
-            message.setMessageUID(key);
-            database.getReference("chats").child(chat.getChatUID()).child("messages").child(key).setValue(message);
-            Log.d("CHAT DAO", "Adding message:\n" + message);
-        } else {
-            Log.d("CHAT DAO", "Key is null");
-        }
     }
 }

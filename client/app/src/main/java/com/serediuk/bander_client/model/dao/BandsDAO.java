@@ -85,8 +85,6 @@ public class BandsDAO {
                     bandsList.add(band);
                 }
                 Log.d("BAND DAO", "Read " + bandsList.size() + " bands");
-
-                LoginRegisterActivity.incrementCount();
             }
 
             @Override

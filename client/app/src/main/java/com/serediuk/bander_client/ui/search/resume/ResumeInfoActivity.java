@@ -1,7 +1,5 @@
 package com.serediuk.bander_client.ui.search.resume;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.dao.ChatsDAO;
+import com.serediuk.bander_client.model.dao.MessagesDAO;
 import com.serediuk.bander_client.model.dao.NotificationsDAO;
 import com.serediuk.bander_client.model.dao.ResumesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
@@ -31,15 +32,13 @@ import com.serediuk.bander_client.util.image.ImageOptions;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class ResumeInfoActivity extends AppCompatActivity {
     private CandidatesDAO candidatesDAO;
     private ResumesDAO resumesDAO;
     private NotificationsDAO notificationsDAO;
     private ChatsDAO chatsDAO;
+    private MessagesDAO messagesDAO;
     private Resume resume;
 
     private TextView mName, mSurname, mRole, mExperience;
@@ -58,6 +57,7 @@ public class ResumeInfoActivity extends AppCompatActivity {
         resumesDAO = ResumesDAO.getInstance();
         notificationsDAO = NotificationsDAO.getInstance();
         chatsDAO = ChatsDAO.getInstance();
+        messagesDAO = MessagesDAO.getInstance();
         resume = (Resume) getIntent().getSerializableExtra("resume");
 
         imageStorageProvider = ImageStorageProvider.getInstance();
@@ -128,8 +128,7 @@ public class ResumeInfoActivity extends AppCompatActivity {
         Chat chat = new Chat(
                 "",
                 resume.getCandidateUID(),
-                AuthUID.getUID(),
-                new ArrayList<>()
+                AuthUID.getUID()
         );
         chatsDAO.createChat(chat);
 
@@ -141,7 +140,7 @@ public class ResumeInfoActivity extends AppCompatActivity {
                 datetime,
                 MessageStatus.SENT.toString()
         );
-        chatsDAO.sendMessage(chat, message);
+        messagesDAO.createMessage(message);
 
         finish();
     }

@@ -25,14 +25,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private AuthProvider authProvider;
     private static FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
-    private static int count = 0;
-
-    public static void incrementCount() {
-        count++;
-//        if (count >= 3)
-//            AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -17,6 +17,8 @@ import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
+import com.serediuk.bander_client.model.dao.ChatsDAO;
+import com.serediuk.bander_client.model.dao.MessagesDAO;
 import com.serediuk.bander_client.model.dao.UsersDAO;
 import com.serediuk.bander_client.model.entity.Chat;
 import com.serediuk.bander_client.model.entity.Message;
@@ -29,12 +31,14 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
     private Context context;
     private ArrayList<Chat> chatsList;
     private UsersDAO usersDAO;
+    private MessagesDAO messagesDAO;
 
     public ChatsRecyclerAdapter(Context context, ArrayList<Chat> chatsList) {
         this.context = context;
         this.chatsList = chatsList;
 
         usersDAO = UsersDAO.getInstance();
+        messagesDAO = MessagesDAO.getInstance();
     }
 
     @NonNull
@@ -48,7 +52,7 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Chat chat = chatsList.get(position);
-        Message lastMessage = chat.getLastMessage();
+        Message lastMessage = messagesDAO.getLastMessage(chat.getChatUID());
 
         String userUID = chat.getCandidateMemberUID().equals(AuthUID.getUID()) ? chat.getBandMemberUID() : chat.getCandidateMemberUID();
 
@@ -68,7 +72,7 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
             holder.chatDatetime.setText(lastMessage.getDatetime());
         }
 
-        int newMessagesCount = chat.getNewMessagesCount();
+        int newMessagesCount = messagesDAO.getNewMessagesCount(chat.getChatUID());
         if (newMessagesCount > 0) {
             holder.chatNewMessagesCount.setVisibility(View.VISIBLE);
             holder.chatNewMessagesCount.setText(String.valueOf(newMessagesCount));
