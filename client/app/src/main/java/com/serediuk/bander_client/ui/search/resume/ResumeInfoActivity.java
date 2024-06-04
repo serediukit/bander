@@ -19,16 +19,21 @@ import com.serediuk.bander_client.model.dao.NotificationsDAO;
 import com.serediuk.bander_client.model.dao.ResumesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Chat;
+import com.serediuk.bander_client.model.entity.Message;
 import com.serediuk.bander_client.model.entity.Notification;
 import com.serediuk.bander_client.model.entity.Resume;
+import com.serediuk.bander_client.model.enums.MessageStatus;
 import com.serediuk.bander_client.model.enums.NotificationStatus;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
+import com.serediuk.bander_client.model.enums.SenderType;
 import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.util.image.ImageOptions;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ResumeInfoActivity extends AppCompatActivity {
     private CandidatesDAO candidatesDAO;
@@ -127,6 +132,16 @@ public class ResumeInfoActivity extends AppCompatActivity {
                 new ArrayList<>()
         );
         chatsDAO.createChat(chat);
+
+        Message message = new Message(
+                "",
+                chat.getChatUID(),
+                SenderType.BAND.toString(),
+                getResources().getString(R.string.text_hello_message),
+                datetime,
+                MessageStatus.SENT.toString()
+        );
+        chatsDAO.sendMessage(chat, message);
 
         finish();
     }

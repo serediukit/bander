@@ -59,9 +59,20 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
                 .into(holder.chatImage);
 
         holder.chatTitle.setText(usersDAO.readUser(userUID).getName());
-        holder.chatMessage.setText(lastMessage.getMessage());
-        holder.chatDatetime.setText(lastMessage.getDatetime());
-        holder.chatNewMessagesCount.setText(chat.getNewMessagesCount());
+
+        if (lastMessage == null) {
+            holder.chatMessage.setText(context.getResources().getString(R.string.text_no_message));
+            holder.chatDatetime.setText("");
+        } else {
+            holder.chatMessage.setText(lastMessage.getMessage());
+            holder.chatDatetime.setText(lastMessage.getDatetime());
+        }
+
+        int newMessagesCount = chat.getNewMessagesCount();
+        if (newMessagesCount > 0) {
+            holder.chatNewMessagesCount.setVisibility(View.VISIBLE);
+            holder.chatNewMessagesCount.setText(newMessagesCount);
+        }
 
         holder.constraintLayout.setOnClickListener(v -> {
             Intent intent = new Intent(context, ChatActivity.class);

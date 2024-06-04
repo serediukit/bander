@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Chat;
+import com.serediuk.bander_client.model.entity.Message;
 import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.ui.chats.adapters.ChatsRecyclerAdapter;
 
@@ -147,5 +148,17 @@ public class ChatsDAO {
         }
 
         return chatList;
+    }
+
+    public void sendMessage(Chat chat, Message message) {
+        String key = database.getReference("chats").child(chat.getChatUID()).child("messages").push().getKey();
+
+        if (key != null) {
+            message.setMessageUID(key);
+            database.getReference("chats").child(chat.getChatUID()).child("messages").child(key).setValue(message);
+            Log.d("CHAT DAO", "Adding message:\n" + message);
+        } else {
+            Log.d("CHAT DAO", "Key is null");
+        }
     }
 }

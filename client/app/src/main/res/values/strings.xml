@@ -133,6 +133,8 @@
     <string name="text_chat_datetime">Chat datetime</string>
     <string name="text_chat_message">Chat message</string>
     <string name="count">0</string>
+    <string name="text_no_message">There is no message</string>
+    <string name="text_hello_message">Hi, I liked your resume.\nI want to contact with you. \nWrite me.</string>
 
 
 </resources>

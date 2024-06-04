@@ -2,6 +2,7 @@ package com.serediuk.bander_client.model.entity;
 
 import androidx.annotation.NonNull;
 
+import com.serediuk.bander_client.model.enums.MessageStatus;
 import com.serediuk.bander_client.util.string.ArrayListStringCreator;
 
 import java.io.Serializable;
@@ -52,6 +53,30 @@ public class Chat implements Serializable {
 
     public ArrayList<Message> getMessages() {
         return messages;
+    }
+
+    public Message getLastMessage() {
+        Message res = null;
+        for (Message message : messages) {
+            if (res == null) {
+                res = message;
+            } else {
+                if (message.getDatetime().compareTo(res.getDatetime()) > 0) {
+                    res = message;
+                }
+            }
+        }
+        return res;
+    }
+
+    public int getNewMessagesCount() {
+        int res = 0;
+        for (Message message : messages) {
+            if (message.getStatus().equals(MessageStatus.SENT.toString())) {
+                res++;
+            }
+        }
+        return res;
     }
 
     private void clear() {
