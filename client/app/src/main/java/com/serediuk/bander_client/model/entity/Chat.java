@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 
 import com.serediuk.bander_client.util.string.ArrayListStringCreator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Chat {
+public class Chat implements Serializable {
     private String chatUID;
     private String candidateMemberUID;
     private String bandMemberUID;

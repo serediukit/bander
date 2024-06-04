@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Chat;
 import com.serediuk.bander_client.model.enums.UserType;
+import com.serediuk.bander_client.ui.chats.adapters.ChatsRecyclerAdapter;
 
 import java.util.ArrayList;
 

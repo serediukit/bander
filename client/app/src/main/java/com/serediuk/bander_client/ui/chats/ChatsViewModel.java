@@ -8,6 +8,7 @@ import com.serediuk.bander_client.model.dao.ChatsDAO;
 import com.serediuk.bander_client.model.dao.UsersDAO;
 import com.serediuk.bander_client.model.entity.Chat;
 import com.serediuk.bander_client.model.entity.User;
+import com.serediuk.bander_client.ui.chats.adapters.ChatsRecyclerAdapter;
 
 import java.util.ArrayList;
 

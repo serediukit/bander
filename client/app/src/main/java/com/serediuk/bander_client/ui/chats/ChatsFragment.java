@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.databinding.FragmentChatsBinding;
 import com.serediuk.bander_client.model.entity.Chat;
+import com.serediuk.bander_client.ui.chats.adapters.ChatsRecyclerAdapter;
 
 import java.util.ArrayList;
 
