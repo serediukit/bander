@@ -5,10 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.chats.ChatActivity">
-    
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chatActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corner_radius_button"
+            android:fontFamily="@font/barlow_semibold"
+            android:importantForAccessibility="no"
+            android:onClick="sendMessage"
+            android:src="@drawable/ic_back_24"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height=""
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/messageSendLayout"
+        app:layout_constraintTop_toBottomOf="@+id/chatActionBar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/messageSendLayout"
