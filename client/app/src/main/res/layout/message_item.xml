@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/messageLayout"
+    android:layout_width="wrap_content"
+    android:maxWidth="300dp"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="10dp"
+    android:paddingHorizontal="10dp"
+    android:paddingTop="10dp"
+    android:layout_gravity="start"
+    android:background="@drawable/corner_radius_small">
+
+    <TextView
+        android:id="@+id/messageText"
+        android:layout_width="wrap_content"
+        android:maxWidth="300dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_medium"
+        android:text="@string/text_chat_message"
+        android:textColor="@color/text_primary"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/messageDatetime"/>
+
+    <TextView
+        android:id="@+id/messageDatetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/barlow_thin"
+        android:text="@string/text_chat_datetime"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

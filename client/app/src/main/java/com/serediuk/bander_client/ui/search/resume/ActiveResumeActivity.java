@@ -26,7 +26,7 @@ public class ActiveResumeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_active_resume);
+        setContentView(R.layout.activity_resume_active);
 
         init();
     }
