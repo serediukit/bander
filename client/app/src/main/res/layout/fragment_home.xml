@@ -115,6 +115,21 @@
                 android:textSize="20sp"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/homeNewMessagesCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_bold"
+                android:text="@string/count"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:background="@drawable/count_circle"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/homeChatsIcon"
+                app:layout_constraintEnd_toEndOf="@+id/homeChatsIcon"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Space
@@ -163,6 +178,21 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/homeNewNotificationsCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/barlow_bold"
+                android:text="@string/count"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:background="@drawable/count_circle"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/homeNotificationsIcon"
+                app:layout_constraintEnd_toEndOf="@+id/homeNotificationsIcon"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,6 +45,7 @@ import java.util.Objects;
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private TextView homeProfileName, homeProfileGenres, homeProfileRoles;
+    private TextView homeNewMessagesCount, homeNewNotificationsCount;
     private ConstraintLayout profileLayout, chatsLayout, notificationsLayout, searchLayout;
     private ImageView homeProfileImage;
 
@@ -72,6 +73,9 @@ public class HomeFragment extends Fragment {
         homeProfileGenres = binding.homeProfileGenres;
         homeProfileRoles = binding.homeProfileRole;
         homeProfileImage = binding.homeProfileImage;
+
+        homeNewMessagesCount = binding.homeNewMessagesCount;
+        homeNewNotificationsCount = binding.homeNewNotificationsCount;
 
         profileLayout = binding.homeProfileLayout;
         profileLayout.setOnClickListener(v -> {
@@ -120,6 +124,18 @@ public class HomeFragment extends Fragment {
                     .load(imageUri)
                     .apply(ImageOptions.imageOptions())
                     .into(homeProfileImage);
+
+            int countNewChats = homeViewModel.getNewMessagesCount();
+            if (countNewChats > 0) {
+                homeNewMessagesCount.setVisibility(View.VISIBLE);
+                homeNewMessagesCount.setText(String.valueOf(countNewChats));
+            }
+
+            int countNewNotifications = homeViewModel.getNewNotificationsCount();
+            if (countNewNotifications > 0) {
+                homeNewNotificationsCount.setVisibility(View.VISIBLE);
+                homeNewNotificationsCount.setText(String.valueOf(countNewNotifications));
+            }
 
             if (Objects.equals(user.getType(), UserType.BAND.toString())) {
                 homeProfileRoles.setVisibility(View.INVISIBLE);
