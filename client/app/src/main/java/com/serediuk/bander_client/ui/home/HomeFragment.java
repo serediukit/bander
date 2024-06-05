@@ -30,7 +30,9 @@ import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.databinding.FragmentHomeBinding;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.entity.User;
+import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.ui.MainActivity;
@@ -47,6 +49,8 @@ public class HomeFragment extends Fragment {
     private TextView homeProfileName, homeProfileGenres, homeProfileRoles;
     private TextView homeNewMessagesCount, homeNewNotificationsCount;
     private ConstraintLayout profileLayout, chatsLayout, notificationsLayout, searchLayout;
+    private ConstraintLayout resumeLayout, vacancyLayout;
+    private TextView searchTitle, emptySearchText;
     private ImageView homeProfileImage;
 
     private ImageStorageProvider imageStorageProvider;
@@ -63,19 +67,28 @@ public class HomeFragment extends Fragment {
         imageStorageProvider = ImageStorageProvider.getInstance();
 
         init();
+        setTransitions();
         loadData();
+        loadSearch();
 
         return root;
     }
 
     private void init() {
+        homeNewMessagesCount = binding.homeNewMessagesCount;
+        homeNewNotificationsCount = binding.homeNewNotificationsCount;
+
+        resumeLayout = binding.homeResumeLayout;
+        vacancyLayout = binding.homeVacancyLayout;
+        searchTitle = binding.homeSearchTitle;
+        emptySearchText = binding.homeSearchEmptyText;
+    }
+
+    private void setTransitions() {
         homeProfileName = binding.homeProfileName;
         homeProfileGenres = binding.homeProfileGenres;
         homeProfileRoles = binding.homeProfileRole;
         homeProfileImage = binding.homeProfileImage;
-
-        homeNewMessagesCount = binding.homeNewMessagesCount;
-        homeNewNotificationsCount = binding.homeNewNotificationsCount;
 
         profileLayout = binding.homeProfileLayout;
         profileLayout.setOnClickListener(v -> {
@@ -151,6 +164,72 @@ public class HomeFragment extends Fragment {
                 homeProfileGenres.setText(candidate.getPreferredGenres());
                 homeProfileRoles.setText(candidate.getRole());
             }
+        }
+    }
+
+    private void loadSearch() {
+        String userType = homeViewModel.getUserType();
+
+        if (userType.equals(UserType.CANDIDATE.toString()))
+            loadVacancyLayout();
+        else
+            loadResumeLayout();
+    }
+
+    private void loadVacancyLayout() {
+        searchTitle.setText(getResources().getString(R.string.text_candidate_vacancies_search_title));
+
+        Vacancy vacancy = homeViewModel.getRecomendedVacancy();
+        if (vacancy == null) {
+            emptySearchText.setVisibility(View.VISIBLE);
+            vacancyLayout.setVisibility(View.INVISIBLE);
+        } else {
+            emptySearchText.setVisibility(View.INVISIBLE);
+            vacancyLayout.setVisibility(View.VISIBLE);
+
+            TextView vacancyTitle = binding.homeVacancyTitle;
+            TextView vacancyBand = binding.homeVacancyBand;
+            TextView vacancyGenres = binding.homeVacancyGenres;
+            TextView vacancyText = binding.homeVacancyText;
+            TextView vacancySalary = binding.homeVacancySalary;
+            TextView vacancyDatetime = binding.homeVacancyDatetime;
+
+            Band band = homeViewModel.getBandForVacancy(vacancy.getBandUID());
+
+            vacancyTitle.setText(vacancy.getRole());
+            vacancyBand.setText(band.getName());
+            vacancyGenres.setText(band.getGenres());
+            vacancyText.setText(vacancy.getText());
+            vacancySalary.setText(vacancy.getSalary());
+            vacancyDatetime.setText(vacancy.getDatetime());
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void loadResumeLayout() {
+        searchTitle.setText(getResources().getString(R.string.text_band_resumes_search_title));
+
+        Resume resume = homeViewModel.getReceivedVacancy();
+        if (resume == null) {
+            emptySearchText.setVisibility(View.VISIBLE);
+            resumeLayout.setVisibility(View.INVISIBLE);
+        } else {
+            emptySearchText.setVisibility(View.INVISIBLE);
+            resumeLayout.setVisibility(View.VISIBLE);
+
+            TextView resumeTitle = binding.homeResumeTitle;
+            TextView resumeRole = binding.homeResumeRole;
+            TextView resumeGenres = binding.homeResumeGenres;
+            TextView resumeExperience = binding.homeResumeExperience;
+            TextView resumeDatetime = binding.homeResumeDatetime;
+
+            Candidate candidate = homeViewModel.getCandidateForResume(resume.getCandidateUID());
+
+            resumeTitle.setText(candidate.getName() + " " + candidate.getSurname());
+            resumeRole.setText(candidate.getRole());
+            resumeGenres.setText(candidate.getPreferredGenres());
+            resumeExperience.setText(candidate.getExperience());
+            resumeDatetime.setText(resume.getDatetime());
         }
     }
 

@@ -10,13 +10,18 @@ import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.dao.ChatsDAO;
 import com.serediuk.bander_client.model.dao.MessagesDAO;
 import com.serediuk.bander_client.model.dao.NotificationsDAO;
+import com.serediuk.bander_client.model.dao.ResumesDAO;
 import com.serediuk.bander_client.model.dao.UsersDAO;
+import com.serediuk.bander_client.model.dao.VacanciesDAO;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Chat;
 import com.serediuk.bander_client.model.entity.Notification;
+import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.entity.User;
+import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.model.enums.NotificationStatus;
+import com.serediuk.bander_client.model.enums.ResumeStatus;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -29,6 +34,8 @@ public class HomeViewModel extends ViewModel {
     private ChatsDAO chatsDAO;
     private MessagesDAO messagesDAO;
     private NotificationsDAO notificationsDAO;
+    private VacanciesDAO vacanciesDAO;
+    private ResumesDAO resumeDAO;
 
     public HomeViewModel() {
         usersDAO = UsersDAO.getInstance();
@@ -37,6 +44,8 @@ public class HomeViewModel extends ViewModel {
         chatsDAO = ChatsDAO.getInstance();
         messagesDAO = MessagesDAO.getInstance();
         notificationsDAO = NotificationsDAO.getInstance();
+        vacanciesDAO = VacanciesDAO.getInstance();
+        resumeDAO = ResumesDAO.getInstance();
     }
 
     public User getUser() {
@@ -75,5 +84,31 @@ public class HomeViewModel extends ViewModel {
         }
 
         return count;
+    }
+
+    public String getUserType() {
+        return getUser().getType();
+    }
+
+    public Vacancy getRecomendedVacancy() {
+        ArrayList<Vacancy> vacancies = vacanciesDAO.getRecommendedVacancies(AuthUID.getUID());
+        if (vacancies.size() == 0)
+            return null;
+        return vacancies.get(0);
+    }
+
+    public Band getBandForVacancy(String bandUID) {
+        return bandsDAO.readBand(bandUID);
+    }
+
+    public Resume getReceivedVacancy() {
+        ArrayList<Resume> resumes = resumeDAO.getReceivedResumes(AuthUID.getUID());
+        if (resumes.size() == 0)
+            return null;
+        return resumes.get(0);
+    }
+
+    public Candidate getCandidateForResume(String candidateUID) {
+        return candidatesDAO.readCandidate(candidateUID);
     }
 }

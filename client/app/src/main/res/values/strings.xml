@@ -136,6 +136,7 @@
     <string name="text_no_message">There is no message</string>
     <string name="text_hello_message">Hi, I liked your resume.\nI want to contact with you. \nWrite me.</string>
     <string name="text_write_message">Write a message</string>
+    <string name="text_home_search_empty">There is nothing for you</string>
 
 
 </resources>

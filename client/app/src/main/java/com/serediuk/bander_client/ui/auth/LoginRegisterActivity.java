@@ -28,6 +28,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private AuthProvider authProvider;
     private static FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
+    public static void removeCover() {
+        AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +61,9 @@ public class LoginRegisterActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.emailEditText);
         mPassword = findViewById(R.id.passwordEditText);
 
-        try {
-            new Handler().postDelayed(() -> {
-                AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
-            }, 2500);
-        } catch (Exception ignored) {}
+        if (DatabaseInitializer.isInitialized()) {
+            removeCover();
+        }
     }
 
     public void login(View view) {
