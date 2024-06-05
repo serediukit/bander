@@ -11,7 +11,7 @@ import com.serediuk.bander_client.ui.notifications.adapters.NotificationRecycler
 import java.util.ArrayList;
 
 public class NotificationsViewModel extends ViewModel {
-    NotificationsDAO notificationsDAO;
+    private NotificationsDAO notificationsDAO;
 
     public NotificationsViewModel() {
         notificationsDAO = NotificationsDAO.getInstance();

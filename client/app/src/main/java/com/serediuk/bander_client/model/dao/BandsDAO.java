@@ -10,8 +10,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.DatabaseInitializer;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Band;
+import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 
 import java.util.ArrayList;
 
@@ -84,6 +86,7 @@ public class BandsDAO {
                     bandsList.add(band);
                 }
                 Log.d("BAND DAO", "Read " + bandsList.size() + " bands");
+                DatabaseInitializer.inc();
             }
 
             @Override

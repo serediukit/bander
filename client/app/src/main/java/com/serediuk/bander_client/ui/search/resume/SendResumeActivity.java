@@ -35,7 +35,7 @@ public class SendResumeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_resume);
+        setContentView(R.layout.activity_resume_send);
 
         resumesDAO = ResumesDAO.getInstance();
         candidatesDAO = CandidatesDAO.getInstance();

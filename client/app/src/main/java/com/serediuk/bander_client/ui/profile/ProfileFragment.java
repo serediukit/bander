@@ -3,12 +3,14 @@ package com.serediuk.bander_client.ui.profile;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -16,15 +18,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 import com.google.firebase.auth.FirebaseAuth;
 import com.serediuk.bander_client.databinding.FragmentProfileBinding;
 import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.User;
 import com.serediuk.bander_client.model.enums.UserType;
+import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.model.entity.Candidate;
-import com.serediuk.bander_client.util.ArrayListStringCreator;
+import com.serediuk.bander_client.util.image.ImageOptions;
+import com.serediuk.bander_client.util.string.ArrayListStringCreator;
 
 import java.util.Objects;
 
@@ -37,6 +44,7 @@ public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
 
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+    private ImageStorageProvider imageStorageProvider;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -45,6 +53,8 @@ public class ProfileFragment extends Fragment {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        imageStorageProvider = ImageStorageProvider.getInstance();
 
         init();
         loadData();
@@ -109,6 +119,14 @@ public class ProfileFragment extends Fragment {
             mBandEdit.setVisibility(View.INVISIBLE);
             mBandEdit.setHeight(0);
 
+            ImageView mProfileImage = binding.accountImageView;
+            Uri imageUri = imageStorageProvider.downloadImageUri(user.getUid());
+            Glide
+                    .with(requireActivity())
+                    .load(imageUri)
+                    .apply(ImageOptions.imageOptions())
+                    .into(mProfileImage);
+
             Candidate candidate = profileViewModel.getCandidate();
             Log.d("PROFILE", "Loaded candidate:\n" + candidate);
 
@@ -156,6 +174,14 @@ public class ProfileFragment extends Fragment {
             mBandEdit.setHeight(mSignOut.getHeight());
             mEdit.setVisibility(View.INVISIBLE);
             mEdit.setHeight(0);
+
+            ImageView mProfileImage = binding.bandAccountImageView;
+            Uri imageUri = imageStorageProvider.downloadImageUri(user.getUid());
+            Glide
+                    .with(requireActivity())
+                    .load(imageUri)
+                    .apply(ImageOptions.imageOptions())
+                    .into(mProfileImage);
 
             Band band = profileViewModel.getBand();
             Log.d("PROFILE", "Loaded band:\n" + band);

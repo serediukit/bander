@@ -1,41 +1,57 @@
 package com.serediuk.bander_client.ui.profile;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.ui.MainActivity;
+import com.serediuk.bander_client.util.image.ImageOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ProfileEditActivity extends AppCompatActivity {
-    EditText mName, mSurname, mBirthday, mCity;
-    EditText mExperience, mAbout, mRoles, mPreferredGenres, mVideoLinks;
+    private EditText mName, mSurname, mBirthday, mCity;
+    private EditText mExperience, mAbout, mRoles, mPreferredGenres, mVideoLinks;
+    private ImageView mProfileImage;
+    private ActivityResultLauncher<Intent> resultLauncher;
+    private Uri profileImageUri;
 
-    CandidatesDAO candidatesDAO;
+    private ImageStorageProvider imageStorageProvider;
+    private CandidatesDAO candidatesDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
 
+        imageStorageProvider = ImageStorageProvider.getInstance();
         candidatesDAO = CandidatesDAO.getInstance();
         init();
+        loadData();
     }
 
     private void init() {
@@ -49,6 +65,30 @@ public class ProfileEditActivity extends AppCompatActivity {
         mPreferredGenres = findViewById(R.id.profileEditTextGenres);
         mVideoLinks = findViewById(R.id.profileEditTextLinks);
 
+        mProfileImage = findViewById(R.id.profileImageButton);
+
+        mProfileImage.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            resultLauncher.launch(intent);
+        });
+
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                activityResult -> {
+                    try {
+                        Uri imageUri = Objects.requireNonNull(activityResult.getData()).getData();
+                        mProfileImage.setImageURI(imageUri);
+                        profileImageUri = imageUri;
+                    } catch (Exception e) {
+                        Log.e("PROFILE EDIT", "Can't to pick the image");
+                    }
+                }
+        );
+    }
+
+    private void loadData() {
         Candidate candidate = candidatesDAO.readCandidate(AuthProvider.getInstance().getUid());
 
         if (candidate != null) {
@@ -71,6 +111,13 @@ public class ProfileEditActivity extends AppCompatActivity {
             if (!candidate.getVideoLinks().isEmpty())
                 mVideoLinks.setText(candidate.getVideoLinks());
         }
+
+        Uri profileImage = imageStorageProvider.downloadImageUri(AuthUID.getUID());
+        Glide
+                .with(this)
+                .load(profileImage)
+                .apply(ImageOptions.imageOptions())
+                .into(mProfileImage);
 
         Date currentDate = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -145,6 +192,9 @@ public class ProfileEditActivity extends AppCompatActivity {
                             videoLinks);
                     candidatesDAO.updateCandidate(newCandidate);
 
+                    if (profileImageUri != null)
+                        imageStorageProvider.uploadImage(this, AuthUID.getUID(), profileImageUri);
+
                     Intent intent = new Intent(ProfileEditActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -154,6 +204,13 @@ public class ProfileEditActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
+        profileImageUri = null;
         finish();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loadData();
     }
 }

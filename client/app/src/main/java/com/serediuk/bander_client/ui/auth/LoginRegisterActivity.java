@@ -1,11 +1,15 @@
 package com.serediuk.bander_client.ui.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,12 +26,21 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private EditText mEmail, mPassword;
 
     private AuthProvider authProvider;
-    private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+    private static FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+
+    public static void removeCover() {
+        AuthProvider.getInstance().addAuthStateListener(firebaseAuthStateListener);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
+
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.primary));
 
         DatabaseInitializer.init();
         authProvider = AuthProvider.getInstance();
@@ -47,6 +60,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
         mEmail = findViewById(R.id.emailEditText);
         mPassword = findViewById(R.id.passwordEditText);
+
+        if (DatabaseInitializer.isInitialized()) {
+            removeCover();
+        }
     }
 
     public void login(View view) {
@@ -71,7 +88,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        authProvider.addAuthStateListener(firebaseAuthStateListener);
     }
 
     @Override

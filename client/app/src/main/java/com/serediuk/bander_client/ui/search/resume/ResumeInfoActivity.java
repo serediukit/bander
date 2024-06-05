@@ -1,23 +1,34 @@
 package com.serediuk.bander_client.ui.search.resume;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.dao.CandidatesDAO;
+import com.serediuk.bander_client.model.dao.ChatsDAO;
+import com.serediuk.bander_client.model.dao.MessagesDAO;
 import com.serediuk.bander_client.model.dao.NotificationsDAO;
 import com.serediuk.bander_client.model.dao.ResumesDAO;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.model.entity.Chat;
+import com.serediuk.bander_client.model.entity.Message;
 import com.serediuk.bander_client.model.entity.Notification;
 import com.serediuk.bander_client.model.entity.Resume;
+import com.serediuk.bander_client.model.enums.MessageStatus;
 import com.serediuk.bander_client.model.enums.NotificationStatus;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
+import com.serediuk.bander_client.model.enums.SenderType;
+import com.serediuk.bander_client.model.storage.ImageStorageProvider;
+import com.serediuk.bander_client.util.image.ImageOptions;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,11 +37,16 @@ public class ResumeInfoActivity extends AppCompatActivity {
     private CandidatesDAO candidatesDAO;
     private ResumesDAO resumesDAO;
     private NotificationsDAO notificationsDAO;
+    private ChatsDAO chatsDAO;
+    private MessagesDAO messagesDAO;
     private Resume resume;
 
     private TextView mName, mSurname, mRole, mExperience;
     private TextView mBirthday, mCity, mText;
     private TextView mAbout, mGenres, mLinks, mDatetime;
+    private ImageView mResumeImage;
+
+    private ImageStorageProvider imageStorageProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +56,11 @@ public class ResumeInfoActivity extends AppCompatActivity {
         candidatesDAO = CandidatesDAO.getInstance();
         resumesDAO = ResumesDAO.getInstance();
         notificationsDAO = NotificationsDAO.getInstance();
+        chatsDAO = ChatsDAO.getInstance();
+        messagesDAO = MessagesDAO.getInstance();
         resume = (Resume) getIntent().getSerializableExtra("resume");
+
+        imageStorageProvider = ImageStorageProvider.getInstance();
 
         init();
         loadData();
@@ -58,6 +78,8 @@ public class ResumeInfoActivity extends AppCompatActivity {
         mGenres = findViewById(R.id.resumeInfoGenres);
         mLinks = findViewById(R.id.resumeInfoLinks);
         mDatetime = findViewById(R.id.resumeInfoDatetime);
+
+        mResumeImage = findViewById(R.id.candidateImageView);
     }
 
     private void loadData() {
@@ -74,6 +96,13 @@ public class ResumeInfoActivity extends AppCompatActivity {
         mGenres.setText(candidate.getPreferredGenres());
         mLinks.setText(candidate.getVideoLinks());
         mDatetime.setText(resume.getDatetime());
+
+        Uri imageUti = imageStorageProvider.downloadImageUri(resume.getCandidateUID());
+        Glide
+                .with(this)
+                .load(imageUti)
+                .apply(ImageOptions.imageOptions())
+                .into(mResumeImage);
     }
 
     public void acceptResume(View view) {
@@ -95,6 +124,36 @@ public class ResumeInfoActivity extends AppCompatActivity {
                 NotificationStatus.NEW.toString()
         );
         notificationsDAO.createNotification(notification);
+
+        Chat chatFind = chatsDAO.find(resume.getCandidateUID(), AuthUID.getUID());
+        if (chatFind != null) {
+            Message message = new Message(
+                    "",
+                    chatFind.getChatUID(),
+                    SenderType.BAND.toString(),
+                    getResources().getString(R.string.text_hello_message),
+                    datetime,
+                    MessageStatus.SENT.toString()
+            );
+            messagesDAO.createMessage(message);
+        } else {
+            Chat chat = new Chat(
+                    "",
+                    resume.getCandidateUID(),
+                    AuthUID.getUID()
+            );
+            chatsDAO.createChat(chat);
+
+            Message message = new Message(
+                    "",
+                    chat.getChatUID(),
+                    SenderType.BAND.toString(),
+                    getResources().getString(R.string.text_hello_message),
+                    datetime,
+                    MessageStatus.SENT.toString()
+            );
+            messagesDAO.createMessage(message);
+        }
 
         finish();
     }

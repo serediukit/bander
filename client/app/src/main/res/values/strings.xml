@@ -127,6 +127,16 @@
     <string name="text_notification_text">Notification text</string>
     <string name="text_notification_datetime">Notification datetime</string>
     <string name="text_notification_empty">There are not notification for you</string>
+    <string name="text_chats_empty">There are not chats for you</string>
+    <string name="description_chat_image">Chat image</string>
+    <string name="text_chat_title">Chat title</string>
+    <string name="text_chat_datetime">Chat datetime</string>
+    <string name="text_chat_message">Chat message</string>
+    <string name="count">0</string>
+    <string name="text_no_message">There is no message</string>
+    <string name="text_hello_message">Hi, I liked your resume.\nI want to contact with you. \nWrite me.</string>
+    <string name="text_write_message">Write a message</string>
+    <string name="text_home_search_empty">There is nothing for you</string>
 
 
 </resources>

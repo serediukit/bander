@@ -10,7 +10,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.DatabaseInitializer;
 import com.serediuk.bander_client.model.entity.Candidate;
+import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 
 import org.checkerframework.checker.units.qual.C;
 
@@ -85,11 +87,12 @@ public class CandidatesDAO {
                     candidatesList.add(candidate);
                 }
                 Log.d("CANDIDATE DAO", "Read " + candidatesList.size() + " candidates");
+                DatabaseInitializer.inc();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d("CANDIDATE DAO", "Cancelled: " + error.getMessage());
             }
         });
 

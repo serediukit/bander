@@ -1,6 +1,7 @@
 package com.serediuk.bander_client.model;
 
 import com.serediuk.bander_client.model.dao.*;
+import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 
 public class DatabaseInitializer {
     private static UsersDAO usersDAO;
@@ -9,6 +10,11 @@ public class DatabaseInitializer {
     private static VacanciesDAO vacanciesDAO;
     private static ResumesDAO resumesDAO;
     private static NotificationsDAO notificationsDAO;
+    private static ChatsDAO chatsDAO;
+    private static MessagesDAO messagesDAO;
+
+    private static int initializeCount = 0;
+
 
     public static void init() {
         DatabaseConnectionProvider dbcProvider = DatabaseConnectionProvider.getInstance();
@@ -18,15 +24,18 @@ public class DatabaseInitializer {
         vacanciesDAO = VacanciesDAO.getInstance();
         resumesDAO = ResumesDAO.getInstance();
         notificationsDAO = NotificationsDAO.getInstance();
+        chatsDAO = ChatsDAO.getInstance();
+        messagesDAO = MessagesDAO.getInstance();
     }
 
-    public static void load() {
-        init();
-        usersDAO.loadUsers();
-        candidatesDAO.loadCandidates();
-        bandsDAO.loadBands();
-        vacanciesDAO.loadVacancies();
-        resumesDAO.loadResumes();
-        notificationsDAO.loadNotifications();
+    public static void inc() {
+        initializeCount++;
+        if (initializeCount == 3) {
+            LoginRegisterActivity.removeCover();
+        }
+    }
+
+    public static boolean isInitialized() {
+        return initializeCount >= 3;
     }
 }

@@ -27,7 +27,7 @@ public class CreateVacancyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_vacancy);
+        setContentView(R.layout.activity_vacancy_create);
 
         init();
     }

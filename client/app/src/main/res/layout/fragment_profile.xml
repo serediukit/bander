@@ -39,7 +39,8 @@
                     android:layout_width="160dp"
                     android:layout_height="160dp"
                     android:contentDescription="@string/description_profile_image"
-                    app:srcCompat="@drawable/blank_profile" />
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/blank_profile"/>
 
                 <LinearLayout
                     android:id="@+id/userInfoLinearLayout"
@@ -231,7 +232,8 @@
                     android:layout_width="160dp"
                     android:layout_height="160dp"
                     android:contentDescription="@string/description_profile_image"
-                    app:srcCompat="@drawable/blank_profile" />
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/blank_profile" />
 
                 <LinearLayout
                     android:id="@+id/bandInfoLinearLayout"

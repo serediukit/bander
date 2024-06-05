@@ -4,9 +4,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.util.exceptions.AuthException;
-import com.serediuk.bander_client.util.Validator;
+import com.serediuk.bander_client.util.string.Validator;
 
 import java.util.Objects;
 

@@ -2,31 +2,31 @@ package com.serediuk.bander_client.model.entity;
 
 import androidx.annotation.NonNull;
 
-import com.serediuk.bander_client.util.ArrayListStringCreator;
+import com.serediuk.bander_client.model.enums.MessageStatus;
+import com.serediuk.bander_client.util.string.ArrayListStringCreator;
 
+import org.checkerframework.framework.qual.IgnoreInWholeProgramInference;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Chat {
+public class Chat implements Serializable {
     private String chatUID;
     private String candidateMemberUID;
     private String bandMemberUID;
-    private ArrayList<Message> messages;
 
     public Chat(String chatUID,
                 String candidateMemberUID,
-                String bandMemberUID,
-                ArrayList<Message> messages) {
+                String bandMemberUID) {
         this.chatUID = chatUID;
         this.candidateMemberUID = candidateMemberUID;
         this.bandMemberUID = bandMemberUID;
-        this.messages = new ArrayList<>(messages);
     }
 
     public Chat(Chat chat) {
         this.chatUID = chat.chatUID;
         this.candidateMemberUID = chat.candidateMemberUID;
         this.bandMemberUID = chat.bandMemberUID;
-        this.messages = new ArrayList<>(chat.messages);
     }
 
     public Chat() {
@@ -37,6 +37,10 @@ public class Chat {
         return chatUID;
     }
 
+    public void setChatUID(String chatUID) {
+        this.chatUID = chatUID;
+    }
+
     public String getCandidateMemberUID() {
         return candidateMemberUID;
     }
@@ -45,15 +49,10 @@ public class Chat {
         return bandMemberUID;
     }
 
-    public ArrayList<Message> getMessages() {
-        return messages;
-    }
-
     private void clear() {
         this.chatUID = null;
         this.candidateMemberUID = null;
         this.bandMemberUID = null;
-        this.messages = new ArrayList<>();
     }
 
     @NonNull
@@ -62,7 +61,6 @@ public class Chat {
         return "{\nchatUID: " + chatUID +
                 "\ncandidateMemberUID: " + candidateMemberUID +
                 "\nbandMemberUID: " + bandMemberUID +
-                "\nmessages: " + ArrayListStringCreator.getStringFromArrayListMessages(messages) +
                 "\n}";
     }
 }

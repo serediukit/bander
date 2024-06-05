@@ -1,34 +1,51 @@
 package com.serediuk.bander_client.ui.profile;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.dao.BandsDAO;
 import com.serediuk.bander_client.model.entity.Band;
+import com.serediuk.bander_client.model.storage.ImageStorageProvider;
 import com.serediuk.bander_client.ui.MainActivity;
+import com.serediuk.bander_client.util.image.ImageOptions;
+
+import java.util.Objects;
 
 public class BandEditActivity extends AppCompatActivity {
     EditText mName, mCity, mGenres;
     EditText mAbout, mVideoLinks;
+    private ImageView mProfileImage;
+    private ActivityResultLauncher<Intent> resultLauncher;
+    private Uri profileImageUri;
 
-    BandsDAO bandsDAO;
+    private ImageStorageProvider imageStorageProvider;
+    private BandsDAO bandsDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_band_edit);
 
+        imageStorageProvider = ImageStorageProvider.getInstance();
         bandsDAO = BandsDAO.getInstance();
         init();
+        loadData();
     }
 
     private void init() {
@@ -38,6 +55,30 @@ public class BandEditActivity extends AppCompatActivity {
         mAbout = findViewById(R.id.bandEditTextAbout);
         mVideoLinks = findViewById(R.id.bandEditTextLinks);
 
+        mProfileImage = findViewById(R.id.bandImageButton);
+
+        mProfileImage.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            resultLauncher.launch(intent);
+        });
+
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                activityResult -> {
+                    try {
+                        Uri imageUri = Objects.requireNonNull(activityResult.getData()).getData();
+                        mProfileImage.setImageURI(imageUri);
+                        profileImageUri = imageUri;
+                    } catch (Exception e) {
+                        Log.e("BAND EDIT", "Can't to pick the image");
+                    }
+                }
+        );
+    }
+
+    private void loadData() {
         Band band = bandsDAO.readBand(AuthProvider.getInstance().getUid());
 
         if (band != null) {
@@ -52,6 +93,13 @@ public class BandEditActivity extends AppCompatActivity {
             if (!band.getVideoLinks().isEmpty())
                 mVideoLinks.setText(band.getVideoLinks());
         }
+
+        Uri profileImage = imageStorageProvider.downloadImageUri(AuthUID.getUID());
+        Glide
+                .with(this)
+                .load(profileImage)
+                .apply(ImageOptions.imageOptions())
+                .into(mProfileImage);
     }
 
     public void save(View view) {
@@ -84,6 +132,9 @@ public class BandEditActivity extends AppCompatActivity {
                             oldBand.getMembersID());
                     bandsDAO.updateBand(newBand);
 
+                    if (profileImageUri != null)
+                        imageStorageProvider.uploadImage(this, AuthUID.getUID(), profileImageUri);
+
                     Intent intent = new Intent(BandEditActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -93,6 +144,7 @@ public class BandEditActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
+        profileImageUri = null;
         finish();
     }
 }
