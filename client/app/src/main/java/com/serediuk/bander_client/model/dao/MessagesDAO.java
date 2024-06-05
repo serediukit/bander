@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Message;
 import com.serediuk.bander_client.model.enums.MessageStatus;
@@ -21,10 +22,14 @@ public class MessagesDAO {
 
     private final ArrayList<Message> messagesList;
 
+    private UsersDAO usersDAO;
+
     private MessagesDAO() {
         messagesList = new ArrayList<>();
 
         database = DatabaseConnectionProvider.getInstance().getDatabase();
+        usersDAO = UsersDAO.getInstance();
+
         loadMessages();
     }
 
@@ -108,9 +113,10 @@ public class MessagesDAO {
     }
 
     public int getNewMessagesCount(String chatUID) {
+        String myType = usersDAO.readUser(AuthUID.getUID()).getType();
         int count = 0;
         for (Message message : messagesList) {
-            if (message.getChatUID().equals(chatUID) && message.getStatus().equals(MessageStatus.SENT.toString())) {
+            if (message.getChatUID().equals(chatUID) && message.getStatus().equals(MessageStatus.SENT.toString()) && !message.getSenderType().equals(myType)) {
                 count++;
             }
         }

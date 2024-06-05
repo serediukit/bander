@@ -88,6 +88,7 @@ public class ChatsRecyclerAdapter extends RecyclerView.Adapter<ChatsRecyclerAdap
             Intent intent = new Intent(context, ChatActivity.class);
             intent.putExtra("chat", chat);
             context.startActivity(intent);
+            holder.chatNewMessagesCount.setVisibility(View.INVISIBLE);
         });
     }
 

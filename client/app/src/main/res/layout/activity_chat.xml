@@ -68,6 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="3dp"
+        android:background="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -80,8 +81,11 @@
             android:fontFamily="@font/barlow_medium"
             android:gravity="top|start"
             android:hint="@string/text_write_message"
+            android:textColorHint="@color/primary_dark_light"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:onClick="scrollDown"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/sendMessageButton"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,10 +93,9 @@
 
         <ImageButton
             android:id="@+id/sendMessageButton"
-            android:layout_width="wrap_content"
+            android:layout_width="?attr/actionBarSize"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:background="@drawable/corner_radius_button"
             android:src="@drawable/ic_send_24"
             android:fontFamily="@font/barlow_semibold"
