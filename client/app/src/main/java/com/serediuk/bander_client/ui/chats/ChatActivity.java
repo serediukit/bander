@@ -35,4 +35,8 @@ public class ChatActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         ((TextView) findViewById(R.id.messageWriteEditText)).setText("axaxax");
     }
+
+    public void back(View view) {
+        finish();
+    }
 }
