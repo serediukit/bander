@@ -9,7 +9,7 @@
     android:paddingHorizontal="10dp"
     android:paddingTop="10dp"
     android:layout_gravity="start"
-    android:background="@drawable/corner_radius_small">
+    android:background="@drawable/corner_radius_message">
 
     <TextView
         android:id="@+id/messageText"

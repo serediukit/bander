@@ -2,6 +2,7 @@ package com.serediuk.bander_client.ui.chats;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import com.serediuk.bander_client.util.image.ImageOptions;
 import org.w3c.dom.Text;
 
 public class ChatActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+
     private ImageView chatImage;
     private TextView chatTitle;
 
