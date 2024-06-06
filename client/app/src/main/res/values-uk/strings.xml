@@ -111,4 +111,13 @@
     <string name="text_notification_text">Текст сповіщення</string>
     <string name="text_notification_datetime">Дата надсилання сповіщення</string>
     <string name="text_notification_empty">Відсутні сповіщення для Вас</string>
+    <string name="text_chats_empty">Відсутні чати для Вас</string>
+    <string name="description_chat_image">Зображення чату</string>
+    <string name="text_chat_title">Заголовок чату</string>
+    <string name="text_chat_datetime">Час чату</string>
+    <string name="text_chat_message">Повідомлення чату</string>
+    <string name="text_no_message">Повідомлення відсутні</string>
+    <string name="text_hello_message">Привіт, мені сподобалось Ваше резюме!\nХочу з Вами зв'язатись!\nВідишіть мені.</string>
+    <string name="text_write_message">Введіть повідомлення</string>
+    <string name="text_home_search_empty">Тут нічого немає для Вас</string>
 </resources>
