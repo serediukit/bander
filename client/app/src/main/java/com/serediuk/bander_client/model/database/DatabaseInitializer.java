@@ -1,6 +1,7 @@
-package com.serediuk.bander_client.model;
+package com.serediuk.bander_client.model.database;
 
 import com.serediuk.bander_client.model.dao.*;
+import com.serediuk.bander_client.model.database.DatabaseConnectionProvider;
 import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 
 public class DatabaseInitializer {

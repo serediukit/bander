@@ -1,26 +1,17 @@
 package com.serediuk.bander_client.model.dao;
 
-import android.content.Intent;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.serediuk.bander_client.R;
-import com.serediuk.bander_client.model.DatabaseConnectionProvider;
-import com.serediuk.bander_client.model.DatabaseInitializer;
+import com.serediuk.bander_client.model.database.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.database.DatabaseInitializer;
 import com.serediuk.bander_client.model.entity.User;
-import com.serediuk.bander_client.ui.MainActivity;
-import com.serediuk.bander_client.ui.auth.LoginRegisterActivity;
 
 import java.util.ArrayList;
 

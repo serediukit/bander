@@ -9,9 +9,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.serediuk.bander_client.model.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.database.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.entity.Chat;
-import com.serediuk.bander_client.model.entity.Message;
 import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.ui.chats.adapters.ChatsRecyclerAdapter;
 

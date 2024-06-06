@@ -5,7 +5,6 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -19,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.serediuk.bander_client.R;
 import com.serediuk.bander_client.auth.AuthProvider;
-import com.serediuk.bander_client.model.DatabaseInitializer;
+import com.serediuk.bander_client.model.database.DatabaseInitializer;
 import com.serediuk.bander_client.ui.MainActivity;
 
 public class LoginRegisterActivity extends AppCompatActivity {
