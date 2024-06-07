@@ -60,13 +60,6 @@ public class ChatsFragment extends Fragment {
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    @Override
-    public void onResume() {
-        super.onResume();
-        chatsRecyclerAdapter.notifyDataSetChanged();
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -50,15 +50,16 @@ public class CreateVacancyActivity extends AppCompatActivity {
 
     public void createVacancy(View view) {
         String role = mRole.getText().toString();
-        role = role.substring(0,1).toUpperCase() + role.substring(1).toLowerCase();
         String text = mText.getText().toString();
-        text = text.substring(0,1).toUpperCase() + text.substring(1).toLowerCase();
         String salary = mSalary.getText().toString();
         String money = moneyAdapter.getItem(moneySpinner.getSelectedItemPosition());
 
         if (role.isEmpty() || text.isEmpty()) {
             Toast.makeText(CreateVacancyActivity.this, "Please, fill role and vacancy description", Toast.LENGTH_SHORT).show();
         } else {
+            role = role.substring(0,1).toUpperCase() + role.substring(1).toLowerCase();
+            text = text.substring(0,1).toUpperCase() + text.substring(1).toLowerCase();
+
             String salaryText = "\uD83D\uDCB0 -";
             if (!salary.isEmpty())
                 salaryText = "\uD83D\uDCB0 " + salary + " " + money;

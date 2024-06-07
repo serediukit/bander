@@ -12,9 +12,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.database.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.database.DatabaseInitializer;
+import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.ui.search.adapters.BandVacanciesRecyclerAdapter;
 import com.serediuk.bander_client.ui.search.adapters.RecommendedVacanciesRecyclerAdapter;
+import com.serediuk.bander_client.util.string.StringHelper;
 
 import java.util.ArrayList;
 
@@ -113,6 +116,7 @@ public class VacanciesDAO {
                     bandVacanciesRecyclerAdapter.notifyDataSetChanged();
                 }
                 Log.d("VACANCY DAO", "Read " + vacanciesList.size() + " vacancies");
+                DatabaseInitializer.inc();
             }
 
             @Override

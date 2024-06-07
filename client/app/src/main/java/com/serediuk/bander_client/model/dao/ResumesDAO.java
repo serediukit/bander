@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.database.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.database.DatabaseInitializer;
 import com.serediuk.bander_client.model.entity.Resume;
 import com.serediuk.bander_client.model.enums.ResumeStatus;
 import com.serediuk.bander_client.ui.search.adapters.ActiveResumeRecyclerAdapter;
@@ -133,6 +134,7 @@ public class ResumesDAO {
                     activeResumeRecyclerAdapter.notifyDataSetChanged();
                 }
                 Log.d("RESUME DAO", "Read " + resumesList.size() + " resumes");
+                DatabaseInitializer.inc();
             }
 
             @Override

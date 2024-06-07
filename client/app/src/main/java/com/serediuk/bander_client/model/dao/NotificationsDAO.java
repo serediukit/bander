@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.database.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.database.DatabaseInitializer;
 import com.serediuk.bander_client.model.entity.Notification;
 import com.serediuk.bander_client.model.enums.NotificationStatus;
 import com.serediuk.bander_client.ui.notifications.adapters.NotificationRecyclerAdapter;
@@ -119,6 +120,7 @@ public class NotificationsDAO {
                 }
 
                 Log.d("NOTIFICATION DAO", "Read " + notificationsList.size() + " notifications");
+                DatabaseInitializer.inc();
             }
 
             @Override

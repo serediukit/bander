@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.model.database.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.database.DatabaseInitializer;
 import com.serediuk.bander_client.model.entity.Chat;
 import com.serediuk.bander_client.model.enums.UserType;
 import com.serediuk.bander_client.ui.chats.adapters.ChatsRecyclerAdapter;
@@ -114,6 +115,7 @@ public class ChatsDAO {
                 }
 
                 Log.d("CHAT DAO", "Read " + chatsList.size() + " chats");
+                DatabaseInitializer.inc();
             }
 
             @Override

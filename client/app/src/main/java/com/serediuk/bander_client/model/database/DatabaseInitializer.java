@@ -14,6 +14,7 @@ public class DatabaseInitializer {
     private static ChatsDAO chatsDAO;
     private static MessagesDAO messagesDAO;
 
+    private static final int COUNT = 8;
     private static int initializeCount = 0;
 
 
@@ -31,12 +32,12 @@ public class DatabaseInitializer {
 
     public static void inc() {
         initializeCount++;
-        if (initializeCount == 3) {
+        if (initializeCount == COUNT) {
             LoginRegisterActivity.removeCover();
         }
     }
 
     public static boolean isInitialized() {
-        return initializeCount >= 3;
+        return initializeCount >= COUNT;
     }
 }

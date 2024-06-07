@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.database.DatabaseConnectionProvider;
+import com.serediuk.bander_client.model.database.DatabaseInitializer;
 import com.serediuk.bander_client.model.entity.Message;
 import com.serediuk.bander_client.model.enums.MessageStatus;
 
@@ -89,6 +90,7 @@ public class MessagesDAO {
                     messagesList.add(message);
                 }
                 Log.d("MESSAGE DAO", "Read " + messagesList.size() + " messages");
+                DatabaseInitializer.inc();
             }
 
             @Override
