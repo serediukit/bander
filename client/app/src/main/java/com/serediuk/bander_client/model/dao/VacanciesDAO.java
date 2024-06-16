@@ -21,6 +21,7 @@ import com.serediuk.bander_client.ui.search.adapters.RecommendedVacanciesRecycle
 import com.serediuk.bander_client.util.string.StringHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class VacanciesDAO {
     private static VacanciesDAO instance;
@@ -154,6 +155,7 @@ public class VacanciesDAO {
     }
 
     private ArrayList<Vacancy> sortVacancy(ArrayList<Vacancy> list) {
+        Collections.reverse(list);
         return list;
     }
 
