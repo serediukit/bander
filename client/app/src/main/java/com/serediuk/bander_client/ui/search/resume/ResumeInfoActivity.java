@@ -1,5 +1,7 @@
 package com.serediuk.bander_client.ui.search.resume;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -103,6 +105,21 @@ public class ResumeInfoActivity extends AppCompatActivity {
                 .load(imageUti)
                 .apply(ImageOptions.imageOptions())
                 .into(mResumeImage);
+
+        mLinks.setOnClickListener(v -> {
+            String link = mLinks.getText().toString();
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setPackage("com.google.android.youtube");
+
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                intent.setPackage(null);
+                startActivity(intent);
+            }
+        });
     }
 
     public void acceptResume(View view) {

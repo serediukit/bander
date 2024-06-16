@@ -196,6 +196,7 @@
                 android:text="@string/text_links"
                 android:textColor="@color/text_primary"
                 android:textSize="16sp"
+                android:autoLink="web"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileLinksTitle"/>
 
@@ -298,29 +299,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bandAboutTitle"/>
 
-            <TextView
-                android:id="@+id/bandMembersTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/barlow_semibold"
-                android:text="@string/text_members_title"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bandAbout"/>
+<!--            <TextView-->
+<!--                android:id="@+id/bandMembersTitle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:fontFamily="@font/barlow_semibold"-->
+<!--                android:text="@string/text_members_title"-->
+<!--                android:textColor="@color/text_primary"-->
+<!--                android:textSize="18sp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/bandAbout"/>-->
 
-            <TextView
-                android:id="@+id/bandMembers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/barlow_medium"
-                android:text="@string/text_members"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bandMembersTitle"/>
+<!--            <TextView-->
+<!--                android:id="@+id/bandMembers"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:fontFamily="@font/barlow_medium"-->
+<!--                android:text="@string/text_members"-->
+<!--                android:textColor="@color/text_primary"-->
+<!--                android:textSize="16sp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/bandMembersTitle"/>-->
 
             <TextView
                 android:id="@+id/bandLinksTitle"
@@ -332,7 +333,7 @@
                 android:textColor="@color/text_primary"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bandMembers"/>
+                app:layout_constraintTop_toBottomOf="@+id/bandAbout"/>
 
             <TextView
                 android:id="@+id/bandLinks"
@@ -343,6 +344,7 @@
                 android:text="@string/text_links"
                 android:textColor="@color/text_primary"
                 android:textSize="16sp"
+                android:autoLink="web"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bandLinksTitle"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

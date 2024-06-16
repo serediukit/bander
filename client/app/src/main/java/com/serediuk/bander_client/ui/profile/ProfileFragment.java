@@ -2,6 +2,7 @@ package com.serediuk.bander_client.ui.profile;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -105,6 +106,18 @@ public class ProfileFragment extends Fragment {
             Intent intent = new Intent(requireActivity(), BandEditActivity.class);
             startActivity(intent);
         });
+
+        TextView profileVideoLink = binding.profileLinks;
+        profileVideoLink.setOnClickListener(v -> {
+            String link = profileVideoLink.getText().toString();
+            openVideo(link);
+        });
+
+        TextView bandVideoLink = binding.bandLinks;
+        profileVideoLink.setOnClickListener(v -> {
+            String link = bandVideoLink.getText().toString();
+            openVideo(link);
+        });
     }
 
     @SuppressLint("SetTextI18n")
@@ -202,13 +215,28 @@ public class ProfileFragment extends Fragment {
                 TextView mAbout = binding.bandAbout;
                 mAbout.setText(band.getAbout());
             }
-            if (band.getMembersID() != null && !band.getMembersID().isEmpty()) {
-                TextView mMembers = binding.bandMembers;
-                mMembers.setText(ArrayListStringCreator.getStringsFromArrayList(band.getMembersID()));
-            }
+//            if (band.getMembersID() != null && !band.getMembersID().isEmpty()) {
+//                TextView mMembers = binding.bandMembers;
+//                mMembers.setText(ArrayListStringCreator.getStringsFromArrayList(band.getMembersID()));
+//            }
             if (band.getVideoLinks() != null && !band.getVideoLinks().isEmpty()) {
                 TextView mVideoLinks = binding.bandLinks;
                 mVideoLinks.setText(band.getVideoLinks());
+            }
+        }
+    }
+
+    private void openVideo(String link) {
+        if (link.startsWith("http")) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setPackage("com.google.android.youtube");
+
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                intent.setPackage(null);
+                startActivity(intent);
             }
         }
     }

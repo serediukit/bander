@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/messageLayout"
         android:layout_width="wrap_content"
         android:maxWidth="300dp"
@@ -20,15 +20,16 @@
         <TextView
             android:id="@+id/messageText"
             android:layout_width="wrap_content"
-            android:maxWidth="300dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/barlow_medium"
+            android:maxWidth="300dp"
             android:text="@string/text_chat_message"
             android:textColor="@color/text_primary"
             android:textSize="16sp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/messageDatetime"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/messageDatetime"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/messageDatetime"
@@ -38,8 +39,9 @@
             android:text="@string/text_chat_datetime"
             android:textColor="@color/text_secondary"
             android:textSize="14sp"
+            android:paddingEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
