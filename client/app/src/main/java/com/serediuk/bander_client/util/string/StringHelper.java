@@ -4,6 +4,7 @@ public class StringHelper {
     private static final int ALLOWED_DISTANCE = 3;
 
     public static boolean inString(String value, String string) {
+        string = string.replaceAll(",", "");
         String[] parts = string.split(" ");
         for (String part : parts) {
             if (levenshteinDistance(value, part) <= ALLOWED_DISTANCE) {

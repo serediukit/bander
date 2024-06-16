@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.serediuk.bander_client.auth.AuthUID;
 import com.serediuk.bander_client.model.database.DatabaseConnectionProvider;
 import com.serediuk.bander_client.model.database.DatabaseInitializer;
+import com.serediuk.bander_client.model.entity.Band;
 import com.serediuk.bander_client.model.entity.Candidate;
 import com.serediuk.bander_client.model.entity.Vacancy;
 import com.serediuk.bander_client.ui.search.adapters.BandVacanciesRecyclerAdapter;
@@ -138,14 +139,22 @@ public class VacanciesDAO {
                 }
             }
         }
-        return recommendedVacancies;
+        return sortVacancy(recommendedVacancies);
     }
 
     private boolean isRecommendedVacancy(Vacancy vacancy, String candidateUID) {
-        return true;
-//        Candidate candidate = CandidatesDAO.getInstance().readCandidate(candidateUID);
-//        String bandCity = BandsDAO.getInstance().readBand(vacancy.getBandUID()).getCity();
-//        return candidate.getCity().equals(bandCity) && StringHelper.inString(vacancy.getRole(), candidate.getRole());
+        Candidate candidate = CandidatesDAO.getInstance().readCandidate(candidateUID);
+
+        String bandCity = BandsDAO.getInstance().readBand(vacancy.getBandUID()).getCity();
+
+        String vacancyRole = vacancy.getRole().toLowerCase();
+        String candidateRole = candidate.getRole().toLowerCase();
+
+        return bandCity.equals(candidate.getCity()) && StringHelper.inString(vacancyRole, candidateRole);
+    }
+
+    private ArrayList<Vacancy> sortVacancy(ArrayList<Vacancy> list) {
+        return list;
     }
 
     public void setRecommendedVacanciesRecyclerAdapter(RecommendedVacanciesRecyclerAdapter adapter) {
